@@ -8,6 +8,7 @@ import { useToast } from '@chakra-ui/react';
 import { base_url } from './components/constants/enviroments';
 
 function App() {
+  const [uploadedData, setUploadedData] = useState<CSVRow[]>([]);
 const [parsedData, setParsedData] = useState<any>([]);
 const toast = useToast();
 
@@ -50,8 +51,23 @@ useEffect(() => {
   }
   },[]);
 
+  const getLocalStorage = () => {
+    try {
+        return JSON.parse(localStorage.getItem('uploadedData') || '');
+    } catch (error) {
+        return null;
+    }
+};
 
 
+useEffect(() => {
+
+  if (parsedData) {
+    setUploadedData(getLocalStorage());
+  }
+}, [parsedData]);
+
+console.log('parsedData:', uploadedData);
 
   return (
     <>
