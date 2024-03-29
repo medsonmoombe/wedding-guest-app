@@ -15,7 +15,7 @@ const toast = useToast();
 
 
 useEffect(() => {
-  const fileId = localStorage.getItem('fileId');
+  const fileId = localStorage.getItem('fileId') || '160TxvspaA_fEMKd_URlSgQlqXTCePVaa';
 
   if(fileId) {
   const getFile = async() => {
