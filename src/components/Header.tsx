@@ -3,73 +3,78 @@ import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineCloudUpload } from "react-icons/md";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { IoIosCheckmark } from "react-icons/io";
-import Papa from 'papaparse';
+import axios from "axios";
+import { base_url } from "./constants/enviroments";
 
 export interface CSVRow {
-    [key: string]: string;
-  }
-  
-  export interface CSVResult {
-    data: string[][];
-  }
-  
-  export type CSVHeaders = string[];
+  [key: string]: string;
+}
 
-  interface HeaderProps {
-    uploadedData: CSVRow[];
-    setParsedData: (data: CSVRow[]) => void;
-  }
+export interface CSVResult {
+  data: string[][];
+}
 
-const Header = ({ uploadedData, setParsedData }: HeaderProps ) => {
-const toast = useToast();
+export type CSVHeaders = string[];
+
+interface HeaderProps {
+  uploadedData: CSVRow[];
+}
+
+const Header = ({ uploadedData }: HeaderProps) => {
+  const toast = useToast();
 
 
-const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
-    
+
+    if (selectedFile) {
+      try {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+        // post the file to localhost 3000 upload use axios
+        const result = await axios.post(`${base_url}/upload`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        if (result.data) {
+          // store the fileId in local storage
+          localStorage.setItem('fileId', result.data.fileId);
+          // reques to get the file from google drive
+          toast({
+            title: 'File uploaded successfully',
+            description: `File "${selectedFile.name}" uploaded successfully to Google Drive.`,
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+        console.log('File uploaded successfully:', result);
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        toast({
+          title: 'Error uploading file',
+          description: 'An error occurred while uploading the file. Please try again.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    }
+
     // Check if a file is selected
     if (!selectedFile) {
-        toast({
-            title: 'No file selected',
-            description: 'Please select a CSV file to upload.',
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-        });
+      toast({
+        title: 'No file selected',
+        description: 'Please select a CSV file to upload.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
       return;
     }
-  
-    // Parse the selected CSV file
-    Papa.parse(selectedFile, {
-      complete: (result: CSVResult) => {
-        // Handle the parsed CSV data
-        console.log('Parsed CSV data:', result.data);
-        const headers: CSVHeaders = result.data[0];
-        const dataObjects = result.data.slice(1).map((row) => {
-          const obj: CSVRow = {};
-          headers.forEach((header, index) => {
-            obj[header] = row[index];
-          });
-          return obj;
-        });
 
-
-        setParsedData(dataObjects)
-        // store in local storage
-        localStorage.setItem('uploadedData', JSON.stringify(dataObjects));
-        // You can process the parsed data further here
-      },
-      error: (error) => {
-        // Handle any parsing errors
-        toast({
-            title: 'Error parsing CSV file',
-            description: error.message,
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-            });
-      },
-    });
   };
 
   const handleUploadClick = () => {
@@ -80,26 +85,26 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
 
 
-    return (
-        <Box width="full">
-        <Center>
-            <Flex fontSize="5xl"  fontWeight="bold"  style={{ padding: 0}} fontFamily={"Merienda"}>
-              <Text color="black" style={{ padding: 0}}>
-                {' '}
-                R
-              </Text>{' '}
-               <Icon as={BsSuitHeartFill} color="red" mt={6} boxSize={8}/>{' '}
-              <Text color={'black'}>
-                J
-              </Text>{' '}
-            </Flex>
-        </Center>
-        <Flex alignItems="center" mt={2} width={'full'} justify={'space-between'} px={4} mb={2}>
-            <Icon as={CiLocationOn} color="black" boxSize={50} />
-            <Text color={'black'} fontSize={'medium'} fontWeight={'bold'} >
-                05/05/2024
-            </Text>
-        <IconButton
+  return (
+    <Box width="full">
+      <Center>
+        <Flex fontSize="5xl" fontWeight="bold" style={{ padding: 0 }} fontFamily={"Merienda"}>
+          <Text color="black" style={{ padding: 0 }}>
+            {' '}
+            R
+          </Text>{' '}
+          <Icon as={BsSuitHeartFill} color="red" mt={6} boxSize={8} />{' '}
+          <Text color={'black'}>
+            J
+          </Text>{' '}
+        </Flex>
+      </Center>
+      <Flex alignItems="center" mt={2} width={'full'} justify={'space-between'} px={4} mb={2}>
+        <Icon as={CiLocationOn} color="black" boxSize={50} />
+        <Text color={'black'} fontSize={'medium'} fontWeight={'bold'} >
+          05/05/2024
+        </Text>
+        {uploadedData.length === 0 && <IconButton
           pos={'relative'}
           aria-label="Upload File"
           icon={<MdOutlineCloudUpload size={50} />}
@@ -107,8 +112,8 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
           variant="none"
           cursor="pointer"
           onClick={handleUploadClick}
-        />
-        {uploadedData && uploadedData.length !== 0 && <Icon as={IoIosCheckmark} bg={'gray.200'} width={'20px'} height={'20px'} borderRadius={'50%'} color={'green'} boxSize={6} pos={'absolute'} right={2}/>}
+        />}
+        {uploadedData && uploadedData.length === 0 && <Icon as={IoIosCheckmark} bg={'gray.200'} width={'20px'} height={'20px'} borderRadius={'50%'} color={'green'} boxSize={6} pos={'absolute'} right={2} />}
         <input
           id="file-upload"
           type="file"
@@ -116,8 +121,8 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
           style={{ display: "none" }}
           onChange={handleFileChange}
         />
-        </Flex>
-        </Box>
-    );
+      </Flex>
+    </Box>
+  );
 };
 export default Header;

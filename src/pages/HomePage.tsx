@@ -20,6 +20,7 @@ const CustomCard = ({selectedUser, searchQuery, noResult}: CardProps) => {
       alignItems={'center'}
       flexDirection={'column'}
       height="150px"
+      mb={8}
       borderWidth={selectedUser ? "3px" : searchQuery ? "3px": 0}
       borderColor={selectedUser && searchQuery ? "red" : searchQuery ? "red": 'transparent'}
       bg={ selectedUser && searchQuery ?  "rgba(128, 128, 128, 0.5)" : searchQuery ? "rgba(128, 128, 128, 0.5)" :  "transparent"}
@@ -78,7 +79,7 @@ useEffect(() => {
         bgImg={'url(https://images.unsplash.com/photo-1528114805597-d505607e46c3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)'}
         >
             <HeroPage setSelectedUser={setSelectedUser} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} setNoResult={setNoResult}/>
-            <Box px={4} width={'full'} mt={180} display={'flex'} justifyContent={'end'}  alignItems={'center'}>
+            <Box px={4} width={'full'} mt={100} display={'flex'} justifyContent={'end'}  alignItems={'center'}>
              <CustomCard selectedUser={selectedUser} searchQuery={searchQuery} noResult={noResult}/>
             </Box>
         </Box>
