@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import Header, { CSVHeaders, CSVResult, CSVRow } from './components/Header';
+import  { CSVHeaders, CSVResult, CSVRow } from './components/Header';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Papa from 'papaparse';
@@ -67,6 +67,9 @@ useEffect(() => {
     setUploadedData(getLocalStorage());
   }
 }, [parsedData]);
+
+
+console.log(uploadedData);
   return (
     <>
         <Router>

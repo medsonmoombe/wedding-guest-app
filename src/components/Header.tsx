@@ -1,10 +1,8 @@
-import { Center, Icon, Box, Text, Flex, IconButton, useToast } from "@chakra-ui/react";
+import { Icon, Box, Flex, IconButton, useToast } from "@chakra-ui/react";
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineCloudUpload } from "react-icons/md";
-import { BsSuitHeartFill } from "react-icons/bs";
 import { IoIosCheckmark } from "react-icons/io";
 import axios from "axios";
-import { base_url } from "./constants/enviroments";
 
 export interface CSVRow {
   [key: string]: string;

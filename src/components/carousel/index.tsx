@@ -44,49 +44,16 @@ const data = [
   }
 ];
 
-function Pagination(props: { centerSlideDataIndex: any; updatePosition?: any; }) {
-  const { centerSlideDataIndex, updatePosition } = props;
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        gap: "20px",
-        marginTop: 20
-      }}
-    >
-      {data.map((_, index) => {
-        const isCenterSlide = props.centerSlideDataIndex === index;
-        return (
-          <div
-            onClick={() => {
-              updatePosition(index);
-            }}
-            style={{
-              height: 15,
-              width: 15,
-              borderRadius: "100%",
-              background: isCenterSlide ? "black" : "none",
-              border: "1px solid black",
-              cursor: "pointer"
-            }}
-          />
-        );
-      })}
-    </div>
-  );
-}
-
 const CardCarousel = () => {
   const ref = React.useRef(StackedCarousel);
   const [centerSlideDataIndex, setCenterSlideDataIndex] = React.useState(0);
-  const onCenterSlideDataIndexChange = (newIndex) => {
+  const onCenterSlideDataIndexChange = (newIndex: React.SetStateAction<number>) => {
    setCenterSlideDataIndex(newIndex);
   };
 
-  const updatePosition = (index) => {
-    ref?.current?.swipeTo(index - centerSlideDataIndex);
-  };
+  console.log(centerSlideDataIndex);
+
+
 
   return (
     <div className="card" style={{ width: '100%'}}>
@@ -110,25 +77,7 @@ const CardCarousel = () => {
             );
           }}
         />
-        {/* <Fab
-          className="card-button left"
-          size="small"
-          onClick={() => ref.current?.goBack()}
-        >
-          <KeyboardArrowLeftIcon style={{ fontSize: 30 }} />
-        </Fab>
-        <Fab
-          className="card-button right"
-          size="small"
-          onClick={() => ref.current?.goNext()}
-        >
-          <KeyboardArrowRightIcon style={{ fontSize: 30 }} />
-        </Fab> */}
       </div>
-      {/* <Pagination
-        updatePosition={updatePosition}
-        centerSlideDataIndex={centerSlideDataIndex}
-      /> */}
     </div>
   );
 };

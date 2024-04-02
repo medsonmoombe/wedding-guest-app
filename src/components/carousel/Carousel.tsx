@@ -1,5 +1,4 @@
 import React from "react";
-import { StackedCarouselSlideProps } from "react-stacked-center-carousel";
 import "./Slider.css";
 
 

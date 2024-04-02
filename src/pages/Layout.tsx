@@ -1,4 +1,4 @@
-import { Box, Text, Center, Divider } from "@chakra-ui/react";
+import { Box, Text, Center } from "@chakra-ui/react";
 import PageLayout from "../components/PageLayout";
 import { useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";

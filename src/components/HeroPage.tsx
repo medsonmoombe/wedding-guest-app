@@ -5,7 +5,7 @@ import { FaSearch, FaUsers } from 'react-icons/fa';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 
-const HeroPage = ({ setSelectedUser,selectedUser, uploadedData, setSearchQuery, searchQuery, setNoResult, type }: any) => {
+const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, setNoResult, type }: any) => {
     const [matchingResults, setMatchingResults] = useState<any[]>([]);
     const [isFocused, setIsFocused] = useState(false);
     const navigate = useNavigate();
