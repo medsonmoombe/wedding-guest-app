@@ -12,7 +12,6 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
   } = StackedCarouselSlideProps as any;
 
   const coverImage = data[dataIndex].image;
-  const text = data[dataIndex].text;
 
   return (
     <div className="card-card" draggable={false}>
@@ -32,7 +31,6 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
             className="cover-image"
             src={coverImage}
           />
-          <p>{text}</p>
         </div>
       </div>
     </div>

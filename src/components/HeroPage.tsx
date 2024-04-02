@@ -25,7 +25,7 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
         if(type === "layout") {
          const matchingResults = uploadedData?.filter((table: any) => {
                 return table.tableName.toLowerCase().includes(query.toLowerCase());
-        });
+           });
         setMatchingResults(matchingResults);
 
         const selectedUserObj = matchingResults?.find((table: any) => {
@@ -149,9 +149,9 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
                     </InputRightElement>
                 </InputGroup>
             </Flex>
-            {isFocused && searchQuery && matchingResults && matchingResults?.length > 0 && (
+            {searchQuery && matchingResults && matchingResults?.length > 0 && (
                 <Box  maxHeight="150px" mt={1} overflowY="auto" px={4} width={'full'} borderRadius={'10px'} position={'absolute'} zIndex={20}>
-                    {matchingResults.map((result, index) => (
+                    {matchingResults?.map((result, index) => (
                         <Box key={index} onClick={() => handleNameClick(result)} cursor="pointer" py={1} px={4} bg={'white'}  borderBottom="1px solid" borderColor="gray.300">
                             <Text color="gray.600" fontWeight="bold">
                             { type === "users" ? result.guestFirstName + ' ' + result.guestLastName : result.tableName }

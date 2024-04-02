@@ -42,11 +42,11 @@ const PageLayout = ({ uploadedData, children, searchQuery,type, setSearchQuery, 
         <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}  mb={8}>
         <HeroPage selectedUser={selectedUser} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </Box>
-       {selectedUser && type !=="layout" && <Flex justify={'center'} direction={'column'} mt={2} textTransform={'capitalize'} >
-        <Text fontSize="5xl" textAlign={'center'}>
+       {selectedUser && type !=="layout" && <Flex justify={'center'} direction={'column'} mt={6} textTransform={'capitalize'} >
+        <Text fontSize="2xl" fontFamily={"Merienda"} textAlign={'center'} fontWeight={'bold'}>
           {selectedUser.tableName}
         </Text>
-        <Text fontSize="4xl" fontWeight="bold" color={'red'} textAlign={'center'}>
+        <Text fontSize="md" fontWeight="bold" color={'red'} textAlign={'center'} fontFamily={"Merienda"}>
           {selectedUser.tableZone}
           </Text>
           </Flex>}

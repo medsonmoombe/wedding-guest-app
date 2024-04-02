@@ -65,11 +65,11 @@ const CardCarousel = () => {
               <StackedCarousel
                 ref={carouselRef}
                 slideComponent={Slide}
-                slideWidth={160}
+                slideWidth={200}
                 carouselWidth={width}
                 data={data}
                 maxVisibleSlide={5}
-                disableSwipe
+                disableSwipe={false}
                 customScales={[1, 0.85, 0.7, 0.55]}
                 transitionTime={450}
                 onActiveSlideChange={onCenterSlideDataIndexChange}

@@ -19,7 +19,7 @@
     cursor: pointer;
     width: 100%;
     border-radius: 5px;
-    height:270px;
+    height:320px;
     position: relative;
     background-color: #ffffff;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.05);
@@ -89,5 +89,13 @@
   .card-card .discription {
     display: flex;
     flex-direction: column;
-    margin: 10px;
-  };  
+    padding: 5px;
+  };
+
+  .card-card .cover-image {
+    height: 100% !important;
+  }
+
+  .react-stacked-center-carousel  {
+    height: 357px !important;
+  }
