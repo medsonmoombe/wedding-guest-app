@@ -48,12 +48,6 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
         const selectedUserObj = matchingResults?.find((user: any) => {
             return user.guestFirstName.toLowerCase().includes(query.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(query.toLowerCase());
         });
-
-        if (!selectedUserObj) {
-            setNoResult(true);
-        } else {
-            setNoResult(false);
-        }
         setSelectedUser(selectedUserObj);
     }
     };
@@ -83,12 +77,7 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
         });
         setSelectedUser(selectedUserObj);
         setMatchingResults([]);
-    
-        if (!selectedUserObj) {
-            setNoResult(true);
-        } else {
-            setNoResult(false);
-        }
+
     } else {
     if (type === "layout") {
         setSearchQuery(name.tableName);

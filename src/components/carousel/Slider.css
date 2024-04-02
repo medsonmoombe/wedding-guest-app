@@ -18,7 +18,7 @@
     transition: all 300ms ease;
     cursor: pointer;
     width: 100%;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     height:320px;
     position: relative;
     background-color: #ffffff;
@@ -47,7 +47,7 @@
     position: absolute;
     background-color: #00000099;
     transition: all 300ms ease;
-    border-radius: 5px;
+    /* border-radius: 5px; */
   }
   
   .card-card:hover .card-overlay {

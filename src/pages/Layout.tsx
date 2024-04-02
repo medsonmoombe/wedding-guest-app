@@ -1,9 +1,10 @@
 import { Box, Text, Center } from "@chakra-ui/react";
 import PageLayout from "../components/PageLayout";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";
 import CustomModal from "../components/modal/PopUpModal";
 import GuestList from "../components/GuestList";
+import { useLocation } from "react-router-dom";
 
 interface LayoutProps {
     uploadedData: any;
@@ -14,7 +15,10 @@ const Layout = ({uploadedData}: LayoutProps) => {
     const [selectedUser, setSelectedUser] = useState<any>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedTable, setSelectedTable] = useState<any[]>([]);
-   
+
+    const location = useLocation();
+    let clickedTable = location.state?.clickedTable;
+  
 
     const handleOpen = () => {
         setIsOpen(true);
@@ -23,6 +27,7 @@ const Layout = ({uploadedData}: LayoutProps) => {
       const handleClose = () => {
         setIsOpen(false);
       }
+
 
     const highlightTable = (tableName: string) => {
         // Find the SVG element by its name attribute
@@ -39,11 +44,14 @@ const Layout = ({uploadedData}: LayoutProps) => {
       
         console.log(`Table ${tableName} not found.`);
       }
+
+  
       
 
     useEffect(() => {
     
       if(searchQuery){
+        clickedTable = "";
         const tableElements = document.querySelectorAll('[name]');
         tableElements.forEach(tableElement => {
           // tableElement.setAttribute('fill', 'white');
@@ -54,9 +62,23 @@ const Layout = ({uploadedData}: LayoutProps) => {
             tableElement.setAttribute('fill', 'white');
             tableElement.setAttribute('stroke', 'black');
           }
-            });
-      }
-      }, [searchQuery]);
+          });
+      } 
+      
+      if(clickedTable && !searchQuery) {
+        const tableElements = document.querySelectorAll('[name]');
+        tableElements.forEach(tableElement => {
+          // tableElement.setAttribute('fill', 'white');
+          // tableElement.setAttribute('stroke', 'black');
+          if (tableElement.getAttribute('name')?.toLowerCase() === clickedTable?.toLowerCase()) {
+            highlightTable(clickedTable);
+          }else {
+            tableElement.setAttribute('fill', 'white');
+            tableElement.setAttribute('stroke', 'black');
+          }
+          });
+      } 
+      }, [searchQuery, clickedTable]);
 
 
       // onclick of a table, console.log the table name
@@ -91,7 +113,7 @@ const Layout = ({uploadedData}: LayoutProps) => {
          setSearchQuery={setSearchQuery}
          selectedUser={selectedUser}
          setSelectedUser={setSelectedUser}
-          type={'layout'}
+         type={'layout'}
          >
 
           <Center mb={4} pos={'fixed'} width={'full'} top={'100px'}>
@@ -99,12 +121,11 @@ const Layout = ({uploadedData}: LayoutProps) => {
           </Center>
             </PageLayout>
             <CustomModal isOpen={isOpen} onClose={handleClose}  title={`${selectedUser?.tableName} Table`}>
-                <Box width={'full'} display={'flex'} justifyContent={'start'} alignItems={'start'} flexDirection={'column'}  mb={8} height={'200px'} overflowY={'auto'}>
+                <Box width={'full'} display={'flex'} justifyContent={'start'} alignItems={'start'} flexDirection={'column'}  mb={8} height={ Number(selectedTable?.length) > 3 ? '430px': '200px'} overflowY={'auto'}>
                     <Box width={'full'} display={'flex'} justifyContent={'start'} alignItems={'start'} flexDirection={'column'}  mb={8}>
-                      {/* map and display uploadedData matches the selected table name */}
                     {(selectedTable && selectedTable.length !== 0) ? <GuestList guests={selectedTable} />: (
                         <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}  mt={8}>
-                            <Text fontSize="md" textAlign={'center'}>No guest found for this table</Text>
+                            <Text fontSize="md" color={'black'} textAlign={'center'} >No guest found for this table</Text>
                         </Box>
                     
                     )}

@@ -1,7 +1,8 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import HeroPage from "../components/HeroPage";
 import { CSVRow } from '../components/Header';
-import { useEffect } from 'react';
+import {  useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   uploadedData: CSVRow[];
@@ -14,13 +15,25 @@ interface Props {
 }
 
 const PageLayout = ({ uploadedData, children, searchQuery,type, setSearchQuery, selectedUser, setSelectedUser }: Props) => {
+const navigate = useNavigate();
+
+
+  const handleClick = (value: string) => {
+     navigate('/layout', { state: { clickedTable: value } });
+  }
+ 
+
+
 
   useEffect(() => {
     if (!searchQuery) {
       setSelectedUser(null);
       return;
     }
-  }, [searchQuery])
+  }, [searchQuery]);
+
+
+
 
   return (
     <>
@@ -42,8 +55,8 @@ const PageLayout = ({ uploadedData, children, searchQuery,type, setSearchQuery, 
         <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}  mb={8}>
         <HeroPage selectedUser={selectedUser} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </Box>
-       {selectedUser && type !=="layout" && <Flex justify={'center'} direction={'column'} mt={6} textTransform={'capitalize'} >
-        <Text fontSize="2xl" fontFamily={"Merienda"} textAlign={'center'} fontWeight={'bold'}>
+       {selectedUser && type !=="layout" && <Flex justify={'center'}  direction={'column'} mt={6} textTransform={'capitalize'} >
+        <Text fontSize="2xl" fontFamily={"Merienda"} textAlign={'center'} fontWeight={'bold'} onClick={() => handleClick(selectedUser.tableName) }>
           {selectedUser.tableName}
         </Text>
         <Text fontSize="md" fontWeight="bold" color={'red'} textAlign={'center'} fontFamily={"Merienda"}>

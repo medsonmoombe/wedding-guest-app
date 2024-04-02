@@ -18,18 +18,19 @@ export default function CustomModal({
       <>
         <Modal isOpen={isOpen} onClose={onClose} >
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent bg="rgba(200, 230, 255, 0.7)" borderRadius="md" boxShadow="md" opacity={0.5}>
             <ModalHeader>
-            <chakra.h3 fontSize="xl" fontWeight="bold" textAlign="center">
-            {title}
-          </chakra.h3>
+              <chakra.h3 fontSize="xl" fontWeight="bold" textAlign="center" color="black">
+                {title}
+              </chakra.h3>
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-               {children}
+              {children}
             </ModalBody>
           </ModalContent>
         </Modal>
+  
       </>
     )
   }
