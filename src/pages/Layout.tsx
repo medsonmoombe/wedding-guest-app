@@ -1,6 +1,6 @@
 import { Box, Text, Center } from "@chakra-ui/react";
 import PageLayout from "../components/PageLayout";
-import { SetStateAction, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";
 import CustomModal from "../components/modal/PopUpModal";
 import GuestList from "../components/GuestList";
