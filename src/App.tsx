@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Papa from 'papaparse';
 import { useToast } from '@chakra-ui/react';
-import { base_url } from './components/constants/enviroments';
+import { base_url, file_id } from './components/constants/enviroments';
+import Layout from './pages/Layout';
 
 function App() {
   const [uploadedData, setUploadedData] = useState<CSVRow[]>([]);
@@ -15,13 +16,13 @@ const toast = useToast();
 
 
 useEffect(() => {
-  const fileId = localStorage.getItem('fileId') || '160TxvspaA_fEMKd_URlSgQlqXTCePVaa';
+  const fileId = localStorage.getItem('fileId') || file_id;
 
   if(fileId) {
   const getFile = async() => {
       const response = await axios.get(`${base_url}/file?fileId=${fileId}`);
     if(response.data){
-      console.log('response:', response.data);
+
       Papa.parse(response.data, {
         complete: (result: CSVResult) => {
           const headers: CSVHeaders = result.data[0];
@@ -66,15 +67,12 @@ useEffect(() => {
     setUploadedData(getLocalStorage());
   }
 }, [parsedData]);
-
-console.log('parsedData:', uploadedData);
-
   return (
     <>
         <Router>
-            <Header uploadedData={parsedData} />
           <Routes>
             <Route path="/" element={<HomePage uploadedData={parsedData}/>} />
+            <Route path="/layout" element={<Layout uploadedData={parsedData}/>} />
           </Routes>
         </Router>
     </>

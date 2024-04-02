@@ -31,8 +31,9 @@ const Header = ({ uploadedData }: HeaderProps) => {
       try {
         const formData = new FormData();
         formData.append('file', selectedFile);
+        let local = 'http://localhost:3000/upload'
         // post the file to localhost 3000 upload use axios
-        const result = await axios.post(`${base_url}/upload`, formData, {
+        const result = await axios.post(`${local}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -87,24 +88,9 @@ const Header = ({ uploadedData }: HeaderProps) => {
 
   return (
     <Box width="full">
-      <Center>
-        <Flex fontSize="5xl" fontWeight="bold" style={{ padding: 0 }} fontFamily={"Merienda"}>
-          <Text color="black" style={{ padding: 0 }}>
-            {' '}
-            R
-          </Text>{' '}
-          <Icon as={BsSuitHeartFill} color="red" mt={6} boxSize={8} />{' '}
-          <Text color={'black'}>
-            J
-          </Text>{' '}
-        </Flex>
-      </Center>
       <Flex alignItems="center" mt={2} width={'full'} justify={'space-between'} px={4} mb={2}>
         <Icon as={CiLocationOn} color="black" boxSize={50} />
-        <Text color={'black'} fontSize={'medium'} fontWeight={'bold'} >
-          05/05/2024
-        </Text>
-        {uploadedData.length === 0 && <IconButton
+        {uploadedData.length !== 0 && <IconButton
           pos={'relative'}
           aria-label="Upload File"
           icon={<MdOutlineCloudUpload size={50} />}
@@ -113,7 +99,7 @@ const Header = ({ uploadedData }: HeaderProps) => {
           cursor="pointer"
           onClick={handleUploadClick}
         />}
-        {uploadedData && uploadedData.length === 0 && <Icon as={IoIosCheckmark} bg={'gray.200'} width={'20px'} height={'20px'} borderRadius={'50%'} color={'green'} boxSize={6} pos={'absolute'} right={2} />}
+        {uploadedData && uploadedData.length !== 0 && <Icon as={IoIosCheckmark} bg={'gray.200'} width={'20px'} height={'20px'} borderRadius={'50%'} color={'green'} boxSize={6} pos={'absolute'} right={2} />}
         <input
           id="file-upload"
           type="file"
