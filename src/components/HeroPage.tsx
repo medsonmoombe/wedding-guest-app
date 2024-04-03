@@ -22,17 +22,6 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
             return;
         }
 
-        if (type === "layout") {
-            const matchingResults = uploadedData?.filter((table: any) => {
-                return table.tableName.toLowerCase().includes(query.toLowerCase());
-            });
-            setMatchingResults(matchingResults);
-
-            const selectedUserObj = matchingResults?.find((table: any) => {
-                return table.tableName.toLowerCase().includes(query.toLowerCase());
-            });
-            setSelectedUser(selectedUserObj);
-        } else {
 
             const matchingResults = uploadedData?.filter((user: any) => {
                 return user.guestFirstName.toLowerCase().includes(query.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(query.toLowerCase());
@@ -43,22 +32,53 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
                 return user.guestFirstName.toLowerCase().includes(query.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(query.toLowerCase());
             });
             setSelectedUser(selectedUserObj);
-        }
     };
+
+    const searchTable = (query: string) => {
+        if (!query) {
+            setNoResult(false);
+            return;
+        }
+
+        const matchingResults = uploadedData?.filter((user: any) => {
+            return user.tableName.toLowerCase().includes(query.toLowerCase());
+        });
+        setMatchingResults(matchingResults);
+
+        const selectedUserObj = matchingResults?.find((user: any) => {
+            return user.tableName.toLowerCase().includes(query.toLowerCase());
+        });
+        setSelectedUser(selectedUserObj);
+    }
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const query = event.target.value;
         setSearchQuery(query);
-        searchUser(query);
+        if (type === "users") {
+            searchUser(query);
+        } else {
+            searchTable(query);
+        }
     };
 
     const handleSearch = () => {
-        searchUser(searchQuery);
+        if (!searchQuery) {
+            return;
+        } 
+        if (type === "layout") {
+            searchTable(searchQuery);
+        }else{
+            searchUser(searchQuery);
+        }
     };
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            searchUser(searchQuery);
+            if(type === "layout"){
+                searchTable(searchQuery);
+            }else {
+                searchUser(searchQuery);
+            };
         }
     };
 
