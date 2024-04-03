@@ -8,7 +8,8 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
     dataIndex,
     isCenterSlide,
     swipeTo,
-    slideIndex
+    slideIndex,
+    openModal,
   } = StackedCarouselSlideProps as any;
 
   const coverImage = data[dataIndex].image;
@@ -24,7 +25,7 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
         />
       </div>
       <div className="detail fill">
-        <div className="discription">
+        <div className="discription" onClick={()=> openModal(coverImage)} >
           <img
             style={{ width:'100%' }}
             alt="j"

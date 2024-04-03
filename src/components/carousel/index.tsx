@@ -1,13 +1,13 @@
-import React from "react";
 import {
   StackedCarousel,
   ResponsiveContainer
 } from "react-stacked-center-carousel";
+import { Modal, ModalOverlay, ModalContent, ModalBody } from "@chakra-ui/react";
 import img1 from '../../assets/images/img-1.jpg';
 import img2 from '../../assets/images/img-2.jpg';
 import img3 from '../../assets/images/img-3.jpg';
-import "./Slider.css";
 import { Slide } from "./Carousel";
+import { useState } from "react";
 
 const data = [
   {
@@ -45,39 +45,49 @@ const data = [
 ];
 
 const CardCarousel = () => {
-  const ref = React.useRef(StackedCarousel);
-  const [centerSlideDataIndex, setCenterSlideDataIndex] = React.useState(0);
-  const onCenterSlideDataIndexChange = (newIndex: React.SetStateAction<number>) => {
-   setCenterSlideDataIndex(newIndex);
+  const [modalImage, setModalImage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (imageUrl: string) => {
+    setModalImage(imageUrl);
+    setIsModalOpen((prev) => !prev);
   };
 
-  console.log(centerSlideDataIndex);
-
-
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="card" style={{ width: '100%'}}>
       <div style={{ width: "100%", position: "relative" }}>
         <ResponsiveContainer
-          carouselRef={ref as any}
           render={(width, carouselRef) => {
             return (
               <StackedCarousel
                 ref={carouselRef}
-                slideComponent={Slide}
-                slideWidth={200}
+                slideComponent={(props) => (
+                  <Slide {...props} openModal={openModal} />
+                )}
+                slideWidth={220}
                 carouselWidth={width}
                 data={data}
                 maxVisibleSlide={5}
                 disableSwipe={false}
                 customScales={[1, 0.85, 0.7, 0.55]}
                 transitionTime={450}
-                onActiveSlideChange={onCenterSlideDataIndexChange}
               />
             );
           }}
         />
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} size="full">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalBody p={0} onClick={closeModal} >
+            <img src={modalImage} alt="modal" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </div>
   );
 };

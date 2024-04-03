@@ -1,4 +1,4 @@
-import { Box, Text, Center } from "@chakra-ui/react";
+import { Box, Text, Center, Flex, Button } from "@chakra-ui/react";
 import PageLayout from "../components/PageLayout";
 import {  useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";
@@ -26,6 +26,12 @@ const Layout = ({uploadedData}: LayoutProps) => {
 
       const handleClose = () => {
         setIsOpen(false);
+        // clear any highligeted table
+        const tableElements = document.querySelectorAll('[name]');
+        tableElements.forEach(tableElement => {
+          tableElement.setAttribute('fill', 'white');
+          tableElement.setAttribute('stroke', 'black');
+        });
       }
 
 
@@ -86,11 +92,17 @@ const Layout = ({uploadedData}: LayoutProps) => {
         const tableElements = document.querySelectorAll('[name]');
         tableElements.forEach(tableElement => {
           tableElement.addEventListener('click', () => {
+          const clickedTableName = tableElement.getAttribute('name');;
+            if (tableElement.getAttribute('name')?.toLowerCase() === clickedTableName?.toLowerCase()) {
+              highlightTable(clickedTableName as string);
+            }else {
+              tableElement.setAttribute('fill', 'white');
+              tableElement.setAttribute('stroke', 'black');
+            }
 
             setSelectedUser({tableName: tableElement.getAttribute('name')});
             let selectedTableArr: any[] = [];
-            console.log("tableElement", tableElement.getAttribute('name'));
-            console.log("uploadedData", uploadedData);
+            
             // find the guests whose table matches the clicked table
             uploadedData?.filter((data: any) => {
               if(data.tableName === tableElement.getAttribute('name')){
@@ -116,10 +128,15 @@ const Layout = ({uploadedData}: LayoutProps) => {
          type={'layout'}
          >
 
-          <Center mb={4} pos={'fixed'} width={'full'} top={'100px'}>
+          <Center mb={4} pos={'fixed'} width={'full'} top={'100px'} flexDirection={'column'}>
              <SVGComponent />
+
+             <Flex width={'full'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}  mt={8}>
+              <Button bg={'gray.300'} color={'black'} onClick={() => window.location.href = '/'}>back</Button>
+              </Flex>
           </Center>
             </PageLayout>
+            <Box px={4}>
             <CustomModal isOpen={isOpen} onClose={handleClose}  title={`${selectedUser?.tableName} Table`}>
                 <Box width={'full'} display={'flex'} justifyContent={'start'} alignItems={'start'} flexDirection={'column'}  mb={8} height={ Number(selectedTable?.length) > 3 ? '430px': '200px'} overflowY={'auto'}>
                     <Box width={'full'} display={'flex'} justifyContent={'start'} alignItems={'start'} flexDirection={'column'}  mb={8}>
@@ -132,6 +149,7 @@ const Layout = ({uploadedData}: LayoutProps) => {
                     </Box>
                 </Box>
             </CustomModal>
+            </Box>
         </Box>
     );
 }
