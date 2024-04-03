@@ -22,34 +22,28 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
             return;
         }
 
-        if(type === "layout") {
-         const matchingResults = uploadedData?.filter((table: any) => {
+        if (type === "layout") {
+            const matchingResults = uploadedData?.filter((table: any) => {
                 return table.tableName.toLowerCase().includes(query.toLowerCase());
-           });
-        setMatchingResults(matchingResults);
+            });
+            setMatchingResults(matchingResults);
 
-        const selectedUserObj = matchingResults?.find((table: any) => {
-            return table.tableName.toLowerCase().includes(query.toLowerCase());
-        });
-
-        if (!selectedUserObj) {
-            setNoResult(true);
-        } else {
-            setNoResult(false);
-        }
-        setSelectedUser(selectedUserObj);
+            const selectedUserObj = matchingResults?.find((table: any) => {
+                return table.tableName.toLowerCase().includes(query.toLowerCase());
+            });
+            setSelectedUser(selectedUserObj);
         } else {
 
-        const matchingResults = uploadedData?.filter((user: any) => {
+            const matchingResults = uploadedData?.filter((user: any) => {
                 return user.guestFirstName.toLowerCase().includes(query.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(query.toLowerCase());
-        });
-        setMatchingResults(matchingResults);
+            });
+            setMatchingResults(matchingResults);
 
-        const selectedUserObj = matchingResults?.find((user: any) => {
-            return user.guestFirstName.toLowerCase().includes(query.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(query.toLowerCase());
-        });
-        setSelectedUser(selectedUserObj);
-    }
+            const selectedUserObj = matchingResults?.find((user: any) => {
+                return user.guestFirstName.toLowerCase().includes(query.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(query.toLowerCase());
+            });
+            setSelectedUser(selectedUserObj);
+        }
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,34 +63,34 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
     };
 
     const handleNameClick = (name: any) => {
-        if(type === "users") {
-        const selectedUserObj = uploadedData?.find((user: any) => {
-            const useFullNames = user.guestFirstName + ' ' + user.guestLastName;
-            setSearchQuery(useFullNames);
-            return useFullNames === (name.guestFirstName + ' ' + name.guestLastName);
-        });
-        setSelectedUser(selectedUserObj);
-        setMatchingResults([]);
+        if (type === "users") {
+            const selectedUserObj = uploadedData?.find((user: any) => {
+                const useFullNames = user.guestFirstName + ' ' + user.guestLastName;
+                setSearchQuery(useFullNames);
+                return useFullNames === (name.guestFirstName + ' ' + name.guestLastName);
+            });
+            setSelectedUser(selectedUserObj);
+            setMatchingResults([]);
 
-    } else {
-    if (type === "layout") {
-        setSearchQuery(name.tableName);
-    }
-        const selectedUserObj = uploadedData?.find((user: any) => {
-            const useFullNames = user.tableName;
-            setSearchQuery(useFullNames);
-            return useFullNames === (name.tableName);
-        });
-        setSelectedUser(selectedUserObj);
-        setMatchingResults([]);
-    
-        if (!selectedUserObj) {
-            setNoResult(true);
         } else {
-            setNoResult(false);
+            if (type === "layout") {
+                setSearchQuery(name.tableName);
+            }
+            const selectedUserObj = uploadedData?.find((user: any) => {
+                const useFullNames = user.tableName;
+                setSearchQuery(useFullNames);
+                return useFullNames === (name.tableName);
+            });
+            setSelectedUser(selectedUserObj);
+            setMatchingResults([]);
+
+            if (!selectedUserObj) {
+                setNoResult(true);
+            } else {
+                setNoResult(false);
+            }
+
         }
- 
-    }
 
     };
 
@@ -110,7 +104,6 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
             navigate("/layout");
         }
     }
-
 
     return (
         <Box width="full" top={8} pos={'relative'}>
@@ -129,26 +122,34 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
                         onFocus={handleInputFocus}
                         onKeyPress={handleKeyPress}
                     />
-                    <InputRightElement  cursor="pointer" gap={2} pr={ 8 } alignItems={'center'}>
-                        <Icon as={ FaSearch } color="gray.400" boxSize={18} onClick={handleSearch} zIndex={99} />
-                        <Icon as={ type === "users" ? CiLocationOn : FaUsers } color="gray.400" boxSize={25} mt={-1}
-                        onClick={handleRelocate}
-                        zIndex={99}
+                    <InputRightElement cursor="pointer" gap={2} pr={8} alignItems={'center'}>
+                        <Icon as={FaSearch} color="gray.400" boxSize={18} onClick={handleSearch} zIndex={99} />
+                        <Icon as={type === "users" ? CiLocationOn : FaUsers} color="gray.400" boxSize={25} mt={-1}
+                            onClick={handleRelocate}
+                            zIndex={99}
                         />
                     </InputRightElement>
                 </InputGroup>
             </Flex>
-            {searchQuery && matchingResults && matchingResults?.length > 0 && (
-                <Box  maxHeight="150px" mt={1} overflowY="auto" px={4} width={'full'} borderRadius={'10px'} position={'absolute'} zIndex={20}>
+            {searchQuery && matchingResults && matchingResults.length > 0 ? (
+                <Box maxHeight="150px" mt={1} overflowY="auto" px={4} width={'full'} borderRadius={'10px'} position={'absolute'} zIndex={20}>
                     {matchingResults?.map((result, index) => (
-                        <Box key={index} onClick={() => handleNameClick(result)} cursor="pointer" py={1} px={4} bg={'white'}  borderBottom="1px solid" borderColor="gray.300">
+                        <Box key={index} onClick={() => handleNameClick(result)} cursor="pointer" py={1} px={4} bg={'white'} borderBottom="1px solid" borderColor="gray.300">
                             <Text color="gray.600" fontWeight="bold">
-                            { type === "users" ? result.guestFirstName + ' ' + result.guestLastName : result.tableName }
+                                {type === "users" ? result.guestFirstName + ' ' + result.guestLastName : result.tableName}
                             </Text>
                         </Box>
                     ))}
                 </Box>
-            )}
+            ): searchQuery && matchingResults.length === 0 ? (
+                <Box maxHeight="150px" mt={1} overflowY="auto" px={4} width={'full'} borderRadius={'10px'} position={'absolute'} zIndex={20}>
+                    <Box py={1} px={4} bg={'white'} borderBottom="1px solid" borderColor="gray.300">
+                        <Text color="gray.600" fontWeight="bold">
+                            No results found
+                        </Text>
+                    </Box>
+                </Box>
+            ): null}
         </Box>
     );
 };

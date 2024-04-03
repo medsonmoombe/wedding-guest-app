@@ -19,7 +19,7 @@ export default function CustomModal({
       <>
         <Modal isOpen={isOpen} onClose={onClose} size={'sm'}>
           <ModalOverlay />
-          <ModalContent bg="rgba(150, 180, 210, 0.7)" borderRadius="md" boxShadow="md" opacity={0.5} >
+          <ModalContent bg="rgba(243, 246, 241, 0.73)" opacity={0.5} >
             <ModalHeader>
               <chakra.h3 fontSize="xl" fontWeight="bold" textAlign="center" color="black">
                 {title}
