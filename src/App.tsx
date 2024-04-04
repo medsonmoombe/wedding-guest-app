@@ -68,19 +68,14 @@ useEffect(() => {
   }
 }, [parsedData]);
 
-const filteredArray = uploadedData?.filter((item, index, self) =>
-  index === self.findIndex((t) => (
-    t.tableName === item.tableName
-  ))
-);
 
-
+console.log(uploadedData);
   return (
     <>
         <Router>
           <Routes>
-            <Route path="/" element={<HomePage uploadedData={filteredArray}/>} />
-            <Route path="/layout" element={<Layout uploadedData={filteredArray}/>} />
+            <Route path="/" element={<HomePage uploadedData={parsedData}/>} />
+            <Route path="/layout" element={<Layout uploadedData={parsedData}/>} />
           </Routes>
         </Router>
     </>
