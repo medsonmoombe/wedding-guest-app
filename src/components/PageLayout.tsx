@@ -56,10 +56,10 @@ const navigate = useNavigate();
         <HeroPage selectedUser={selectedUser} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </Box>
        {selectedUser && type !=="layout" && <Flex justify={'center'}  direction={'column'} mt={6} textTransform={'capitalize'} >
-        <Text fontSize="2xl" fontFamily={"Merienda"} textAlign={'center'} fontWeight={'bold'} onClick={() => handleClick(selectedUser.tableName) }>
+        <Text fontSize="2xl" fontFamily={"Montserrat Alternates"} textAlign={'center'} fontWeight={'bold'} onClick={() => handleClick(selectedUser.tableName) }>
           {selectedUser.tableName}
         </Text>
-        <Text fontSize="md" fontWeight="bold" color={'red'} textAlign={'center'} fontFamily={"Merienda"}>
+        <Text fontSize="md" fontWeight="bold" color={'red'} textAlign={'center'} fontFamily={"Montserrat Alternates"}>
           {selectedUser.tableZone}
           </Text>
           </Flex>}

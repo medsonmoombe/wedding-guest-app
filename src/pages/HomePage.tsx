@@ -26,7 +26,7 @@ const [selectedUser, setSelectedUser] = useState<any>(null);
         <CardCarousel />
         <Center mt={'10px'}>
         <Flex style={{ padding: 0 }} direction={'column'} >
-          <Text color="gray.600" style={{ padding: 0 }} fontSize="2xl" fontWeight="bold" fontFamily={"Merienda"}>
+          <Text color="gray.600" style={{ padding: 0 }} fontSize="2xl" fontWeight="bold" fontFamily={"Montserrat Alternates"}>
             {' '}
             Robert & Judith
           </Text>{' '}
