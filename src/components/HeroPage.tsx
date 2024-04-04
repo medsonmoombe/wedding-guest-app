@@ -1,5 +1,5 @@
 import { Box, Flex, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaSearch, FaUsers } from 'react-icons/fa';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -16,69 +16,55 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
         setMatchingResults(uploadedData);
     };
 
-    const searchUser = (query: string) => {
-        if (!query) {
+    const searchUser = () => {
+        if (!searchQuery) {
             setNoResult(false);
             return;
         }
 
-
+        if(type === "layout"){
             const matchingResults = uploadedData?.filter((user: any) => {
-                return user.guestFirstName.toLowerCase().includes(query.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(query.toLowerCase());
+                return user?.tableName?.toLowerCase().includes(searchQuery.toLowerCase());
             });
             setMatchingResults(matchingResults);
-
+    
             const selectedUserObj = matchingResults?.find((user: any) => {
-                return user.guestFirstName.toLowerCase().includes(query.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(query.toLowerCase());
+                return user.tableName.toLowerCase().includes(searchQuery?.toLowerCase());
             });
             setSelectedUser(selectedUserObj);
-    };
+        } else {
 
-    const searchTable = (query: string) => {
-        if (!query) {
-            setNoResult(false);
-            return;
+            const matchingResults = uploadedData?.filter((user: any) => {
+                return (`${user.guestFirstName} ${user.guestLastName}`).toLowerCase().includes(searchQuery.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(searchQuery.toLowerCase());
+            });
+            setMatchingResults(matchingResults);
+    
+            const selectedUserObj = matchingResults?.find((user: any) => {
+                return (`${user.guestFirstName} ${user.guestLastName}`).toLowerCase().includes(searchQuery.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(searchQuery.toLowerCase());
+            });
+            setSelectedUser(selectedUserObj);
         }
 
-        const matchingResults = uploadedData?.filter((user: any) => {
-            return user.tableName.toLowerCase().includes(query.toLowerCase());
-        });
-        setMatchingResults(matchingResults);
 
-        const selectedUserObj = matchingResults?.find((user: any) => {
-            return user.tableName.toLowerCase().includes(query.toLowerCase());
-        });
-        setSelectedUser(selectedUserObj);
-    }
+    };
+
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const query = event.target.value;
         setSearchQuery(query);
-        if (type === "users") {
-            searchUser(query);
-        } else {
-            searchTable(query);
-        }
+            searchUser();
     };
 
     const handleSearch = () => {
         if (!searchQuery) {
             return;
         } 
-        if (type === "layout") {
-            searchTable(searchQuery);
-        }else{
-            searchUser(searchQuery);
-        }
+        searchUser();
     };
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            if(type === "layout"){
-                searchTable(searchQuery);
-            }else {
-                searchUser(searchQuery);
-            };
+                searchUser();
         }
     };
 
@@ -125,6 +111,13 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
         }
     }
 
+
+    useEffect(() => {
+        if(searchQuery){
+            searchUser();
+        }
+    },[searchQuery]);
+
     return (
         <Box width="full" top={8} pos={'relative'}>
             <Flex align="center" width="full" px={4}>
@@ -160,14 +153,6 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
                             </Text>
                         </Box>
                     ))}
-                </Box>
-            ): searchQuery && matchingResults.length === 0 ? (
-                <Box maxHeight="150px" mt={1} overflowY="auto" px={4} width={'full'} borderRadius={'10px'} position={'absolute'} zIndex={20}>
-                    <Box py={1} px={4} bg={'white'} borderBottom="1px solid" borderColor="gray.300">
-                        <Text color="gray.600" fontWeight="bold">
-                            No results found
-                        </Text>
-                    </Box>
                 </Box>
             ): null}
         </Box>
