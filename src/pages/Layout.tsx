@@ -4,7 +4,7 @@ import {  useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";
 import CustomModal from "../components/modal/PopUpModal";
 import GuestList from "../components/GuestList";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 
 interface LayoutProps {
@@ -16,6 +16,7 @@ const Layout = ({uploadedData}: LayoutProps) => {
     const [selectedUser, setSelectedUser] = useState<any>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedTable, setSelectedTable] = useState<any[]>([]);
+    const navigate = useNavigate();
 
     const location = useLocation();
     let clickedTable = location.state?.clickedTable;
@@ -124,7 +125,7 @@ const Layout = ({uploadedData}: LayoutProps) => {
           <IconButton
               aria-label="Back"
               icon={<IoIosArrowBack />}
-              onClick={() => window.location.href = '/'}
+              onClick={() => navigate('/')}
               bg={'gray.300'}
               color={'black'}
               />
