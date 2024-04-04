@@ -8,6 +8,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, setNoResult, type }: any) => {
     const [matchingResults, setMatchingResults] = useState<any[]>([]);
     // const [isFocused, setIsFocused] = useState(false);
+    const [isNameClicked, setIsNameClicked] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -17,6 +18,7 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
     };
 
     const searchUser = () => {
+        setIsNameClicked(false);
         if (!searchQuery) {
             setNoResult(false);
             return;
@@ -69,6 +71,7 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
     };
 
     const handleNameClick = (name: any) => {
+        setIsNameClicked(true);
         if (type === "users") {
             const selectedUserObj = uploadedData?.find((user: any) => {
                 const useFullNames = user.guestFirstName + ' ' + user.guestLastName;
@@ -115,8 +118,19 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
     useEffect(() => {
         if(searchQuery){
             searchUser();
+        } else {
+            setMatchingResults([]);
         }
     },[searchQuery]);
+
+    // clear the matching results when the handleNameClick is called
+    useEffect(() => {
+        if (isNameClicked) {
+            setMatchingResults([]);
+        }
+    }, [isNameClicked]);
+
+    
 
     return (
         <Box width="full" top={8} pos={'relative'}>

@@ -1,10 +1,11 @@
-import { Box, Text, Center, Flex, Button } from "@chakra-ui/react";
+import { Box, Text, Center, Flex, IconButton } from "@chakra-ui/react";
 import PageLayout from "../components/PageLayout";
 import {  useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";
 import CustomModal from "../components/modal/PopUpModal";
 import GuestList from "../components/GuestList";
 import { useLocation } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
 
 interface LayoutProps {
     uploadedData: any;
@@ -118,7 +119,16 @@ const Layout = ({uploadedData}: LayoutProps) => {
       }, [uploadedData]);
 
     return (
-        <Box>
+        <Box bg={'gray.100'}>
+        <Flex width={'full'} justifyContent={'start'} alignItems={'center'} ml={4} pt={8} height={'10px'} mt={2}>
+          <IconButton
+              aria-label="Back"
+              icon={<IoIosArrowBack />}
+              onClick={() => window.location.href = '/'}
+              bg={'gray.300'}
+              color={'black'}
+              />
+              </Flex>
         <PageLayout 
          uploadedData={uploadedData}
          searchQuery={searchQuery}
@@ -128,12 +138,8 @@ const Layout = ({uploadedData}: LayoutProps) => {
          type={'layout'}
          >
 
-          <Center mb={4} pos={'fixed'} width={'full'} top={'100px'} flexDirection={'column'}>
+          <Center mt={"20px"}  width={'full'} flexDirection={'column'}>
              <SVGComponent />
-
-             <Flex width={'full'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}  mt={8}>
-              <Button bg={'gray.300'} color={'black'} onClick={() => window.location.href = '/'}>back</Button>
-              </Flex>
           </Center>
             </PageLayout>
             <Box px={4}>

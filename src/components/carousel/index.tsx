@@ -2,12 +2,13 @@ import {
   StackedCarousel,
   ResponsiveContainer
 } from "react-stacked-center-carousel";
-import { Modal, ModalOverlay, ModalContent, ModalBody } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from "@chakra-ui/react";
 import img1 from '../../assets/images/img-1.jpg';
 import img2 from '../../assets/images/img-2.jpg';
 import img3 from '../../assets/images/img-3.jpg';
 import { Slide } from "./Carousel";
 import { useState } from "react";
+import '../modal/styles.css';
 
 const data = [
   {
@@ -80,9 +81,14 @@ const CardCarousel = () => {
           }}
         />
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} size="full">
-        <ModalOverlay />
+      <Modal isOpen={isModalOpen} onClose={closeModal} size="sm">
+
+        <ModalOverlay
+        bg="transparent"
+        css={{ backdropFilter: 'blur(3px)', backgroundColor: 'rgba(10, 0, 50, 0.3)' }}
+      />
         <ModalContent>
+        <ModalCloseButton bg={'gray.50'} color={'gray.700'} borderWidth={0} fontWeight={'bold'} borderRadius={'5px'}  />
           <ModalBody p={0} onClick={closeModal} >
             <img src={modalImage} alt="modal" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </ModalBody>

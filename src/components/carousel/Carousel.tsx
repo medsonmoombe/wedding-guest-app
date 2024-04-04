@@ -1,6 +1,6 @@
 import React from "react";
+import { FaExpand } from 'react-icons/fa';
 import "./Slider.css";
-
 
 export const Slide = React.memo(function (StackedCarouselSlideProps) {
   const {
@@ -25,15 +25,22 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
         />
       </div>
       <div className="detail fill">
-        <div className="discription" onClick={()=> openModal(coverImage)} >
+        <div className="discription">
           <img
             style={{ width:'100%' }}
             alt="j"
             className="cover-image"
             src={coverImage}
           />
+          <div className="icon-container">
+            <FaExpand
+              className="expand-icon"
+              onClick={() => openModal(coverImage)}
+            />
+          </div>
         </div>
       </div>
     </div>
   );
 });
+

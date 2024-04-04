@@ -90,7 +90,7 @@
   .card-card .discription {
     display: flex;
     flex-direction: column;
-    padding: 5px;
+    padding: 3px;
   };
 
   .card-card .cover-image {
@@ -100,3 +100,19 @@
   .react-stacked-center-carousel  {
     height: 375px !important;
   }
+
+  .icon-container {
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    padding: 8px;
+    cursor: pointer;
+    background: #eee;
+    border-radius: 0 0 0 5px;
+    border-color: #000;
+  }
+  
+  .expand-icon {
+    color: #000;
+  }
+  
