@@ -3,47 +3,18 @@ import {
   ResponsiveContainer
 } from "react-stacked-center-carousel";
 import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from "@chakra-ui/react";
-import img1 from '../../assets/images/img-1.jpg';
-import img2 from '../../assets/images/img-2.jpg';
-import img3 from '../../assets/images/img-3.jpg';
 import { Slide } from "./Carousel";
 import { useState } from "react";
 import '../modal/styles.css';
+import {backgrounds} from '../function/index';
 
-const data = [
-  {
-    image: img1,
-    text: "one"
-  },
-  {
-    image: img2,
-    text: "two"
-  },
-  {
-    image: img1,
-    text: "three"
-  },
-  {
-    image: img2,
-    text: "four"
-  },
-  {
-    image: img3,
-    text: "five"
-  },
-  {
-    image: img1,
-    text: "six"
-  },
-  {
-    image: img3,
-    text: "seven"
-  },
-  {
-    image: img2,
-    text: "eight"
-  }
-];
+
+const data = backgrounds.map((image, index) => {
+  return {
+    image,
+    text: `Image ${index + 1}`
+  };
+});
 
 const CardCarousel = () => {
   const [modalImage, setModalImage] = useState("");
