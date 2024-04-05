@@ -74,6 +74,9 @@ function App() {
   // filter the data to avoid duplicates by guest name if guestFirstName and guestLastName are the same
   const filteredData = parsedData?.filter((v: { guestFirstName: any; guestLastName: any; }, i: any, a: any[]) => a.findIndex((t: { guestFirstName: any; guestLastName: any; }) => (t.guestFirstName === v.guestFirstName && t.guestLastName === v.guestLastName)) === i);
 
+
+  console.log(filteredData);
+
   return (
     <>
       <Router>

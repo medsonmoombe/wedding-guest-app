@@ -6,6 +6,7 @@ import CustomModal from "../components/modal/PopUpModal";
 import GuestList from "../components/GuestList";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
+import tables from "../tables/tables.json";
 
 interface LayoutProps {
     uploadedData: any;
@@ -20,6 +21,15 @@ const Layout = ({uploadedData}: LayoutProps) => {
 
     const location = useLocation();
     let clickedTable = location.state?.clickedTable;
+
+
+console.log("CLICKED TABLE ::", clickedTable);
+const table = tables.find((table) => table.tableName.toLowerCase() === clickedTable?.toLowerCase());
+
+console.log("CLICKED ::", table);
+
+
+
   
 
     const handleOpen = () => {
@@ -39,10 +49,11 @@ const Layout = ({uploadedData}: LayoutProps) => {
 
     const highlightTable = (tableName: string) => {
         // Find the SVG element by its name attribute
-        const tableElements = document.querySelectorAll('[name]');
+        const tableElements = document.querySelectorAll('[id]');
+        const table = tables.find((table) => table.tableName.toLowerCase() === tableName?.toLowerCase());
         // Loop through each table element to find the matching one
         tableElements.forEach(tableElement => {
-          if (tableElement.getAttribute('name')?.toLowerCase() === tableName?.toLowerCase()) {
+          if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
             // Highlight the table in green
             console.log(`Table ${tableName} found.`)
             tableElement.setAttribute('fill', '#00a86b');
@@ -62,8 +73,7 @@ const Layout = ({uploadedData}: LayoutProps) => {
         clickedTable = "";
         const tableElements = document.querySelectorAll('[name]');
         tableElements.forEach(tableElement => {
-          // tableElement.setAttribute('fill', 'white');
-          // tableElement.setAttribute('stroke', 'black');
+          
           if (tableElement.getAttribute('name')?.toLowerCase() === searchQuery?.toLowerCase()) {
             highlightTable(searchQuery);
           }else {
@@ -72,13 +82,13 @@ const Layout = ({uploadedData}: LayoutProps) => {
           }
           });
       } 
-      
+      ""
       if(clickedTable && !searchQuery) {
-        const tableElements = document.querySelectorAll('[name]');
+        const tableElements = document.querySelectorAll('[id]');
+
+        const table = tables.find((table) => table.tableName.toLowerCase() === clickedTable?.toLowerCase());
         tableElements.forEach(tableElement => {
-          // tableElement.setAttribute('fill', 'white');
-          // tableElement.setAttribute('stroke', 'black');
-          if (tableElement.getAttribute('name')?.toLowerCase() === clickedTable?.toLowerCase()) {
+          if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
             highlightTable(clickedTable);
           }else {
             tableElement.setAttribute('fill', 'white');
@@ -94,7 +104,8 @@ const Layout = ({uploadedData}: LayoutProps) => {
         const tableElements = document.querySelectorAll('[name]');
         tableElements.forEach(tableElement => {
           tableElement.addEventListener('click', () => {
-          const clickedTableName = tableElement.getAttribute('name');;
+          const clickedTableName = tableElement.getAttribute('id');
+            console.log(`Table ${clickedTableName} clicked.`);
             if (tableElement.getAttribute('name')?.toLowerCase() === clickedTableName?.toLowerCase()) {
               highlightTable(clickedTableName as string);
             }else {

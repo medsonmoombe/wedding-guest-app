@@ -60,7 +60,7 @@ const navigate = useNavigate();
           {selectedUser.tableName}
         </Text>
         <Text fontSize="md" fontWeight="bold" color={'red'} textAlign={'center'} fontFamily={"Montserrat Alternates"}>
-          {selectedUser.tableZone}
+          {selectedUser.tableId}
           </Text>
           </Flex>}
        {children}
