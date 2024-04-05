@@ -55,7 +55,7 @@ const navigate = useNavigate();
         <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}  mb={8}>
         <HeroPage selectedUser={selectedUser} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </Box>
-       {selectedUser && type !=="layout" && <Flex justify={'center'}  direction={'column'} mt={6} textTransform={'capitalize'} >
+       {selectedUser && type !=="layout" && <Flex justify={'center'}  direction={'column'} mt={"50px"} textTransform={'capitalize'} >
         <Text fontSize="2xl" fontFamily={"Montserrat Alternates"} textAlign={'center'} fontWeight={'bold'} onClick={() => handleClick(selectedUser.tableName) }>
           {selectedUser.tableName}
         </Text>

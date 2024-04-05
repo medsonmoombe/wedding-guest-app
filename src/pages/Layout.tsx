@@ -7,6 +7,7 @@ import GuestList from "../components/GuestList";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import tables from "../tables/tables.json";
+import { isValidTableId } from "../components/function";
 
 interface LayoutProps {
     uploadedData: any;
@@ -17,18 +18,11 @@ const Layout = ({uploadedData}: LayoutProps) => {
     const [selectedUser, setSelectedUser] = useState<any>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedTable, setSelectedTable] = useState<any[]>([]);
+    const [openTable, setOpenTable] = useState<any>(null);
     const navigate = useNavigate();
 
     const location = useLocation();
     let clickedTable = location.state?.clickedTable;
-
-
-console.log("CLICKED TABLE ::", clickedTable);
-const table = tables.find((table) => table.tableName.toLowerCase() === clickedTable?.toLowerCase());
-
-console.log("CLICKED ::", table);
-
-
 
   
 
@@ -38,12 +32,15 @@ console.log("CLICKED ::", table);
 
       const handleClose = () => {
         setIsOpen(false);
-        // clear any highligeted table
-        const tableElements = document.querySelectorAll('[name]');
-        tableElements.forEach(tableElement => {
-          tableElement.setAttribute('fill', 'white');
-          tableElement.setAttribute('stroke', 'black');
-        });
+       // Reset styles of tables with valid IDs
+  const tableElements = document.querySelectorAll('[id]');
+  tableElements.forEach(tableElement => {
+    const tableId = tableElement.getAttribute('id');
+    if (isValidTableId(tableId as string)) {
+      tableElement.setAttribute('fill', 'white');
+      tableElement.setAttribute('stroke', 'black');
+    }
+  });
       }
 
 
@@ -54,14 +51,11 @@ console.log("CLICKED ::", table);
         // Loop through each table element to find the matching one
         tableElements.forEach(tableElement => {
           if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
-            // Highlight the table in green
-            console.log(`Table ${tableName} found.`)
             tableElement.setAttribute('fill', '#00a86b');
             tableElement.setAttribute('stroke', '#00a86b');
           }
         });
-      
-        console.log(`Table ${tableName} not found.`);
+    
       }
 
   
@@ -71,14 +65,18 @@ console.log("CLICKED ::", table);
     
       if(searchQuery){
         clickedTable = "";
-        const tableElements = document.querySelectorAll('[name]');
+        const tableElements = document.querySelectorAll('[id]');
+        const table = tables.find((table) => table.tableName.toLowerCase() === searchQuery?.toLowerCase()); 
         tableElements.forEach(tableElement => {
-          
-          if (tableElement.getAttribute('name')?.toLowerCase() === searchQuery?.toLowerCase()) {
+          if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
             highlightTable(searchQuery);
           }else {
-            tableElement.setAttribute('fill', 'white');
-            tableElement.setAttribute('stroke', 'black');
+            // reset the styles of the tables with valid IDs
+            const tableId = tableElement.getAttribute('id');
+            if (isValidTableId(tableId as string)) {
+              tableElement.setAttribute('fill', 'white');
+              tableElement.setAttribute('stroke', 'black');
+            }
           }
           });
       } 
@@ -91,44 +89,63 @@ console.log("CLICKED ::", table);
           if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
             highlightTable(clickedTable);
           }else {
-            tableElement.setAttribute('fill', 'white');
-            tableElement.setAttribute('stroke', 'black');
+            // reset the styles of the tables with valid IDs
+            const tableId = tableElement.getAttribute('id');
+            if (isValidTableId(tableId as string)) {
+              tableElement.setAttribute('fill', 'white');
+              tableElement.setAttribute('stroke', 'black');
+            }
           }
           });
       } 
       }, [searchQuery, clickedTable]);
 
-
       // onclick of a table, console.log the table name
-      useEffect(() => {
-        const tableElements = document.querySelectorAll('[name]');
-        tableElements.forEach(tableElement => {
-          tableElement.addEventListener('click', () => {
-          const clickedTableName = tableElement.getAttribute('id');
-            console.log(`Table ${clickedTableName} clicked.`);
-            if (tableElement.getAttribute('name')?.toLowerCase() === clickedTableName?.toLowerCase()) {
-              highlightTable(clickedTableName as string);
-            }else {
-              tableElement.setAttribute('fill', 'white');
-              tableElement.setAttribute('stroke', 'black');
-            }
+useEffect(() => {
+  const tableElements = document.querySelectorAll('[id]');
+  tableElements.forEach(tableElement => {
+      tableElement.addEventListener('click', () => {
+          // find the clicked table
+          const clickedTabeId = tableElement.getAttribute('id');
+          const isCorrectFormat = isValidTableId(clickedTabeId as string);
 
-            setSelectedUser({tableName: tableElement.getAttribute('name')});
-            let selectedTableArr: any[] = [];
-            
-            // find the guests whose table matches the clicked table
-            uploadedData?.filter((data: any) => {
-              if(data.tableName === tableElement.getAttribute('name')){
-                selectedTableArr.push(data);
-              }else {
-                console.log("data", "no data found");
+          if (isCorrectFormat) {
+              const clickedTableName = tables.find((table) => table.tableId.toLowerCase().includes(clickedTabeId?.toLowerCase() as string));
+              
+              const table = tables.find((table) => table.tableName.toLowerCase() === clickedTableName?.tableName?.toLowerCase());
+              setOpenTable(table);
+              if (tableElement.getAttribute('id')?.toLowerCase() === clickedTableName?.tableId?.toLowerCase()) {
+                  highlightTable(clickedTableName?.tableName as string);
+              } else {
+                  // Fill other tables with white and black
+                  tableElements.forEach(element => {
+                      if (element !== tableElement) {
+                          element.setAttribute('fill', 'white');
+                          element.setAttribute('stroke', 'black');
+                      }
+                  });
               }
-            });
-            setSelectedTable(selectedTableArr);
-          handleOpen();
-          });
-        });
-      }, [uploadedData]);
+              setSelectedUser({ tableName: tableElement.getAttribute('id') });
+              let selectedTableArr: any[] = [];
+
+              // find a table with the same name as the clicked table
+
+              // find the guests whose table matches the clicked table
+              uploadedData?.filter((data: any) => {
+                  if (data.tableName === clickedTableName?.tableName) {
+                      selectedTableArr.push(data);
+                  } else {
+                      console.log("data", "no data found");
+                  }
+              });
+              setSelectedTable(selectedTableArr);
+              handleOpen();
+          }
+
+      });
+  });
+}, [uploadedData]);
+
 
     return (
         <Box bg={'gray.100'}>
@@ -164,8 +181,15 @@ console.log("CLICKED ::", table);
                         </Box>
                     
                     )}
-                    </Box>
                 </Box>
+                    </Box>
+                     <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'}  mt={8} bg={'gray.100'} boxShadow={'sm'} p={2}>
+                      <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'} >English</Text>
+                      <Text fontSize="sm" color={'black'} textAlign={'center'} >{openTable?.Description_english}</Text>
+
+                      <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'}>Portugues</Text>
+                      <Text fontSize="sm" color={'black'} textAlign={'center'}>{openTable?.Description_portugues}</Text>
+                    </Box>
             </CustomModal>
             </Box>
         </Box>
