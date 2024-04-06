@@ -147,9 +147,11 @@ useEffect(() => {
 }, [uploadedData]);
 
 
+
+
     return (
         <Box bg={'gray.100'}>
-        <Flex width={'full'} justifyContent={'start'} alignItems={'center'} ml={4} pt={8} height={'10px'} mt={2}>
+        <Flex width={'full'} justifyContent={'start'} alignItems={'center'} pt={8} height={'10px'} mt={2} pl={2} >
           <IconButton
               aria-label="Back"
               icon={<IoIosArrowBack />}
@@ -172,8 +174,10 @@ useEffect(() => {
           </Center>
             </PageLayout>
             <Box px={4}>
-            <CustomModal isOpen={isOpen} onClose={handleClose}  title={`${selectedUser?.tableName} Table`}>
-                <Box width={'full'} display={'flex'} justifyContent={'start'} alignItems={'start'} flexDirection={'column'}  mb={8} height={ Number(selectedTable?.length) > 3 ? '430px': '200px'} overflowY={'auto'}>
+            <CustomModal isOpen={isOpen} onClose={handleClose}  title={`${selectedUser?.tableName}`}>
+              <Box position={'relative'}>
+
+                <Box px={2} width={'full'} display={'flex'} justifyContent={'start'} alignItems={'start'} flexDirection={'column'}  mb={8} height={ Number(selectedTable?.length) > 3 ? '430px': '200px'} overflowY={'auto'}>
                     <Box width={'full'} display={'flex'} justifyContent={'start'} alignItems={'start'} flexDirection={'column'}  mb={8}>
                     {(selectedTable && selectedTable.length !== 0) ? <GuestList guests={selectedTable} />: (
                         <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}  mt={8}>
@@ -183,13 +187,13 @@ useEffect(() => {
                     )}
                 </Box>
                     </Box>
-                     <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'}  mt={8} bg={'gray.100'} boxShadow={'sm'} p={2}>
-                      <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'} >English</Text>
-                      <Text fontSize="sm" color={'black'} textAlign={'center'} >{openTable?.Description_english}</Text>
-
+                     <Box position={'absolute'} top={'110%'} width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'}   mt={8} bg="gray.100" boxShadow={'sm'} p={2}>
                       <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'}>Portugues</Text>
-                      <Text fontSize="sm" color={'black'} textAlign={'center'}>{openTable?.Description_portugues}</Text>
+                      <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'}>{openTable?.Description_portugues}</Text>
+                      <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'} >English</Text>
+                      <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'} >{openTable?.Description_english}</Text>
                     </Box>
+              </Box>
             </CustomModal>
             </Box>
         </Box>
