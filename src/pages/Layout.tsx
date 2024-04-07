@@ -180,7 +180,7 @@ useEffect(() => {
                      <Box position={'absolute'} top={'110%'} width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'}   mt={8} bg="rgba(243, 246, 241, 0.73)" boxShadow={'sm'} p={2}>
                       <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'}>Portugues</Text>
                       <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'}>{openTable?.Description_portugues}</Text>
-                      <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'} >English</Text>
+                      <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'} mt={2} >English</Text>
                       <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'} >{openTable?.Description_english}</Text>
                     </Box>
               </Box>
