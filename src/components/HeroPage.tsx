@@ -1,14 +1,15 @@
-import { Box, Button, Collapse, Divider, Flex, Icon, Input, InputGroup, InputRightElement, Text, useDisclosure } from '@chakra-ui/react';
+import { Box,Collapse, Divider, Flex, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaSearch, FaUsers } from 'react-icons/fa';
-import { useNavigate, useLocation } from 'react-router-dom';
+
 
 interface Props {
     matchingResults: any[];
     type: string;
     onFocus: boolean;
     handleNameClick: (name: any) => void;
+
 }
 
 function CollapseEx({ matchingResults, handleNameClick, type, onFocus }: Props ) {
@@ -54,17 +55,15 @@ function CollapseEx({ matchingResults, handleNameClick, type, onFocus }: Props )
     setNoResult?: (value: boolean) => void;
     type: string;
     selectedUser: any;
+    activeTabIndex: number;
+    setActiveTabIndex: (value: number) => void;
 }
 
 
-const HeroPage = ({ setSelectedUser,onFocus, setOnFocus, uploadedData, setSearchQuery, searchQuery, setNoResult, type }: HeroPageProps) => {
+const HeroPage = ({setActiveTabIndex, activeTabIndex, setSelectedUser,onFocus, setOnFocus, uploadedData, setSearchQuery, searchQuery, setNoResult, type }: HeroPageProps) => {
     const [matchingResults, setMatchingResults] = useState<any[]>([]);
     // const [isFocused, setIsFocused] = useState(false);
     const [isNameClicked, setIsNameClicked] = useState(false);
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    console.log("ON FOCUS", onFocus)
 
 
     const handleInputBlur = () => {
@@ -164,12 +163,12 @@ const HeroPage = ({ setSelectedUser,onFocus, setOnFocus, uploadedData, setSearch
 
     const handleRelocate = () => {
         // Check if current URL includes "/layout"
-        if (location.pathname.includes("/layout")) {
+        if (activeTabIndex === 1) {
             // If current URL includes "/layout", navigate to "/"
-            navigate("/");
+            setActiveTabIndex(0);
         } else {
             // Otherwise, navigate to "/layout"
-            navigate("/layout");
+            setActiveTabIndex(1);
         }
     }
 

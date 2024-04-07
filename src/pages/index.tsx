@@ -2,6 +2,7 @@ import { useState } from "react";
 import Layout from "./Layout";
 import HomePage from "./HomePage";
 import PageLayout from "../components/PageLayout";
+import MenuListPage from "../components/menu";
 
 interface HomeDisplayProps {
     uploadedData: any;
@@ -28,6 +29,7 @@ const HomeDisplay = ({uploadedData}: HomeDisplayProps) => {
           {/* render the component here based on the activeTabIndex */}
             {activeTabIndex === 0 && <HomePage/>}
             {activeTabIndex === 1 && <Layout setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} searchQuery={searchQuery} setActiveTabIndex={setActiveTabIndex} />}
+            {activeTabIndex === 2 && <MenuListPage/>}
             </PageLayout>
         </>
     );

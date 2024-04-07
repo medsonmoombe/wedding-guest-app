@@ -17,8 +17,18 @@ const FooterTabs = ({activeTabIndex, setActiveTabIndex }: Props ) => {
     index={activeTabIndex} onChange={index => setActiveTabIndex(index)}
     >
 
-            <Divider my={2} borderWidth={'1px'} borderColor={'gray.200'}/>
-        <TabList display={'flex'} justifyContent={'center'} bg={'transparent'} py={1} style={{ width: '100%'}} px={4} alignItems={'center'}>
+    <Divider my={2} borderWidth={'1px'} borderColor={'gray.200'}/>
+        <TabList
+         display={'flex'}
+          justifyContent={'center'}
+           bg={'gray.100'} 
+           py={1} 
+           style={{ width: '100%'}}
+            px={4} 
+            alignItems={'center'}
+            // opacity="0.5"
+            backdropFilter="blur(2px)"
+            >
             <Tab bg={'none'}>
                 <IconButton
                     aria-label="Search database"
