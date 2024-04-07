@@ -1,12 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
 import { CSVHeaders, CSVResult, CSVRow } from './components/Header';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Papa from 'papaparse';
 import { useToast } from '@chakra-ui/react';
 import { base_url, file_id } from './components/constants/enviroments';
-import Layout from './pages/Layout';
+import HomeDisplay from './pages';
 
 function App() {
   const [uploadedData, setUploadedData] = useState<CSVRow[]>([]);
@@ -79,8 +78,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<HomePage uploadedData={filteredData} />} />
-          <Route path="/layout" element={<Layout uploadedData={filteredData} />} />
+          <Route path="/" element={<HomeDisplay uploadedData={filteredData}/>} />
         </Routes>
       </Router>
     </>

@@ -1,8 +1,8 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Text } from '@chakra-ui/react';
 import HeroPage from "../components/HeroPage";
 import { CSVRow } from '../components/Header';
-import {  useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {  useEffect, useState } from 'react';
+import FooterTabs from './tabs';
 
 interface Props {
   uploadedData: CSVRow[];
@@ -11,15 +11,25 @@ interface Props {
     searchQuery: string;
     setSelectedUser: (value: any) => void;
     selectedUser: any;
+    setActiveTabIndex: (value: number) => void;
+    activeTabIndex: number;
+    setClickedTable: (value: string) => void;
     type: string;
 }
 
-const PageLayout = ({ uploadedData, children, searchQuery,type, setSearchQuery, selectedUser, setSelectedUser }: Props) => {
-const navigate = useNavigate();
+const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setActiveTabIndex, activeTabIndex ,type, setSearchQuery, selectedUser, setSelectedUser }: Props) => {
+  const [onFocus, setOnFocus] = useState(false);
 
 
   const handleClick = (value: string) => {
-     navigate('/layout', { state: { clickedTable: value } });
+     // set the active tab index to 1 and pass the clicked table name to the layout page
+     if(value){
+      setActiveTabIndex(1);
+    setClickedTable(value);
+    setSearchQuery("");
+      }else {
+  setClickedTable("");
+}
   }
  
 
@@ -34,39 +44,35 @@ const navigate = useNavigate();
 
 
 
-
   return (
-    <>
-      <Box
-        width={'full'}
-        display={'flex'}
-        justifyContent={'flex-start'}
-        alignItems={'center'}
-        flexDirection={'column'}
-        objectFit={'contain'}
-        minHeight={'80vh'}
-        height={'100vh'}
-        // bgImg={`url(${backgrounds[bgIndex]})`}
-        bg={'gray.100'}
-        objectPosition={'center'}
-        style={{ backgroundSize: 'cover' }}
-
-      >
-        <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}  mb={8}>
-        <HeroPage selectedUser={selectedUser} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+    <Flex flexDirection="column" minHeight="100vh">
+      <Box flexGrow={1} width="full" bg="gray.100">
+        <Box width="full" display="flex" justifyContent="center" alignItems="center" flexDirection="column" mb={8}>
+          <HeroPage onFocus={onFocus} selectedUser={selectedUser} setOnFocus={setOnFocus} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </Box>
-       {selectedUser && type !=="layout" && <Flex justify={'center'}  direction={'column'} mt={"50px"} textTransform={'capitalize'} >
-        <Text fontSize="2xl" fontFamily={"Montserrat Alternates"} textAlign={'center'} fontWeight={'bold'} onClick={() => handleClick(selectedUser.tableName) }>
-          {selectedUser.tableName}
-        </Text>
-        <Text fontSize="md" fontWeight="bold" color={'red'} textAlign={'center'} fontFamily={"Montserrat Alternates"}>
-          {selectedUser.tableId}
-          </Text>
-          </Flex>}
-       {children}
+        {selectedUser && type !== "layout" && !onFocus && (
+          <Flex justify="center" direction="column" mt={14} textTransform="capitalize">
+            <Text fontSize="2xl" fontFamily="Montserrat Alternates" textAlign="center" fontWeight="bold" onClick={() => handleClick(selectedUser.tableName)}>
+              {selectedUser.tableName}
+            </Text>
+            <Text fontSize="md" fontWeight="bold" color="red" textAlign="center" fontFamily="Montserrat Alternates">
+              {selectedUser.tableId}
+            </Text>
+          </Flex>
+        )}
+        {children}
+      <Box width="full" position="fixed" bottom={0}>
+        <Center>
+          <FooterTabs
+          activeTabIndex={activeTabIndex}
+          setActiveTabIndex={setActiveTabIndex} 
+          />
+        </Center>
       </Box>
-    </>
-  )
+      </Box>
+    </Flex>
+  );
+
 };
 
 export default PageLayout;

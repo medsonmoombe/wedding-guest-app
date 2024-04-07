@@ -1,26 +1,85 @@
-import { Box, Flex, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
+import { Box, Button, Collapse, Divider, Flex, Icon, Input, InputGroup, InputRightElement, Text, useDisclosure } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaSearch, FaUsers } from 'react-icons/fa';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+interface Props {
+    matchingResults: any[];
+    type: string;
+    onFocus: boolean;
+    handleNameClick: (name: any) => void;
+}
 
-const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, setNoResult, type }: any) => {
+function CollapseEx({ matchingResults, handleNameClick, type, onFocus }: Props ) {
+    // Initialize toggle state based on whether there are matching results
+    const [toggle, setToggle] = useState(matchingResults.length > 0);
+  
+    const handleToggle = () => {
+      if(matchingResults.length > 0){
+          setToggle(onFocus);
+      }
+    };
+
+    useEffect(() => {
+        handleToggle();
+    }, [onFocus]);
+  
+    return (
+      <>
+        <Collapse in={toggle} animateOpacity>
+          <Box bg={'white'} maxHeight="100px" overflowY="auto" mt={1} px={4} width={'inherit'} borderRadius={'10px'} zIndex={99}>
+                    {matchingResults?.map((result, index) => (
+                        <Box key={index} onClick={() => handleNameClick(result)} cursor="pointer" py={1} px={4}>
+
+                            <Text color="gray.600" fontWeight="bold">
+                                {type === "users" ? result.guestFirstName + ' ' + result.guestLastName : result.tableName}
+                            </Text>
+                            <Divider  my={1}/>
+                        </Box>
+                    ))}
+                </Box>
+        </Collapse>
+      </>
+    );
+  }
+
+  interface HeroPageProps {
+    setSelectedUser: (value: any) => void;
+    onFocus: boolean;
+    setOnFocus: (value: boolean) => void;
+    uploadedData: any[];
+    setSearchQuery: (value: string) => void;
+    searchQuery: string;
+    setNoResult?: (value: boolean) => void;
+    type: string;
+    selectedUser: any;
+}
+
+
+const HeroPage = ({ setSelectedUser,onFocus, setOnFocus, uploadedData, setSearchQuery, searchQuery, setNoResult, type }: HeroPageProps) => {
     const [matchingResults, setMatchingResults] = useState<any[]>([]);
     // const [isFocused, setIsFocused] = useState(false);
     const [isNameClicked, setIsNameClicked] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
+    console.log("ON FOCUS", onFocus)
+
+
+    const handleInputBlur = () => {
+        setOnFocus(false);
+    };
+
     const handleInputFocus = () => {
-        // setIsFocused(true);
+        setOnFocus(true);
         setMatchingResults(uploadedData);
     };
 
     const searchUser = () => {
         setIsNameClicked(false);
         if (!searchQuery) {
-            setNoResult(false);
+            setNoResult?.(false);
             return;
         }
 
@@ -94,9 +153,9 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
             setMatchingResults([]);
 
             if (!selectedUserObj) {
-                setNoResult(true);
+                setNoResult?.(true);
             } else {
-                setNoResult(false);
+                setNoResult?.(false);
             }
 
         }
@@ -147,6 +206,7 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
                         value={searchQuery}
                         onChange={handleInputChange}
                         onFocus={handleInputFocus}
+                        onBlur={handleInputBlur} 
                         onKeyPress={handleKeyPress}
                     />
                     <InputRightElement cursor="pointer" gap={2} pr={8} alignItems={'center'}>
@@ -159,16 +219,10 @@ const HeroPage = ({ setSelectedUser, uploadedData, setSearchQuery, searchQuery, 
                 </InputGroup>
             </Flex>
             {searchQuery && matchingResults && matchingResults.length > 0 ? (
-                <Box maxHeight="150px" mt={1} overflowY="auto" px={4} width={'full'} borderRadius={'10px'} position={'absolute'} zIndex={20}>
-                    {matchingResults?.map((result, index) => (
-                        <Box key={index} onClick={() => handleNameClick(result)} cursor="pointer" py={1} px={4} bg={'white'} borderBottom="1px solid" borderColor="gray.300">
-                            <Text color="gray.600" fontWeight="bold">
-                                {type === "users" ? result.guestFirstName + ' ' + result.guestLastName : result.tableName}
-                            </Text>
-                        </Box>
-                    ))}
+                <Box px={4}>
+                <CollapseEx onFocus={onFocus}  matchingResults={matchingResults} handleNameClick={handleNameClick} type={type} />
                 </Box>
-            ): null}
+            ) : null}
         </Box>
     );
 };

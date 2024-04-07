@@ -1,30 +1,28 @@
 import { Box, Text, Center, Flex, IconButton } from "@chakra-ui/react";
-import PageLayout from "../components/PageLayout";
 import {  useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";
 import CustomModal from "../components/modal/PopUpModal";
 import GuestList from "../components/GuestList";
-import { useLocation, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import tables from "../tables/tables.json";
 import { isValidTableId } from "../components/function";
 
 interface LayoutProps {
     uploadedData: any;
+    clickedTabel: string;
+    searchQuery: string;
+    setActiveTabIndex: (value: number) => void;
+    setSearchQuery: (value: string) => void;
 }
 
-const Layout = ({uploadedData}: LayoutProps) => {
-    const [searchQuery, setSearchQuery] = useState('');
+const Layout = ({uploadedData,clickedTabel, searchQuery, setActiveTabIndex, setSearchQuery}: LayoutProps) => {
+
     const [selectedUser, setSelectedUser] = useState<any>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedTable, setSelectedTable] = useState<any[]>([]);
     const [openTable, setOpenTable] = useState<any>(null);
-    const navigate = useNavigate();
 
-    const location = useLocation();
-    let clickedTable = location.state?.clickedTable;
 
-  
 
     const handleOpen = () => {
         setIsOpen(true);
@@ -64,7 +62,7 @@ const Layout = ({uploadedData}: LayoutProps) => {
     useEffect(() => {
     
       if(searchQuery){
-        clickedTable = "";
+        clickedTabel = "";
         const tableElements = document.querySelectorAll('[id]');
         const table = tables.find((table) => table.tableName.toLowerCase() === searchQuery?.toLowerCase()); 
         tableElements.forEach(tableElement => {
@@ -81,13 +79,15 @@ const Layout = ({uploadedData}: LayoutProps) => {
           });
       } 
       ""
-      if(clickedTable && !searchQuery) {
+      if(clickedTabel && !searchQuery) {
         const tableElements = document.querySelectorAll('[id]');
 
-        const table = tables.find((table) => table.tableName.toLowerCase() === clickedTable?.toLowerCase());
+        const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabel?.toLowerCase());
+        setSearchQuery(table?.tableName as string);
+
         tableElements.forEach(tableElement => {
           if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
-            highlightTable(clickedTable);
+            highlightTable(clickedTabel);
           }else {
             // reset the styles of the tables with valid IDs
             const tableId = tableElement.getAttribute('id');
@@ -98,7 +98,7 @@ const Layout = ({uploadedData}: LayoutProps) => {
           }
           });
       } 
-      }, [searchQuery, clickedTable]);
+      }, [searchQuery, clickedTabel]);
 
       // onclick of a table, console.log the table name
 useEffect(() => {
@@ -110,12 +110,12 @@ useEffect(() => {
           const isCorrectFormat = isValidTableId(clickedTabeId as string);
 
           if (isCorrectFormat) {
-              const clickedTableName = tables.find((table) => table.tableId.toLowerCase().includes(clickedTabeId?.toLowerCase() as string));
+              const clickedTabelName = tables.find((table) => table.tableId.toLowerCase().includes(clickedTabeId?.toLowerCase() as string));
               
-              const table = tables.find((table) => table.tableName.toLowerCase() === clickedTableName?.tableName?.toLowerCase());
+              const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabelName?.tableName?.toLowerCase());
               setOpenTable(table);
-              if (tableElement.getAttribute('id')?.toLowerCase() === clickedTableName?.tableId?.toLowerCase()) {
-                  highlightTable(clickedTableName?.tableName as string);
+              if (tableElement.getAttribute('id')?.toLowerCase() === clickedTabelName?.tableId?.toLowerCase()) {
+                  highlightTable(clickedTabelName?.tableName as string);
               } else {
                   // Fill other tables with white and black
                   tableElements.forEach(element => {
@@ -132,7 +132,7 @@ useEffect(() => {
 
               // find the guests whose table matches the clicked table
               uploadedData?.filter((data: any) => {
-                  if (data.tableName === clickedTableName?.tableName) {
+                  if (data.tableName === clickedTabelName?.tableName) {
                       selectedTableArr.push(data);
                   } else {
                       console.log("data", "no data found");
@@ -155,24 +155,14 @@ useEffect(() => {
           <IconButton
               aria-label="Back"
               icon={<IoIosArrowBack />}
-              onClick={() => navigate('/')}
+              onClick={() => setActiveTabIndex(0) }
               bg={'gray.300'}
               color={'black'}
               />
               </Flex>
-        <PageLayout 
-         uploadedData={uploadedData}
-         searchQuery={searchQuery}
-         setSearchQuery={setSearchQuery}
-         selectedUser={selectedUser}
-         setSelectedUser={setSelectedUser}
-         type={'layout'}
-         >
-
           <Center mt={"20px"}  width={'full'} flexDirection={'column'}>
              <SVGComponent />
           </Center>
-            </PageLayout>
             <Box px={4}>
             <CustomModal isOpen={isOpen} onClose={handleClose}  title={`${selectedUser?.tableName}`}>
               <Box position={'relative'}>
