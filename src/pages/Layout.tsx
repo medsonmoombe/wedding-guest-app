@@ -160,7 +160,7 @@ useEffect(() => {
               color={'black'}
               />
               </Flex>
-          <Center mt={"20px"}  width={'full'} flexDirection={'column'}>
+          <Center mt={"10px"}  width={'full'} flexDirection={'column'}>
              <SVGComponent />
           </Center>
             <Box px={4}>
