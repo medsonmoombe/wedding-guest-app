@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import HomePage from "./HomePage";
 import PageLayout from "../components/PageLayout";
 import MenuListPage from "../components/menu";
+import { Box } from "@chakra-ui/react";
 
 interface HomeDisplayProps {
     uploadedData: any;
@@ -14,7 +15,7 @@ const HomeDisplay = ({uploadedData}: HomeDisplayProps) => {
     const [selectedUser, setSelectedUser] = useState<any>(null);
     const [clickedTabel, setClickedTable] = useState<string>("");
     return (
-        <>
+        <Box pos="relative">
             <PageLayout
                 uploadedData={uploadedData}
                 type={activeTabIndex === 0 ? 'users' : 'layout'}
@@ -28,10 +29,10 @@ const HomeDisplay = ({uploadedData}: HomeDisplayProps) => {
             >
           {/* render the component here based on the activeTabIndex */}
             {activeTabIndex === 0 && <HomePage/>}
-            {activeTabIndex === 1 && <Layout setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} searchQuery={searchQuery} setActiveTabIndex={setActiveTabIndex} />}
+            {activeTabIndex === 1 && <Layout setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} searchQuery={searchQuery} activeTabIndex={activeTabIndex} />}
             {activeTabIndex === 2 && <MenuListPage/>}
             </PageLayout>
-        </>
+        </Box>
     );
 };
 export default HomeDisplay;

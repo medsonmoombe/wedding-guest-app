@@ -1,8 +1,9 @@
-import { Box, Center, Flex, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, IconButton, Text } from '@chakra-ui/react';
 import HeroPage from "../components/HeroPage";
 import { CSVRow } from '../components/Header';
 import {  useEffect, useState } from 'react';
 import FooterTabs from './tabs';
+import { IoIosArrowBack } from 'react-icons/io';
 
 interface Props {
   uploadedData: CSVRow[];
@@ -47,6 +48,15 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
   return (
     <Flex flexDirection="column" minHeight="100vh">
       <Box flexGrow={1} width="full" bg="gray.100">
+      {activeTabIndex === 1 && <Flex width={'full'} justifyContent={'start'} alignItems={'center'} pt={8} height={'10px'} mb={2} pl={4}  >
+          <IconButton
+              aria-label="Back"
+              icon={<IoIosArrowBack />}
+              onClick={() => setActiveTabIndex(0) }
+              bg={'gray.300'}
+              color={'black'}
+              />
+              </Flex>}
         <Box width="full" display="flex" justifyContent="center" alignItems="center" flexDirection="column" mb={8}>
           {(activeTabIndex === 0 || activeTabIndex === 1) && <HeroPage setActiveTabIndex={setActiveTabIndex} activeTabIndex={activeTabIndex} onFocus={onFocus} selectedUser={selectedUser} setOnFocus={setOnFocus} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
         </Box>

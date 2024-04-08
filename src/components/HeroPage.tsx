@@ -165,10 +165,12 @@ const HeroPage = ({setActiveTabIndex, activeTabIndex, setSelectedUser,onFocus, s
         // Check if current URL includes "/layout"
         if (activeTabIndex === 1) {
             // If current URL includes "/layout", navigate to "/"
+            setSearchQuery("");
             setActiveTabIndex(0);
         } else {
             // Otherwise, navigate to "/layout"
             setActiveTabIndex(1);
+            setSearchQuery("");
         }
     }
 

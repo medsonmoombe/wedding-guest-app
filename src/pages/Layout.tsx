@@ -1,9 +1,9 @@
-import { Box, Text, Center, Flex, IconButton } from "@chakra-ui/react";
+import { Box, Text, Center } from "@chakra-ui/react";
 import {  useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";
 import CustomModal from "../components/modal/PopUpModal";
 import GuestList from "../components/GuestList";
-import { IoIosArrowBack } from "react-icons/io";
+// import { IoIosArrowBack } from "react-icons/io";
 import tables from "../tables/tables.json";
 import { isValidTableId } from "../components/function";
 
@@ -11,11 +11,11 @@ interface LayoutProps {
     uploadedData: any;
     clickedTabel: string;
     searchQuery: string;
-    setActiveTabIndex: (value: number) => void;
+    activeTabIndex: number;
     setSearchQuery: (value: string) => void;
 }
 
-const Layout = ({uploadedData,clickedTabel, searchQuery, setActiveTabIndex, setSearchQuery}: LayoutProps) => {
+const Layout = ({uploadedData,clickedTabel, searchQuery, activeTabIndex, setSearchQuery}: LayoutProps) => {
 
     const [selectedUser, setSelectedUser] = useState<any>(null);
     const [isOpen, setIsOpen] = useState(false);
@@ -83,7 +83,11 @@ const Layout = ({uploadedData,clickedTabel, searchQuery, setActiveTabIndex, setS
         const tableElements = document.querySelectorAll('[id]');
 
         const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabel?.toLowerCase());
-        setSearchQuery(table?.tableName as string);
+        if(activeTabIndex === 1) {
+          setSearchQuery(table?.tableName as string);
+        }else {
+          setSearchQuery("");
+        }
 
         tableElements.forEach(tableElement => {
           if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
@@ -98,7 +102,7 @@ const Layout = ({uploadedData,clickedTabel, searchQuery, setActiveTabIndex, setS
           }
           });
       } 
-      }, [searchQuery, clickedTabel]);
+      }, [searchQuery, clickedTabel, activeTabIndex]);
 
       // onclick of a table, console.log the table name
 useEffect(() => {
@@ -151,15 +155,6 @@ useEffect(() => {
 
     return (
         <Box bg={'gray.100'}>
-        <Flex width={'full'} justifyContent={'start'} alignItems={'center'} pt={8} height={'10px'} mt={2} pl={2} >
-          <IconButton
-              aria-label="Back"
-              icon={<IoIosArrowBack />}
-              onClick={() => setActiveTabIndex(0) }
-              bg={'gray.300'}
-              color={'black'}
-              />
-              </Flex>
           <Center  width={'full'} flexDirection={'column'}>
              <SVGComponent />
           </Center>
