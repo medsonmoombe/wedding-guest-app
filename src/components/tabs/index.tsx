@@ -1,4 +1,4 @@
-import { Tabs, TabList, Tab, IconButton, Divider, Flex } from "@chakra-ui/react";
+import { Tabs, TabList, Tab, IconButton, Flex } from "@chakra-ui/react";
 import { FaUsers } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
 import menu from '../../assets/images/menuIcon.jpg';
