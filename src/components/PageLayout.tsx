@@ -61,14 +61,6 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
           </Flex>
         )}
         {children}
-      <Box width="full" position="fixed" bottom={0}>
-        <Center>
-          <FooterTabs
-          activeTabIndex={activeTabIndex}
-          setActiveTabIndex={setActiveTabIndex} 
-          />
-        </Center>
-      </Box>
       </Box>
     </Flex>
   );

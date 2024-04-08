@@ -3,14 +3,15 @@ import Layout from "./Layout";
 import HomePage from "./HomePage";
 import PageLayout from "../components/PageLayout";
 import MenuListPage from "../components/menu";
-import { Box } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import Timeline from "../components/planning";
+import FooterTabs from "../components/tabs";
 
 interface HomeDisplayProps {
     uploadedData: any;
 }
 
-const HomeDisplay = ({uploadedData}: HomeDisplayProps) => {
+const HomeDisplay = ({ uploadedData }: HomeDisplayProps) => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedUser, setSelectedUser] = useState<any>(null);
@@ -28,12 +29,20 @@ const HomeDisplay = ({uploadedData}: HomeDisplayProps) => {
                 activeTabIndex={activeTabIndex}
                 setClickedTable={setClickedTable}
             >
-          {/* render the component here based on the activeTabIndex */}
-            {activeTabIndex === 0 && <HomePage/>}
-            {activeTabIndex === 1 && <Layout setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} searchQuery={searchQuery} activeTabIndex={activeTabIndex} />}
-            {activeTabIndex === 2 && <MenuListPage/>}
-            {activeTabIndex === 3 && <Timeline/>}
+                {/* render the component here based on the activeTabIndex */}
+                {activeTabIndex === 0 && <HomePage />}
+                {activeTabIndex === 1 && <Layout setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} searchQuery={searchQuery} activeTabIndex={activeTabIndex} />}
+                {activeTabIndex === 2 && <MenuListPage />}
+                {activeTabIndex === 3 && <Timeline />}
             </PageLayout>
+            <Box width="full" position="fixed" bottom={0}>
+                <Center>
+                    <FooterTabs
+                        activeTabIndex={activeTabIndex}
+                        setActiveTabIndex={setActiveTabIndex}
+                    />
+                </Center>
+            </Box>
         </Box>
     );
 };
