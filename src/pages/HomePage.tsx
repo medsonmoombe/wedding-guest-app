@@ -1,20 +1,24 @@
-import { Box, Center, Flex, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Image, Text } from '@chakra-ui/react';
 import CardCarousel from '../components/carousel/index';
+import loveIcon from '../assets/images/love.png'
 
 
 const HomePage = () => {
 
   return (
     <>
-        <Box pos={'fixed'} width={'full'} top={'160px'}>
+        <Box mt={15}>
         <CardCarousel />
         <Center mt={'15px'}>
         <Flex style={{ padding: 0 }} direction={'column'} >
-          <Text color="gray.600" style={{ padding: 0 }} fontSize="2xl" fontWeight="bold" fontFamily={"Galada, cursive"}>
+          <Center>
+            <Image src={loveIcon} alt='love_icon' width={'80px'} height={'34px'} style={{ filter: 'brightness(0%)' }} />
+          </Center>
+          <Text color="gray.600" style={{ padding: 0 }} fontSize="2xl" fontWeight="bold" fontFamily={"Great Vibes, cursive"}>
             {' '}
             Judith & Robert{' '}
           </Text>{' '}
-          <Text color={'gray.500'} fontFamily={''} textAlign={'center'}>
+          <Text color={'gray.500'} fontFamily={''} textAlign={'center'} mb={20}>
             {' '}
             05/05/2024
           </Text>{' '}

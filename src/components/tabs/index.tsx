@@ -19,12 +19,15 @@ const FooterTabs = ({activeTabIndex, setActiveTabIndex }: Props ) => {
         <TabList
          display={'flex'}
           justifyContent={'center'}
-           bg={'gray.100'} 
+          bg="rgba(243, 246, 241, 0.73)" 
+        //   opacity={0.5}
            py={1} 
            style={{ width: '100%'}}
             px={4} 
             alignItems={'center'}
             // opacity="0.5"
+            pb={2}
+            // pt={1}
             backdropFilter="blur(2px)"
             >
             <Tab bg={'none'}>
@@ -52,7 +55,7 @@ const FooterTabs = ({activeTabIndex, setActiveTabIndex }: Props ) => {
                 <>
                     <IconButton
                         aria-label="Search database"
-                        icon={<img src={menu} alt="menu"  width={'30px'} height={'30px'}/>}
+                        icon={<img src={menu} alt="menu"  width={'25px'} height={'25px'}/>}
                 
                         variant={'none'}
                         width={'40px'}

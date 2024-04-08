@@ -1,221 +1,213 @@
-import { Box, Text, Center } from "@chakra-ui/react";
-import {  useEffect, useState } from "react";
+import { Box, Text, Center, Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";
-import CustomModal from "../components/modal/PopUpModal";
 import GuestList from "../components/GuestList";
 // import { IoIosArrowBack } from "react-icons/io";
 import tables from "../tables/tables.json";
 import { isValidTableId } from "../components/function";
 
 interface LayoutProps {
-    uploadedData: any;
-    clickedTabel: string;
-    searchQuery: string;
-    setClickedTable: (value: string) => void;
-    activeTabIndex: number;
-    setSearchQuery: (value: string) => void;
+  uploadedData: any;
+  clickedTabel: string;
+  searchQuery: string;
+  setClickedTable: (value: string) => void;
+  activeTabIndex: number;
+  setSearchQuery: (value: string) => void;
 }
 
-const Layout = ({uploadedData,clickedTabel, searchQuery, setClickedTable,setSearchQuery }: LayoutProps) => {
+const Layout = ({ uploadedData, clickedTabel, searchQuery, setClickedTable, setSearchQuery }: LayoutProps) => {
 
-    const [selectedUser, setSelectedUser] = useState<any>(null);
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedTable, setSelectedTable] = useState<any[]>([]);
-    const [openTable, setOpenTable] = useState<any>(null);
+  const [selectedTable, setSelectedTable] = useState<any[]>([]);
+  const [openTable, setOpenTable] = useState<any>(null);
 
 
 
 
-    const handleOpen = (id: string) => {
-        setClickedTable("");
-        setSearchQuery("");
-        setIsOpen(true);
+  const handleOpen = (id: string) => {
+    setClickedTable("");
+    setSearchQuery("");
+    // Reset styles of tables with valid IDs only higlight the clicked table
+    const tableElements = document.querySelectorAll('[id]');
+    tableElements.forEach(tableElement => {
+      const tableId = tableElement.getAttribute('id');
+      if (tableId?.toLowerCase() === id?.toLowerCase()) {
+        tableElement.setAttribute('fill', '#00a86b');
+        tableElement.setAttribute('stroke', '#00a86b');
+      } else {
+        if (isValidTableId(tableId as string)) {
+          tableElement.setAttribute('fill', 'white');
+          tableElement.setAttribute('stroke', 'black');
+        }
+      }
+    });
+  }
 
-        // Reset styles of tables with valid IDs only higlight the clicked table
-        const tableElements = document.querySelectorAll('[id]');
-        tableElements.forEach(tableElement => {
+
+
+  const highlightTable = (tableName: string) => {
+    // Find the SVG element by its name attribute
+    const tableElements = document.querySelectorAll('[id]');
+    const table = tables.find((table) => table.tableName.toLowerCase() === tableName?.toLowerCase());
+    // Loop through each table element to find the matching one
+    tableElements.forEach(tableElement => {
+      if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
+        tableElement.setAttribute('fill', '#00a86b');
+        tableElement.setAttribute('stroke', '#00a86b');
+      }
+    });
+
+  }
+
+
+  const highlightClickedTable = (tableId: string) => {
+    // Find the SVG element by its name attribute
+    const tableElements = document.querySelectorAll('[id]');
+    const table = tables.find((table) => table.tableId.toLowerCase() === tableId?.toLowerCase());
+    // Loop through each table element to find the matching one
+    tableElements.forEach(tableElement => {
+      if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
+        tableElement.setAttribute('fill', '#00a86b');
+        tableElement.setAttribute('stroke', '#00a86b');
+      }
+    });
+
+  }
+
+
+
+  useEffect(() => {
+
+    if (searchQuery) {
+      clickedTabel = "";
+      const tableElements = document.querySelectorAll('[id]');
+      const table = tables.find((table) => table.tableName.toLowerCase() === searchQuery?.toLowerCase());
+      tableElements.forEach(tableElement => {
+        if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
+          highlightTable(searchQuery);
+        } else {
+          // reset the styles of the tables with valid IDs
           const tableId = tableElement.getAttribute('id');
-          if (tableId?.toLowerCase() === id?.toLowerCase()) {
-            tableElement.setAttribute('fill', '#00a86b');
-            tableElement.setAttribute('stroke', '#00a86b');
-          } else {
-            if (isValidTableId(tableId as string)) {
-              tableElement.setAttribute('fill', 'white');
-              tableElement.setAttribute('stroke', 'black');
-            }
+          if (isValidTableId(tableId as string)) {
+            tableElement.setAttribute('fill', 'white');
+            tableElement.setAttribute('stroke', 'black');
           }
-        });
-      }
-
-      const handleClose = () => {
-        setIsOpen(false);
-       // Reset styles of tables with valid IDs
-  const tableElements = document.querySelectorAll('[id]');
-  tableElements.forEach(tableElement => {
-    const tableId = tableElement.getAttribute('id');
-    if (isValidTableId(tableId as string)) {
-      tableElement.setAttribute('fill', 'white');
-      tableElement.setAttribute('stroke', 'black');
+        }
+      });
     }
-  });
-      }
+    ""
+    if (clickedTabel && !searchQuery) {
+      const tableElements = document.querySelectorAll('[id]');
+
+      const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabel?.toLowerCase());
 
 
-    const highlightTable = (tableName: string) => {
-        // Find the SVG element by its name attribute
-        const tableElements = document.querySelectorAll('[id]');
-        const table = tables.find((table) => table.tableName.toLowerCase() === tableName?.toLowerCase());
-        // Loop through each table element to find the matching one
-        tableElements.forEach(tableElement => {
-          if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
-            tableElement.setAttribute('fill', '#00a86b');
-            tableElement.setAttribute('stroke', '#00a86b');
+      tableElements.forEach(tableElement => {
+        if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
+          highlightTable(clickedTabel);
+        } else {
+          // reset the styles of the tables with valid IDs
+          const tableId = tableElement.getAttribute('id');
+          if (isValidTableId(tableId as string)) {
+            tableElement.setAttribute('fill', 'white');
+            tableElement.setAttribute('stroke', 'black');
           }
-        });
-    
-      }
+        }
+      });
+    }
+  }, [searchQuery]);
 
-
-      const highlightClickedTable = (tableId: string) => {
-        // Find the SVG element by its name attribute
-        const tableElements = document.querySelectorAll('[id]');
-        const table = tables.find((table) => table.tableId.toLowerCase() === tableId?.toLowerCase());
-        // Loop through each table element to find the matching one
-        tableElements.forEach(tableElement => {
-          if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
-            tableElement.setAttribute('fill', '#00a86b');
-            tableElement.setAttribute('stroke', '#00a86b');
-          }
-        });
-    
-      }
-  
-      
-
-    useEffect(() => {
-    
-      if(searchQuery){
-        clickedTabel = "";
-        const tableElements = document.querySelectorAll('[id]');
-        const table = tables.find((table) => table.tableName.toLowerCase() === searchQuery?.toLowerCase()); 
-        tableElements.forEach(tableElement => {
-          if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
-            highlightTable(searchQuery);
-          }else {
-            // reset the styles of the tables with valid IDs
-            const tableId = tableElement.getAttribute('id');
-            if (isValidTableId(tableId as string)) {
-              tableElement.setAttribute('fill', 'white');
-              tableElement.setAttribute('stroke', 'black');
-            }
-          }
-          });
-      } 
-      ""
-      if(clickedTabel && !searchQuery) {
-        const tableElements = document.querySelectorAll('[id]');
-
-        const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabel?.toLowerCase());
-
-
-        tableElements.forEach(tableElement => {
-          if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
-            highlightTable(clickedTabel);
-          }else {
-            // reset the styles of the tables with valid IDs
-            const tableId = tableElement.getAttribute('id');
-            if (isValidTableId(tableId as string)) {
-              tableElement.setAttribute('fill', 'white');
-              tableElement.setAttribute('stroke', 'black');
-            }
-          }
-          });
-      } 
-      }, [searchQuery]);
-
-// onclick of a table, console.log the table name
-useEffect(() => {
-  const tableElements = document.querySelectorAll('[id]');
-  tableElements.forEach(tableElement => {
+  // onclick of a table, console.log the table name
+  useEffect(() => {
+    const tableElements = document.querySelectorAll('[id]');
+    tableElements.forEach(tableElement => {
       tableElement.addEventListener('click', () => {
 
-          // find the clicked table
-          const clickedTabeId = tableElement.getAttribute('id');
-          const isCorrectFormat = isValidTableId(clickedTabeId as string);
+        // find the clicked table
+        const clickedTabeId = tableElement.getAttribute('id');
+        const isCorrectFormat = isValidTableId(clickedTabeId as string);
 
-          if (isCorrectFormat) {
+        if (isCorrectFormat) {
 
-              const clickedTabelName = tables.find((table) => table.tableId.toLowerCase().includes(clickedTabeId?.toLowerCase() as string));
+          const clickedTabelName = tables.find((table) => table.tableId.toLowerCase().includes(clickedTabeId?.toLowerCase() as string));
 
-              // console.log("clickedTabelName", clickedTabelName);
-              
-              const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabelName?.tableName?.toLowerCase());
-              setOpenTable(table);
-              if (tableElement.getAttribute('id')?.toLowerCase() === clickedTabelName?.tableId?.toLowerCase()) {
-                highlightClickedTable(clickedTabeId as string);
-              } else {
-                  // Fill other tables with white and black
-                  tableElements.forEach(element => {
-                      if (element !== tableElement) {
-                          element.setAttribute('fill', 'white');
-                          element.setAttribute('stroke', 'black');
-                      }
-                  });
+          // console.log("clickedTabelName", clickedTabelName);
+
+          const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabelName?.tableName?.toLowerCase());
+          setOpenTable(table);
+          if (tableElement.getAttribute('id')?.toLowerCase() === clickedTabelName?.tableId?.toLowerCase()) {
+            highlightClickedTable(clickedTabeId as string);
+          } else {
+            // Fill other tables with white and black
+            tableElements.forEach(element => {
+              if (element !== tableElement) {
+                element.setAttribute('fill', 'white');
+                element.setAttribute('stroke', 'black');
               }
-              setSelectedUser({ tableName: tableElement.getAttribute('id') });
-              let selectedTableArr: any[] = [];
-
-              // find a table with the same name as the clicked table
-
-              // find the guests whose table matches the clicked table
-              uploadedData?.filter((data: any) => {
-                  if (data.tableName === clickedTabelName?.tableName) {
-                      selectedTableArr.push(data);
-                  } else {
-                      console.log("data", "no data found");
-                  }
-              });
-              setSelectedTable(selectedTableArr);
-              handleOpen(clickedTabeId as string);
+            });
           }
+          let selectedTableArr: any[] = [];
+
+          // find a table with the same name as the clicked table
+
+          // find the guests whose table matches the clicked table
+          uploadedData?.filter((data: any) => {
+            if (data.tableName === clickedTabelName?.tableName) {
+              selectedTableArr.push(data);
+            } else {
+              console.log("data", "no data found");
+            }
+          });
+          setSelectedTable(selectedTableArr);
+          handleOpen(clickedTabeId as string);
+        }
 
       });
-  });
-}, [uploadedData, clickedTabel]);
+    });
+  }, [uploadedData, clickedTabel]);
 
 
 
 
-    return (
-        <Box bg={'gray.100'}>
-          <Center  width={'full'} flexDirection={'column'}>
-             <SVGComponent />
-          </Center>
-            <Box px={4}>
-            <CustomModal isOpen={isOpen} onClose={handleClose}  title={`${selectedUser?.tableName}`}>
-              <Box position={'relative'}>
-
-                <Box px={2} width={'full'} display={'flex'} justifyContent={'start'} alignItems={'start'} flexDirection={'column'}  mb={8} height={ Number(selectedTable?.length) > 3 ? '430px': '200px'} overflowY={'auto'}>
-                    <Box width={'full'} display={'flex'} justifyContent={'start'} alignItems={'start'} flexDirection={'column'}  mb={8}>
-                    {(selectedTable && selectedTable.length !== 0) ? <GuestList guests={selectedTable} />: (
-                        <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}  mt={8}>
-                            <Text fontSize="md" color={'black'} textAlign={'center'} >No guest found for this table</Text>
-                        </Box>
-                    
-                    )}
+  return (
+    <Box bg={'gray.100'}>
+      <Center width={'full'} flexDirection={'column'}>
+        <SVGComponent />
+      </Center>
+      <Box px={4} mb={8}>
+       {(selectedTable && selectedTable.length !== 0) && <Accordion allowMultiple>
+          <AccordionItem>
+           {(selectedTable && selectedTable.length !== 0)  && <h2>
+              <AccordionButton>
+                <Box as="span" flex='1' textAlign='left' fontWeight={'bold'}>
+                 {`${openTable?.tableName} Guests`}
                 </Box>
-                    </Box>
-                     <Box position={'absolute'} top={'110%'} width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'}   mt={8} bg="rgba(243, 246, 241, 0.73)" boxShadow={'sm'} p={2}>
-                      <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'}>Portugues</Text>
-                      <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'}>{openTable?.Description_portugues}</Text>
-                      <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'} mt={2} >English</Text>
-                      <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'} >{openTable?.Description_english}</Text>
-                    </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>}
+            <AccordionPanel pb={4}>
+              <Box height={'100px'} overflowY={'auto'}>
+                <GuestList guests={selectedTable} />
               </Box>
-            </CustomModal>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>}
+        {(selectedTable.length > 0) &&
+          <Box mb={'20%'} mt={4}>
+            <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'}>
+              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'}>Portugues</Text>
+              <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'}>{openTable?.Description_portugues}</Text>
+              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'} mt={2} >English</Text>
+              <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'} >{openTable?.Description_english}</Text>
             </Box>
-        </Box>
-    );
+          </Box>}
+
+           {selectedTable && selectedTable.length === 0 && <Center>
+              <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'}>No Guest on this table Yet.</Text>
+            </Center>}
+
+      </Box>
+    </Box>
+  );
 }
 
 export default Layout;

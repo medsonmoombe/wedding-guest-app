@@ -45,7 +45,7 @@ const HomeDisplay = ({ uploadedData }: HomeDisplayProps) => {
                 {activeTabIndex === 2 && <MenuListPage />}
                 {activeTabIndex === 3 && <Timeline />}
             </PageLayout>
-            <Box width="full" position="fixed" bottom={0}>
+            <Box width="full" position="fixed" bottom={0} >
                 <Center>
                     <FooterTabs
                         activeTabIndex={activeTabIndex}
