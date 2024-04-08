@@ -46,7 +46,7 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
 
 
   return (
-    <Flex flexDirection="column" minHeight="100vh">
+    <Flex flexDirection="column" minHeight="80vh">
       <Box flexGrow={1} width="full" bg="gray.100">
       {activeTabIndex === 1 && <Flex width={'full'} justifyContent={'start'} alignItems={'center'} pt={8} height={'10px'} mb={2} pl={4}  >
           <IconButton
