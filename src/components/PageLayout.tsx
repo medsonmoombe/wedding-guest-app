@@ -46,7 +46,7 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
 
 
   return (
-    <Flex flexDirection="column" minHeight="60vh">
+    <Flex flexDirection="column" minHeight="100vh">
       <Box flexGrow={1} width="full" bg="gray.100">
       {activeTabIndex === 1 && <Flex width={'full'} justifyContent={'start'} alignItems={'center'} pt={8} height={'10px'} mb={2} pl={4}  >
           <IconButton
@@ -71,6 +71,7 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
           </Flex>
         )}
         {children}
+      </Box>
       <Box width="full" position="fixed" bottom={0}>
         <Center>
           <FooterTabs
@@ -78,7 +79,6 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
           setActiveTabIndex={setActiveTabIndex} 
           />
         </Center>
-      </Box>
       </Box>
     </Flex>
   );
