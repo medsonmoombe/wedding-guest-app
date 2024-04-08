@@ -46,9 +46,9 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
   return (
     <Flex flexDirection="column" minHeight="100vh">
       <Box flexGrow={1} width="full" bg="gray.100">
-        <Box width="full" display="flex" justifyContent="center" alignItems="center" flexDirection="column" mb={8}>
-          {(activeTabIndex === 0 || activeTabIndex === 1) && <HeroPage setActiveTabIndex={setActiveTabIndex} activeTabIndex={activeTabIndex} onFocus={onFocus} selectedUser={selectedUser} setOnFocus={setOnFocus} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
-        </Box>
+      {(activeTabIndex === 0 || activeTabIndex === 1) &&  <Box width="full" display="flex" justifyContent="center" alignItems="center" flexDirection="column" mb={8}>
+           <HeroPage setActiveTabIndex={setActiveTabIndex} activeTabIndex={activeTabIndex} onFocus={onFocus} selectedUser={selectedUser} setOnFocus={setOnFocus} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        </Box>}
         {selectedUser && type !== "layout" && !onFocus && (
           <Flex justify="center" direction="column" mt={14} textTransform="capitalize" color={'gray.700'} >
             <Text fontSize="2xl" fontFamily="Galada, cursive" textAlign="center" fontWeight="bold" onClick={() => handleClick(selectedUser.tableName)}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "./Layout";
 import HomePage from "./HomePage";
 import PageLayout from "../components/PageLayout";
@@ -16,6 +16,16 @@ const HomeDisplay = ({ uploadedData }: HomeDisplayProps) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedUser, setSelectedUser] = useState<any>(null);
     const [clickedTabel, setClickedTable] = useState<string>("");
+
+
+    // if searchQuery is empty setClickedTable to empty string
+    useEffect(() => {
+        if (!searchQuery) {
+            setClickedTable("");
+        }
+    }, [searchQuery]);
+
+
     return (
         <Box pos="relative">
             <PageLayout
@@ -31,7 +41,7 @@ const HomeDisplay = ({ uploadedData }: HomeDisplayProps) => {
             >
                 {/* render the component here based on the activeTabIndex */}
                 {activeTabIndex === 0 && <HomePage />}
-                {activeTabIndex === 1 && <Layout setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} searchQuery={searchQuery} activeTabIndex={activeTabIndex} />}
+                {activeTabIndex === 1 && <Layout setClickedTable={setClickedTable} setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} searchQuery={searchQuery} activeTabIndex={activeTabIndex} />}
                 {activeTabIndex === 2 && <MenuListPage />}
                 {activeTabIndex === 3 && <Timeline />}
             </PageLayout>

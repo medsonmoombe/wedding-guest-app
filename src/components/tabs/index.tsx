@@ -16,8 +16,6 @@ const FooterTabs = ({activeTabIndex, setActiveTabIndex }: Props ) => {
     <Tabs variant='soft-rounded' size={'sm'} bg="transparent" width={'full'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} 
     index={activeTabIndex} onChange={index => setActiveTabIndex(index)}
     >
-
-    <Divider my={2} borderWidth={'1px'} borderColor={'gray.200'}/>
         <TabList
          display={'flex'}
           justifyContent={'center'}
@@ -33,9 +31,9 @@ const FooterTabs = ({activeTabIndex, setActiveTabIndex }: Props ) => {
                 <IconButton
                     aria-label="Search database"
                     color={'gray.500'}
-                    icon={<FaUsers size={25} />}
-                    width={'30px'}
-                    height={'30px'}
+                    icon={<FaUsers size={30} />}
+                    width={'40px'}
+                    height={'40px'}
                     variant={'none'}
                     size="md"
                 />
@@ -43,9 +41,9 @@ const FooterTabs = ({activeTabIndex, setActiveTabIndex }: Props ) => {
             <Tab bg={'none'}>
                 <IconButton
                     aria-label="Search database"
-                    icon={<CiLocationOn size={25}/>}
-                    width={'30px'}
-                    height={'30px'}
+                    icon={<CiLocationOn size={30}/>}
+                    width={'40px'}
+                    height={'40px'}
                     variant={'none'}
                     size="md"
                 />
@@ -54,11 +52,11 @@ const FooterTabs = ({activeTabIndex, setActiveTabIndex }: Props ) => {
                 <>
                     <IconButton
                         aria-label="Search database"
-                        icon={<img src={menu} alt="menu"  width={'20px'} height={'20px'}/>}
+                        icon={<img src={menu} alt="menu"  width={'30px'} height={'30px'}/>}
                 
                         variant={'none'}
-                        width={'30px'}
-                        height={'30px'}
+                        width={'40px'}
+                        height={'40px'}
                         size="md"
                     />
     
@@ -67,11 +65,11 @@ const FooterTabs = ({activeTabIndex, setActiveTabIndex }: Props ) => {
             <Tab>
                 <IconButton
                     aria-label="Search database"
-                    icon={<img src={timeline} alt="menu"  width={'45px'} height={'45px'}/>}
+                    icon={<img src={timeline} alt="menu"  width={'65px'} height={'75px'}/>}
             
                     variant={'none'}
-                    width={'30px'}
-                    height={'30px'}
+                    width={'40px'}
+                    height={'40px'}
                     size="md"
                 />
             </Tab>
