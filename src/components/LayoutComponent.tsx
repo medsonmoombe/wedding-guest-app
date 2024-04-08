@@ -5,7 +5,7 @@ const SVGComponent: React.FC = () => {
     <svg width="400" height="450" viewBox="0 0 1588 2304" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Frame 1">
     {/* <rect id="Layout" x="0.5" y="104.5" width="1587" height="2199" rx="1.5" fill="" stroke="#6E6767"/> */}
-    <rect id="Sala" x="40" y="364" width="1557" height="1709" fill="white" stroke="black" stroke-width="10"/>
+    <rect id="Sala" x="30" y="364" width="1550" height="1709" fill="white" stroke="black" stroke-width="10"/>
     <rect id="Door 2" x="849" y="2062" width="100" height="15" fill="#FEFBFB"/>
     <rect id="Door 1" x="667" y="2062" width="100" height="15" fill="#FEFBFB"/>
     <rect id="Door 3" x="667" y="356" width="250" height="15" fill="#FEFBFB"/>

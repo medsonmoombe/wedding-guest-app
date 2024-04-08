@@ -46,8 +46,8 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
 
 
   return (
-    <Flex flexDirection="column" minHeight="100vh">
-      <Box flexGrow={1} width="full" bg="gray.100">
+    <Flex flexDirection="column" minHeight="100vh" bg="gray.100">
+      <Box flexGrow={1} width="full">
       {activeTabIndex === 1 && <Flex width={'full'} justifyContent={'start'} alignItems={'center'} pt={8} height={'10px'} mb={2} pl={4}  >
           <IconButton
               aria-label="Back"
@@ -72,7 +72,7 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
         )}
         {children}
       </Box>
-      <Box width="full" position="fixed" bottom={0}>
+      <Box width="full" mb={4}>
         <Center>
           <FooterTabs
           activeTabIndex={activeTabIndex}
