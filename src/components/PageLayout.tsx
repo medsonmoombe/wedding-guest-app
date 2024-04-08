@@ -72,7 +72,7 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
         )}
         {children}
       </Box>
-      <Box width="full" mb={4}>
+      <Box mb={4}>
         <Center>
           <FooterTabs
           activeTabIndex={activeTabIndex}
