@@ -12,7 +12,7 @@ interface Props {
 const FooterTabs = ({activeTabIndex, setActiveTabIndex }: Props ) => {
 
     return (
-    <Flex justify="center" width="full" mb={10} pos={'fixed'}>
+    <Flex justify="center" width="full" position={'fixed'} mb={20}>
     <Tabs variant='soft-rounded' size={'sm'} bg="transparent" width={'full'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} 
     index={activeTabIndex} onChange={index => setActiveTabIndex(index)}
     >
