@@ -51,10 +51,10 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
         </Box>
         {selectedUser && type !== "layout" && !onFocus && (
           <Flex justify="center" direction="column" mt={14} textTransform="capitalize">
-            <Text fontSize="2xl" fontFamily="Montserrat Alternates" textAlign="center" fontWeight="bold" onClick={() => handleClick(selectedUser.tableName)}>
+            <Text fontSize="2xl" fontFamily="Galada, cursive" textAlign="center" fontWeight="bold" onClick={() => handleClick(selectedUser.tableName)}>
               {selectedUser.tableName}
             </Text>
-            <Text fontSize="md" fontWeight="bold" color="red" textAlign="center" fontFamily="Montserrat Alternates">
+            <Text fontSize="md" fontWeight="bold" color="red" textAlign="center" fontFamily="Galada, cursive">
               {selectedUser.tableId}
             </Text>
           </Flex>
