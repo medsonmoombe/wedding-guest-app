@@ -50,7 +50,7 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
           {(activeTabIndex === 0 || activeTabIndex === 1) && <HeroPage setActiveTabIndex={setActiveTabIndex} activeTabIndex={activeTabIndex} onFocus={onFocus} selectedUser={selectedUser} setOnFocus={setOnFocus} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
         </Box>
         {selectedUser && type !== "layout" && !onFocus && (
-          <Flex justify="center" direction="column" mt={14} textTransform="capitalize">
+          <Flex justify="center" direction="column" mt={14} textTransform="capitalize" color={'gray.700'} >
             <Text fontSize="2xl" fontFamily="Galada, cursive" textAlign="center" fontWeight="bold" onClick={() => handleClick(selectedUser.tableName)}>
               {selectedUser.tableName}
             </Text>
