@@ -4,6 +4,7 @@ import HomePage from "./HomePage";
 import PageLayout from "../components/PageLayout";
 import MenuListPage from "../components/menu";
 import { Box } from "@chakra-ui/react";
+import Timeline from "../components/planning";
 
 interface HomeDisplayProps {
     uploadedData: any;
@@ -31,6 +32,7 @@ const HomeDisplay = ({uploadedData}: HomeDisplayProps) => {
             {activeTabIndex === 0 && <HomePage/>}
             {activeTabIndex === 1 && <Layout setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} searchQuery={searchQuery} activeTabIndex={activeTabIndex} />}
             {activeTabIndex === 2 && <MenuListPage/>}
+            {activeTabIndex === 3 && <Timeline/>}
             </PageLayout>
         </Box>
     );
