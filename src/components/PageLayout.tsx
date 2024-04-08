@@ -1,8 +1,7 @@
-import { Box, Center, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import HeroPage from "../components/HeroPage";
 import { CSVRow } from '../components/Header';
 import {  useEffect, useState } from 'react';
-import FooterTabs from './tabs';
 
 interface Props {
   uploadedData: CSVRow[];
