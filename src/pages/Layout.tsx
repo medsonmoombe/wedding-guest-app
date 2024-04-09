@@ -174,35 +174,39 @@ const Layout = ({ uploadedData, clickedTabel, searchQuery, setClickedTable, setS
         <SVGComponent />
       </Center>
       <Box px={4} mb={8}>
-       {(selectedTable && selectedTable.length !== 0) && <Accordion allowMultiple>
-          <AccordionItem>
-           {(selectedTable && selectedTable.length !== 0)  && <h2>
-              <AccordionButton>
-                <Box as="span" flex='1' textAlign='left' fontWeight={'bold'}>
-                 {`${openTable?.tableName} Guests`}
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>}
-            <AccordionPanel pb={4}>
-              <Box height={'100px'} overflowY={'auto'}>
+       {(selectedTable && selectedTable.length !== 0) && 
+       <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={4}>
+        <Text fontSize="2xl" fontFamily="Satisfy, cursive" textAlign="center" fontWeight="bold" color={'black'}>
+          {selectedTable[0]?.tableName}
+        </Text>
+              <Box height={selectedTable && selectedTable.length > 5  ? "200px": '100px'} overflowY={'auto'} width={'inherit'}>
                 <GuestList guests={selectedTable} />
               </Box>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>}
+              </Box>
+           }
         {(selectedTable.length > 0) &&
-          <Box mb={'20%'} mt={4}>
+          <Box mb={'30%'} mt={4}>
             <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'}>
-              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'}>Portugues</Text>
+              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text>
               <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'}>{openTable?.Description_portugues}</Text>
-              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue'} mt={2} >English</Text>
+              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'} mt={2} >English</Text>
               <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'} >{openTable?.Description_english}</Text>
             </Box>
           </Box>}
 
-           {selectedTable && selectedTable.length === 0 && <Center>
-              <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'}>No Guest on this table Yet.</Text>
+           {selectedTable && selectedTable.length === 0 && openTable && 
+           <Center flexDirection={'column'}>
+              <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'}>
+                 {openTable?.tableName}
+              </Text>
+              <Box mb={'20%'} mt={4}>
+            <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'}>
+              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text>
+              <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'}>{openTable?.Description_portugues}</Text>
+              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'} mt={2} >English</Text>
+              <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'} >{openTable?.Description_english}</Text>
+            </Box>
+          </Box>
             </Center>}
 
       </Box>

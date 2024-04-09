@@ -2,7 +2,7 @@ import React from 'react';
 
 const SVGComponent: React.FC = () => {
   return (
-    <svg width="300" height="450" viewBox="0 0 1588 2304" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="300" height="450" viewBox="0 0 1588 2473" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Frame 1">
     {/* <rect id="Layout" x="0.5" y="104.5" width="1587" height="2199" rx="1.5" fill="" stroke="#6E6767"/> */}
     <rect id="Sala" x="30" y="364" width="1550" height="1709" fill="white" stroke="black" stroke-width="10"/>

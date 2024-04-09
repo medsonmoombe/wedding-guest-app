@@ -12,9 +12,9 @@ const HomePage = () => {
         <Center mt={'15px'}>
         <Flex style={{ padding: 0 }} direction={'column'} >
           <Center>
-            <Image src={loveIcon} alt='love_icon' width={'80px'} height={'34px'} style={{ filter: 'brightness(0%)' }} />
+            <Image src={loveIcon} alt='love_icon' width={'100px'} height={'50px'} style={{ filter: 'brightness(0%)' }} />
           </Center>
-          <Text color="gray.600" style={{ padding: 0 }} fontSize="2xl" fontWeight="bold" fontFamily={"Great Vibes, cursive"}>
+          <Text color="gray.600" style={{ padding: 0 }} fontSize="3xl" fontWeight="bold" fontFamily={"Great Vibes, cursive"}>
             {' '}
             Judith & Robert{' '}
           </Text>{' '}
