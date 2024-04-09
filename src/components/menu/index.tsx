@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import menuList from '../../assets/images/mencontent.svg';
+import menuList from '../../assets/images/menu.svg';
 import { Box, Image, Spinner } from '@chakra-ui/react';
 
 const MenuList: React.FC = () => {
@@ -10,9 +10,9 @@ const MenuList: React.FC = () => {
   };
 
   return (
-    <Box width={'full'} position="relative">
+    <Box width={'full'} >
       {!imageLoaded && (
-        <Box position="absolute" top="100%" left="50%" transform="translate(-50%, -50%)">
+        <Box position="fixed" top="50" left="50%" transform="translate(-50%, -50%)">
           <Spinner size="lg" />
         </Box>
       )}
