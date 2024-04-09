@@ -9,9 +9,10 @@ import FooterTabs from "../components/tabs";
 
 interface HomeDisplayProps {
     uploadedData: any;
+    photos: any;
 }
 
-const HomeDisplay = ({ uploadedData }: HomeDisplayProps) => {
+const HomeDisplay = ({ uploadedData, photos }: HomeDisplayProps) => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedUser, setSelectedUser] = useState<any>(null);
@@ -40,7 +41,7 @@ const HomeDisplay = ({ uploadedData }: HomeDisplayProps) => {
                 setClickedTable={setClickedTable}
             >
                 {/* render the component here based on the activeTabIndex */}
-                {activeTabIndex === 0 && <HomePage />}
+                {activeTabIndex === 0 && <HomePage photos={photos} />}
                 {activeTabIndex === 1 && <Layout setClickedTable={setClickedTable} setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} activeTabIndex={activeTabIndex} />}
                 {activeTabIndex === 2 && <MenuListPage />}
                 {activeTabIndex === 3 && <Timeline />}

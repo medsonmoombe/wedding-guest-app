@@ -3,12 +3,16 @@ import CardCarousel from '../components/carousel/index';
 import loveIcon from '../assets/images/love.png'
 
 
-const HomePage = () => {
+interface HomePageProps {
+  photos: any;
+}
+
+const HomePage = ({photos}: HomePageProps) => {
 
   return (
     <>
         <Box mt={15}>
-        <CardCarousel />
+        <CardCarousel photos={photos}/>
         <Center mt={'15px'}>
         <Flex style={{ padding: 0 }} direction={'column'} >
           <Center>

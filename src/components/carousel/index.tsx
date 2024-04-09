@@ -9,17 +9,26 @@ import '../modal/styles.css';
 import {backgrounds} from '../function/index';
 
 
-const data = backgrounds.map((image, index) => {
-  return {
-    image,
-    text: `Image ${index + 1}`
-  };
-});
 
-const CardCarousel = () => {
+interface CardCarouselProps {
+  photos: any;
+}
+
+const CardCarousel = ({photos}: CardCarouselProps) => {
   const [modalImage, setModalImage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
+  const data = photos.length > 0 ? photos?.map((image: any, index: number) => {
+    return {
+      image,
+      text: `Image ${index + 1}`
+    };
+  }) : backgrounds.map((image: any, index: number) => {
+    return {
+      image,
+      text: `Image ${index + 1}`
+    };
+  });
   const openModal = (imageUrl: string) => {
     setModalImage(imageUrl);
     setIsModalOpen((prev) => !prev);

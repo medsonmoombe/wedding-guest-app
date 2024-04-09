@@ -19,6 +19,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                 index={activeTabIndex} onChange={index => setActiveTabIndex(index)}
             >
                 <TabList
+                    zIndex={99}
                     display={'flex'}
                     justifyContent={'center'}
                     bg="rgba(243, 246, 241, 0.73)"

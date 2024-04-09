@@ -145,10 +145,10 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery }:
       <Box px={4} mb={8}>
        {(selectedTable && selectedTable.length !== 0) && 
        <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={4}>
-        <Text fontSize="xl" fontFamily="" textAlign="center" fontWeight="bold" color={'black'}>
+        <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} fontFamily={'Satisfy, cursive'} >
           {`${selectedTable[0]?.tableName} Guests`}
         </Text>
-              <Box height={selectedTable && selectedTable.length > 5  ? "200px": '100px'} overflowY={'auto'} width={'inherit'}>
+              <Box  width={'inherit'}>
                 <GuestList guests={selectedTable} />
               </Box>
               </Box>
@@ -165,7 +165,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery }:
 
            {selectedTable && selectedTable.length === 0 && openTable && 
            <Center flexDirection={'column'}>
-              <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'}>
+              <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'} fontFamily={'Satisfy, cursive'} >
                  {openTable?.tableName}
               </Text>
               <Box mb={'20%'} mt={4}>

@@ -12,7 +12,7 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
     openModal,
   } = StackedCarouselSlideProps as any;
 
-  const coverImage = data[dataIndex].image;
+  const coverImage = data[dataIndex]?.image;
 
   return (
     <div className="card-card" draggable={false}>

@@ -10,7 +10,24 @@ import HomeDisplay from './pages';
 function App() {
   const [uploadedData, setUploadedData] = useState<CSVRow[]>([]);
   const [parsedData, setParsedData] = useState<any>([]);
+  const [uploadedPicture, setUploadedPicture] = useState<File | null>(null);
+  const [photos, setPhotos] = useState<any[]>([]);
   const toast = useToast();
+
+
+
+  const uploadPhotos = async() => {
+    try {
+      const response = await axios.get(`http://localhost:3000/s3Url`);
+
+      if(response){
+        console.log("response", response.data)
+      }
+      
+    } catch (error) {
+      console.log("error", error)
+    }
+  }
 
 
 
@@ -68,6 +85,26 @@ function App() {
   }, [parsedData]);
 
 
+  const getAllImagesFromS3 = async () => {
+    try {
+      const response = await axios.get(`${base_url}/allImages`);
+  
+      if(response){
+        console.log("response", response.data)
+        setPhotos(response.data.images)
+      }
+      
+    } catch (error) {
+      console.log("error", error)
+    }
+  }
+  
+  
+  useEffect(() => {
+    getAllImagesFromS3();
+  }, []);
+
+
   console.log(uploadedData)
 
   // filter the data to avoid duplicates by guest name if guestFirstName and guestLastName are the same
@@ -78,7 +115,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<HomeDisplay uploadedData={filteredData}/>} />
+          <Route path="/" element={<HomeDisplay uploadedData={filteredData} photos={photos}/>} />
         </Routes>
       </Router>
     </>
