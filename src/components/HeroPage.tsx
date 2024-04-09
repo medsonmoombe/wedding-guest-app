@@ -1,4 +1,4 @@
-import { Box,Collapse, Divider, Flex, Icon, IconButton, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
+import { Box,Collapse, Divider, Flex, Icon, IconButton, Input, InputGroup, InputRightElement, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
@@ -66,6 +66,7 @@ const HeroPage = ({setActiveTabIndex, activeTabIndex, setSelectedUser,onFocus, s
     const [matchingResults, setMatchingResults] = useState<any[]>([]);
     // const [isFocused, setIsFocused] = useState(false);
     const [isNameClicked, setIsNameClicked] = useState(false);
+    const toast = useToast();
 
 
     const handleInputBlur = () => {
@@ -222,7 +223,14 @@ const handleFileChange = async(event: React.ChangeEvent<HTMLInputElement>) => {
 
             const imageUrl = url.split('?')[0];
 
-            console.log("IMAGE URL", imageUrl);
+           if(result.data){
+            toast({
+                title: 'Image uploaded successfully',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            });
+              }
 
             // render the uploaded image
            const image = document.createElement('img');

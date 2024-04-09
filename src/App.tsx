@@ -10,24 +10,10 @@ import HomeDisplay from './pages';
 function App() {
   const [uploadedData, setUploadedData] = useState<CSVRow[]>([]);
   const [parsedData, setParsedData] = useState<any>([]);
-  const [uploadedPicture, setUploadedPicture] = useState<File | null>(null);
   const [photos, setPhotos] = useState<any[]>([]);
   const toast = useToast();
 
 
-
-  const uploadPhotos = async() => {
-    try {
-      const response = await axios.get(`http://localhost:3000/s3Url`);
-
-      if(response){
-        console.log("response", response.data)
-      }
-      
-    } catch (error) {
-      console.log("error", error)
-    }
-  }
 
 
 
