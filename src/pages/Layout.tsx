@@ -1,4 +1,4 @@
-import { Box, Text, Center, Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel } from "@chakra-ui/react";
+import { Box, Text, Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";
 import GuestList from "../components/GuestList";
