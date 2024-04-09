@@ -9,13 +9,12 @@ import { isValidTableId } from "../components/function";
 interface LayoutProps {
   uploadedData: any;
   clickedTabel: string;
-  searchQuery: string;
   setClickedTable: (value: string) => void;
   activeTabIndex: number;
   setSearchQuery: (value: string) => void;
 }
 
-const Layout = ({ uploadedData, clickedTabel, searchQuery, setClickedTable, setSearchQuery }: LayoutProps) => {
+const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery }: LayoutProps) => {
 
   const [selectedTable, setSelectedTable] = useState<any[]>([]);
   const [openTable, setOpenTable] = useState<any>(null);
@@ -42,23 +41,6 @@ const Layout = ({ uploadedData, clickedTabel, searchQuery, setClickedTable, setS
     });
   }
 
-
-
-  const highlightTable = (tableName: string) => {
-    // Find the SVG element by its name attribute
-    const tableElements = document.querySelectorAll('[id]');
-    const table = tables.find((table) => table.tableName.toLowerCase() === tableName?.toLowerCase());
-    // Loop through each table element to find the matching one
-    tableElements.forEach(tableElement => {
-      if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
-        tableElement.setAttribute('fill', '#00a86b');
-        tableElement.setAttribute('stroke', '#00a86b');
-      }
-    });
-
-  }
-
-
   const highlightClickedTable = (tableId: string) => {
     // Find the SVG element by its name attribute
     const tableElements = document.querySelectorAll('[id]');
@@ -73,48 +55,6 @@ const Layout = ({ uploadedData, clickedTabel, searchQuery, setClickedTable, setS
 
   }
 
-
-
-  useEffect(() => {
-
-    if (searchQuery) {
-      clickedTabel = "";
-      const tableElements = document.querySelectorAll('[id]');
-      const table = tables.find((table) => table.tableName.toLowerCase() === searchQuery?.toLowerCase());
-      tableElements.forEach(tableElement => {
-        if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
-          highlightTable(searchQuery);
-        } else {
-          // reset the styles of the tables with valid IDs
-          const tableId = tableElement.getAttribute('id');
-          if (isValidTableId(tableId as string)) {
-            tableElement.setAttribute('fill', 'white');
-            tableElement.setAttribute('stroke', 'black');
-          }
-        }
-      });
-    }
-    ""
-    if (clickedTabel && !searchQuery) {
-      const tableElements = document.querySelectorAll('[id]');
-
-      const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabel?.toLowerCase());
-
-
-      tableElements.forEach(tableElement => {
-        if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
-          highlightTable(clickedTabel);
-        } else {
-          // reset the styles of the tables with valid IDs
-          const tableId = tableElement.getAttribute('id');
-          if (isValidTableId(tableId as string)) {
-            tableElement.setAttribute('fill', 'white');
-            tableElement.setAttribute('stroke', 'black');
-          }
-        }
-      });
-    }
-  }, [searchQuery]);
 
   // onclick of a table, console.log the table name
   useEffect(() => {
@@ -164,6 +104,35 @@ const Layout = ({ uploadedData, clickedTabel, searchQuery, setClickedTable, setS
       });
     });
   }, [uploadedData, clickedTabel]);
+
+
+ // if clickedtable is not empty, find the table with the same name as the clicked table
+  useEffect(() => {
+    if (clickedTabel) {
+      const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabel?.toLowerCase());
+      setOpenTable(table);
+      const tableElements = document.querySelectorAll('[id]');
+      tableElements.forEach(tableElement => {
+        if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
+          highlightClickedTable(table?.tableId as string);
+        } else {
+          // reset the styles of the tables with valid IDs
+          const tableId = tableElement.getAttribute('id');
+          if (isValidTableId(tableId as string)) {
+            tableElement.setAttribute('fill', 'white');
+            tableElement.setAttribute('stroke', 'black');
+          }
+        }
+      });
+      let selectedTableArr: any[] = [];
+      uploadedData?.filter((data: any) => {
+        if (data.tableName === clickedTabel) {
+          selectedTableArr.push(data);
+        }
+      });
+      setSelectedTable(selectedTableArr);
+    }
+  }, [clickedTabel]);
 
 
 

@@ -41,7 +41,7 @@ const HomeDisplay = ({ uploadedData }: HomeDisplayProps) => {
             >
                 {/* render the component here based on the activeTabIndex */}
                 {activeTabIndex === 0 && <HomePage />}
-                {activeTabIndex === 1 && <Layout setClickedTable={setClickedTable} setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} searchQuery={searchQuery} activeTabIndex={activeTabIndex} />}
+                {activeTabIndex === 1 && <Layout setClickedTable={setClickedTable} setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} activeTabIndex={activeTabIndex} />}
                 {activeTabIndex === 2 && <MenuListPage />}
                 {activeTabIndex === 3 && <Timeline />}
             </PageLayout>
