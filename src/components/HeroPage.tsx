@@ -267,6 +267,10 @@ const handleFileChange = async(event: React.ChangeEvent<HTMLInputElement>) => {
                     width={'40px'}
                     height={'40px'}
                     variant={'none'}
+                    border={'1px solid'}
+                    borderColor={'gray.400'}
+                    borderRadius={'50%'}
+                    ml={4}
                     onClick={handleUpload}
                     size="md"
                 />
