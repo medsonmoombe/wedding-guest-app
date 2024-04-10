@@ -6,6 +6,7 @@ import MenuListPage from "../components/menu";
 import { Box, Center } from "@chakra-ui/react";
 import Timeline from "../components/planning";
 import FooterTabs from "../components/tabs";
+import PhotosUploadsDisplay from "../components/uploads";
 
 interface HomeDisplayProps {
     uploadedData: any;
@@ -42,6 +43,7 @@ const HomeDisplay = ({ uploadedData, photos }: HomeDisplayProps) => {
             >
                 {/* render the component here based on the activeTabIndex */}
                 {activeTabIndex === 0 && <HomePage photos={photos} />}
+                {activeTabIndex === 0 && <PhotosUploadsDisplay/> }
                 {activeTabIndex === 1 && <Layout setClickedTable={setClickedTable} setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} activeTabIndex={activeTabIndex} />}
                 {activeTabIndex === 2 && <MenuListPage />}
                 {activeTabIndex === 3 && <Timeline />}

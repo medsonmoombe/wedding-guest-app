@@ -1,9 +1,9 @@
-import { Box,Collapse, Divider, Flex, Icon, IconButton, Input, InputGroup, InputRightElement, Text, useToast } from '@chakra-ui/react';
-import axios from 'axios';
+import { Box,Collapse, Divider, Flex, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
+
 import { useEffect, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaSearch, FaUsers } from 'react-icons/fa';
-import { LuPlus } from "react-icons/lu";
+
 
 
 interface Props {
@@ -66,7 +66,6 @@ const HeroPage = ({setActiveTabIndex, activeTabIndex, setSelectedUser,onFocus, s
     const [matchingResults, setMatchingResults] = useState<any[]>([]);
     // const [isFocused, setIsFocused] = useState(false);
     const [isNameClicked, setIsNameClicked] = useState(false);
-    const toast = useToast();
 
 
     const handleInputBlur = () => {
@@ -196,87 +195,12 @@ const HeroPage = ({setActiveTabIndex, activeTabIndex, setSelectedUser,onFocus, s
 
 
     
-const handleUpload =  () => {
-    const fileInput = document.getElementById('file') as HTMLInputElement;
-    fileInput.click();
-};
 
-const handleFileChange = async(event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    const formData = new FormData();
-    formData.append("file", file as Blob);
-    if (!file) {
-        return;
-    }
-   
-    try {
-        const response = await axios.get(`http://localhost:3000/s3Url`);
-        if(response){
 
-            const url = response.data.url;
-            // make a put request s3 using url with content type
-          const result = await axios.put(url, file, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            });
 
-            const imageUrl = url.split('?')[0];
-
-           if(result.data){
-            toast({
-                title: 'Image uploaded successfully',
-                status: 'success',
-                duration: 5000,
-                isClosable: true,
-            });
-              }
-
-            // render the uploaded image
-           const image = document.createElement('img');
-              image.src = imageUrl;
-                image.style.width = '100px';
-                image.style.height = '100px';
-                image.style.borderRadius = '50%';
-                image.style.margin = '0 auto';
-                image.style.display = 'block';
-
-                document.body.appendChild(image);
-
-        }
-        
-    } catch (error) {
-        console.log("error", error)
-        
-    }
-    };
-
-    
 
     return (
         <Box width="full" top={8} pos={'relative'}>
-            <Flex mb={2}>
-           {/* create an upload file for images  */}
-           {/* accept all jpg and png files */}
-            <input type="file" id="file" accept="image/jpeg,image/png" style={{ display: 'none' }} onChange={handleFileChange} />
-            <label htmlFor="file">
-                <IconButton
-                    aria-label="Search database"
-                    color={'gray.500'}
-                    icon={<LuPlus size={30} />}
-                    width={'40px'}
-                    height={'40px'}
-                    variant={'none'}
-                    border={'1px solid'}
-                    borderColor={'gray.400'}
-                    borderRadius={'50%'}
-                    ml={4}
-                    onClick={handleUpload}
-                    size="md"
-                />
-            </label>
-
-            </Flex>
             <Flex align="center" width="full" px={4}>
                 <InputGroup>
                     <Input

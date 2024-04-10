@@ -3,6 +3,7 @@ import { FaUsers } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
 import menu from '../../assets/images/menuList.png';
 import timeline from '../../assets/images/planning.png';
+import imgIcon from '../../assets/images/images.png';
 
 interface Props {
     activeTabIndex: number;
@@ -33,6 +34,21 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                     // pt={1}
                     backdropFilter="blur(2px)"
                 >
+                    <Flex direction={'column'} justify={'center'} align={'center'} width={'full'} >
+                        <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
+                            <IconButton
+                                aria-label="Search database"
+                                icon={<img src={imgIcon} alt="img-icon" width={'65px'} height={'75px'} />}
+                                width={'40px'}
+                                height={'40px'}
+                                variant={'none'}
+                                size="md"
+                            />
+                        </Tab>
+                        <Text lineHeight={1} mt={'2px'}  color={ activeTabIndex === 1 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 1 ? 'bold': 'normal'} textAlign={'center'}>
+                        Lembranças
+                        </Text>
+                    </Flex>
                     <Flex direction={'column'} justify={'center'} align={'center'} width={'full'}>
                         <Tab bg={'none'} _selected={{ color: 'white', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
                             <IconButton
@@ -46,25 +62,10 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                             />
                         </Tab>
                         <Text lineHeight={1} mt={'2px'}  color={ activeTabIndex === 0 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 0 ? 'bold': 'normal'} textAlign={'center'} >
-                            Lista de convidados
+                            convidados
                         </Text>
                     </Flex>
 
-                    <Flex direction={'column'} justify={'center'} align={'center'} width={'full'} >
-                        <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
-                            <IconButton
-                                aria-label="Search database"
-                                icon={<CiLocationOn size={30} />}
-                                width={'40px'}
-                                height={'40px'}
-                                variant={'none'}
-                                size="md"
-                            />
-                        </Tab>
-                        <Text lineHeight={1} mt={'2px'}  color={ activeTabIndex === 1 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 1 ? 'bold': 'normal'} textAlign={'center'}>
-                            Assentos e mesas
-                        </Text>
-                    </Flex>
 
 
 

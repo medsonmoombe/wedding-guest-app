@@ -20,6 +20,7 @@ import img19 from '../../assets/images/img-19.jpg';
 import img20 from '../../assets/images/img-20.jpg';
 import img21 from '../../assets/images/img-21.jpg';
 import img22 from '../../assets/images/img-22.jpg';
+import imageIcon from '../../assets/images/images.png';
 
 export const isValidTableId = (tableId: string) => {
     // Regular expression to match the format "Zone B - T1" where "B" can be a letter or number,

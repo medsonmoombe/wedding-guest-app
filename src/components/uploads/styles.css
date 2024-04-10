@@ -1,0 +1,71 @@
+/* @import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css"; */
+
+.App {
+  position: relative;
+  margin-bottom: 100px !important;
+}
+
+.slide img {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.slide {
+  transform: scale(0.5) !important;
+  transition: transform 300ms;
+  opacity: 0.5;
+  height: 180px !important;
+  min-height: 180px !important;
+  max-height: 180px !important;
+}
+
+.activeSlide {
+  transform: scale(1.1) !important;
+  opacity: 1;
+  height: 200px !important;
+  min-height: 200px !important;
+  max-height: 200px !important;
+}
+
+.arrow {
+  background-color: #fff;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.arrow svg {
+  transition: color 300ms;
+}
+
+.arrow svg:hover {
+  color: #68edff;
+}
+
+.next {
+  right: 0%;
+  top: 50%;
+}
+
+.prev {
+  left: 0%;
+  top: 50%;
+}
+
+/* .slick-slider {
+    width: 300px !important;
+}  */
+
+.slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire slide */
+    border: 4px solid #fff !important;
+    border-radius: 5px;
+    box-shadow: 2px 8px 15px 0px #000;
+  }
+
+  .slick-arrow {
+    display: none !important;
+  }

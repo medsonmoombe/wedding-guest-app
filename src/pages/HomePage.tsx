@@ -11,9 +11,8 @@ const HomePage = ({photos}: HomePageProps) => {
 
   return (
     <>
-        <Box mt={15}>
-        <CardCarousel photos={photos}/>
-        <Center mt={'15px'}>
+        <Box mt={4} mb={8}>
+        <Center mt={2}>
         <Flex style={{ padding: 0 }} direction={'column'} >
           <Center>
             <Image src={loveIcon} alt='love_icon' width={'100px'} height={'50px'} style={{ filter: 'brightness(0%)' }} />
@@ -22,12 +21,14 @@ const HomePage = ({photos}: HomePageProps) => {
             {' '}
             Judith & Robert{' '}
           </Text>{' '}
-          <Text color={'gray.500'} fontFamily={''} textAlign={'center'} mb={20}>
+          <Text color={'gray.500'} fontFamily={''} textAlign={'center'} mb={2}>
             {' '}
             05/05/2024
           </Text>{' '}
         </Flex>
       </Center>
+        <CardCarousel photos={photos}/>
+       
         </Box>
     </>
   )

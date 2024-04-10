@@ -44,9 +44,9 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
 
 
   return (
-    <Flex flexDirection="column" minHeight="100vh">
-      <Box flexGrow={1} width="full" bg="gray.100">
-      {activeTabIndex === 0  &&  <Box width="full" display="flex" justifyContent="center" alignItems="center" flexDirection="column" mb={20}>
+    <Flex flexDirection="column" >
+    <Box flexGrow={1} width="full" bg="gray.100">
+      {activeTabIndex === 1  &&  <Box width="full" display="flex" justifyContent="center" alignItems="center" flexDirection="column" mb={20}>
            <HeroPage setActiveTabIndex={setActiveTabIndex} activeTabIndex={activeTabIndex} onFocus={onFocus} selectedUser={selectedUser} setOnFocus={setOnFocus} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </Box>}
         {selectedUser && type !== "layout" && !onFocus && (
