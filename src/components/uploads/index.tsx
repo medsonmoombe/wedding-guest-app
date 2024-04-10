@@ -8,7 +8,7 @@ const images = backgrounds;
 const ImageGrid = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageClick = (index: React.SetStateAction<number>) => {
     setCurrentImageIndex(index);
@@ -27,7 +27,10 @@ const ImageGrid = () => {
     setIsOpen(false);
   };
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
     const file = e.target.files[0];
     if (file) {
       // Process the uploaded file (e.g., upload to server)
@@ -36,7 +39,9 @@ const ImageGrid = () => {
   };
 
   const handleClickPlusIcon = () => {
-    fileInputRef.current.click();
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
 
   return (
