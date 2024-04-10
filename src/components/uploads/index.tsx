@@ -1,140 +1,91 @@
-import "./styles.css";
-import { SetStateAction, useState } from "react";
-import Slider from "react-slick";
-// import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import React, { useState } from "react";
+import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton } from "@chakra-ui/react";
 import { backgrounds } from "../function";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { LuPlus } from "react-icons/lu";
-import { Flex, IconButton, useToast } from "@chakra-ui/react";
-import axios from "axios";
-import { base_url } from "../constants/enviroments";
+import { FaExpand } from "react-icons/fa";
 
-const images = backgrounds
+const images = backgrounds;
 
-function PhotosUploadsDisplay() {
-//   const NextArrow = ({ onClick }: any) => {
-//     return (
-//       <div className="arrow next" onClick={onClick}>
-//         <FaArrowRight />
-//       </div>
-//     );
-//   };
+const ImageGrid = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-//   const PrevArrow = ({ onClick }: any) => {
-//     return (
-//       <div className="arrow prev" onClick={onClick}>
-//         <FaArrowLeft />
-//       </div>
-//     );
-//   };
-
-  const [imageIndex, setImageIndex] = useState(0);
-  const toast = useToast();
-
-  const settings = {
-    infinite: true,
-    lazyLoad: true,
-    speed: 300,
-    slidesToShow: 3,
-    centerMode: true,
-    centerPadding: 0,
-    // nextArrow: <NextArrow />,
-    // prevArrow: <PrevArrow />,
-    beforeChange: (next: SetStateAction<number>) => setImageIndex(next),
+  const handleImageClick = (index: React.SetStateAction<number>) => {
+    setCurrentImageIndex(index);
+    setIsOpen(true);
   };
 
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+  };
 
-  const handleFileChange = async(event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    const formData = new FormData();
-    formData.append("file", file as Blob);
-    if (!file) {
-        return;
-    }
-   
-    try {
-        // const response = await axios.get(`${base_url}/s3Url`);
-        const response = await axios.get(`${base_url}/s3Url`)
-        if(response){
+  const handlePreviousImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+  };
 
-            const url = response.data.url;
-            // make a put request s3 using url with content type
-          const result = await axios.put(url, file, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            });
-
-           if(result.data){
-            toast({
-                title: 'Image uploaded successfully',
-                status: 'success',
-                duration: 5000,
-                isClosable: true,
-            });
-              }
-        }
-        
-    } catch (error: any) {
-      toast({
-        title: `Error: ${error?.message as string}`,
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-    });
-        console.log("error", error)
-        
-    }
-    };
-
-
-    const handleUpload =  () => {
-        const fileInput = document.getElementById('file') as HTMLInputElement;
-        fileInput.click();
-    };
-
-    
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <div className="App">
-        <Flex 
-          mb={2} 
-          position={'absolute'}
-          right={8}
-          top={'50%'}
-          >
-            <input type="file" id="file" accept="image/jpeg,image/png" style={{ display: 'none' }} onChange={handleFileChange} />
-            <label htmlFor="file">
+    <>
+      <Grid templateColumns="repeat(2, 1fr)" gap={4} px={4} mb={'100px'}>
+        {images.map((image, index) => (
+          <GridItem key={index}>
+            <Box
+              borderWidth="5px"
+              borderRadius="5px"
+              borderColor={'white'}
+              overflow="hidden"
+              cursor="pointer"
+              boxShadow={'lg'}
+              position={'relative'}
+              onClick={() => handleImageClick(index)}
+            >
+              <Image src={image} alt={`Image ${index}`} 
+               minHeight="300px"
+               maxHeight="300px"
+               width="100%"
+               objectFit="cover"
+              />
+               <div style={{ position: "absolute", top: "2px", right: "2px" }}>
                 <IconButton
-                    aria-label="Search database"
-                    color={'blue.500'}
-                    icon={<LuPlus size={30} />}
-                    width={'40px'}
-                    height={'40px'}
-                    variant={'none'}
-                    border={'1px solid'}
-                    borderColor={'gray.400'}
-                    borderRadius={'50%'}
-                    bg={'blue.100'}
-                    zIndex={99}
-                    ml={4}
-                    onClick={handleUpload}
-                    size="md"
+                  aria-label="Expand"
+                  icon={<FaExpand />}
+                  bg={'gray.100'}
+                  color={'black'}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(index);
+                  }}
                 />
-            </label>
-
-            </Flex>
-      <Slider {...settings as any}>
-        {images.map((img, idx) => (
-          <div className={idx === imageIndex ? "slide activeSlide" : "slide"}>
-            <img src={img} alt={img} className="slider-image"/>
-
-          </div>
+                </div>
+            </Box>
+          </GridItem>
         ))}
-      </Slider>
-    </div>
-  );
-}
+      </Grid>
 
-export default PhotosUploadsDisplay;
+      <Modal isOpen={isOpen} onClose={handleCloseModal}>
+  <ModalOverlay />
+  <ModalContent>
+    <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} color={'black'} fontWeight={'bold'} />
+    <ModalBody width={'100%'} height={'300px'}>
+      <Image 
+        src={images[currentImageIndex]} 
+        alt={`Image ${currentImageIndex}`} 
+        width={'100%'} 
+        height={'100%'} 
+        objectFit={'cover'} 
+      />
+    </ModalBody>
+    <ModalFooter>
+      <Button onClick={handlePreviousImage}>Anterior</Button>
+      <Button ml={2} onClick={handleNextImage}>Próxima</Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
+
+    </>
+  );
+};
+
+export default ImageGrid;

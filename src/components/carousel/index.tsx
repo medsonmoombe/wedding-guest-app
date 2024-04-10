@@ -1,45 +1,55 @@
-import {
-  StackedCarousel,
-  ResponsiveContainer
-} from "react-stacked-center-carousel";
-import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from "@chakra-ui/react";
 import { Slide } from "./Carousel";
+import { StackedCarousel, ResponsiveContainer } from "react-stacked-center-carousel";
+import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, ModalFooter, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import '../modal/styles.css';
-import {backgrounds} from '../function/index';
-
-
+import { backgrounds } from '../function/index';
 
 interface CardCarouselProps {
-  photos: any;
+  photos: any[];
 }
 
-const CardCarousel = ({photos}: CardCarouselProps) => {
+const CardCarousel = ({ photos }: CardCarouselProps) => {
   const [modalImage, setModalImage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const data = photos.length > 0 ? photos?.map((image: any, index: number) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const data = photos.length > 0 ? photos.map((image, index) => {
     return {
       image,
       text: `Image ${index + 1}`
     };
-  }) : backgrounds.map((image: any, index: number) => {
+  }) : backgrounds.map((image, index) => {
     return {
       image,
       text: `Image ${index + 1}`
     };
   });
-  const openModal = (imageUrl: string) => {
+
+  const openModal = (imageUrl: string, index: number) => {
     setModalImage(imageUrl);
-    setIsModalOpen((prev) => !prev);
+    setCurrentImageIndex(index);
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
+  const handlePreviousImage = () => {
+    const newIndex = (currentImageIndex - 1 + data.length) % data.length;
+    setModalImage(data[newIndex].image);
+    setCurrentImageIndex(newIndex);
+  };
+
+  const handleNextImage = () => {
+    const newIndex = (currentImageIndex + 1) % data.length;
+    setModalImage(data[newIndex].image);
+    setCurrentImageIndex(newIndex);
+  };
+
   return (
-    <div className="card" style={{ width: '100%'}}>
+    <div className="card" style={{ width: '100%' }}>
       <div style={{ width: "100%", position: "relative" }}>
         <ResponsiveContainer
           render={(width, carouselRef) => {
@@ -62,16 +72,19 @@ const CardCarousel = ({photos}: CardCarouselProps) => {
         />
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal} size="sm">
-
         <ModalOverlay
-        bg="transparent"
-        css={{ backdropFilter: 'blur(3px)', backgroundColor: 'rgba(10, 0, 50, 0.3)' }}
-      />
+          bg="transparent"
+          css={{ backdropFilter: 'blur(3px)', backgroundColor: 'rgba(10, 0, 50, 0.3)' }}
+        />
         <ModalContent>
-        <ModalCloseButton bg={'gray.50'} color={'gray.700'} borderWidth={0} fontWeight={'bold'} borderRadius={'5px'}  />
-          <ModalBody p={0} onClick={closeModal} >
+          <ModalCloseButton bg={'gray.50'} color={'gray.700'} borderWidth={0} fontWeight={'bold'} borderRadius={'5px'} />
+          <ModalBody p={0}>
             <img src={modalImage} alt="modal" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </ModalBody>
+          <ModalFooter>
+            <Button onClick={handlePreviousImage}>Anterior</Button>
+            <Button ml={2} onClick={handleNextImage}>Próxima</Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </div>

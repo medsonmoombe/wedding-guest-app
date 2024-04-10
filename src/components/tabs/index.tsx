@@ -38,14 +38,14 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                         <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
                             <IconButton
                                 aria-label="Search database"
-                                icon={<img src={imgIcon} alt="img-icon" width={'65px'} height={'75px'} />}
+                                icon={<img src={imgIcon} alt="img-icon" width={'50px'} height={'50px'} />}
                                 width={'40px'}
                                 height={'40px'}
                                 variant={'none'}
                                 size="md"
                             />
                         </Tab>
-                        <Text lineHeight={1} mt={'2px'}  color={ activeTabIndex === 1 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 1 ? 'bold': 'normal'} textAlign={'center'}>
+                        <Text lineHeight={1} mt={'2px'} fontSize={'sm'}  color={ activeTabIndex === 0 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 0 ? 'bold': 'normal'} textAlign={'center'}>
                         Lembranças
                         </Text>
                     </Flex>
@@ -61,7 +61,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                                 size="md"
                             />
                         </Tab>
-                        <Text lineHeight={1} mt={'2px'}  color={ activeTabIndex === 0 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 0 ? 'bold': 'normal'} textAlign={'center'} >
+                        <Text lineHeight={1} mt={'2px'} fontSize={'sm'}  color={ activeTabIndex === 1 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 1 ? 'bold': 'normal'} textAlign={'center'} >
                             convidados
                         </Text>
                     </Flex>
@@ -81,7 +81,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                                 size="md"
                             />
                         </Tab>
-                        <Text color={ activeTabIndex === 2 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 2 ? 'bold': 'normal'} textAlign={'center'}>
+                        <Text fontSize={'sm'} color={ activeTabIndex === 2 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 2 ? 'bold': 'normal'} textAlign={'center'}>
                             Cardápio
                         </Text>
                     </Flex>
@@ -99,7 +99,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                                 size="md"
                             />
                         </Tab>
-                        <Text color={ activeTabIndex === 3 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 3 ? 'bold': 'normal'} textAlign={'center'}>
+                        <Text fontSize={'sm'} color={ activeTabIndex === 3 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 3 ? 'bold': 'normal'} textAlign={'center'}>
                             Cronogram
                         </Text>
                     </Flex>
