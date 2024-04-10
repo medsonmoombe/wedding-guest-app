@@ -1,6 +1,6 @@
 import { Tabs, TabList, Tab, IconButton, Flex, Text } from "@chakra-ui/react";
 import { FaUsers } from "react-icons/fa";
-import { CiLocationOn } from "react-icons/ci";
+// import { CiLocationOn } from "react-icons/ci";
 import menu from '../../assets/images/menuList.png';
 import timeline from '../../assets/images/planning.png';
 import imgIcon from '../../assets/images/images.png';
