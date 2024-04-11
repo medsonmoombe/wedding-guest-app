@@ -84,8 +84,8 @@ const ImageGrid = () => {
               onClick={() => handleImageClick(index)}
             >
               <Image src={image} alt={`Image ${index}`} 
-               minHeight="200px"
-               maxHeight="200px"
+               minHeight="150px"
+               maxHeight="150px"
                width="100%"
                borderRadius={'1px'}
                objectFit="cover"
