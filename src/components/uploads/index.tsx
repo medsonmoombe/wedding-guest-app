@@ -75,7 +75,7 @@ const ImageGrid = () => {
           <GridItem key={index}>
             <Box
               borderWidth="5px"
-              borderRadius="5px"
+              borderRadius={0}
               borderColor={'white'}
               overflow="hidden"
               cursor="pointer"
