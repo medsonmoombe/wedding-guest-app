@@ -57,7 +57,7 @@ const ImageGrid = () => {
             borderRadius={'50%'}
             border={'1px solid'}
             borderColor={'gray.400'}
-            color={'blue.400'}
+            color={'gray.500'}
             position="fixed"
             top="75%"
             right="15px"
