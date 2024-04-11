@@ -20,7 +20,7 @@
     cursor: pointer;
     width: 100%;
     /* border-radius: 5px; */
-    height:350px;
+    height:340px;
     position: relative;
     background-color: #ffffff;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.05);
@@ -61,8 +61,8 @@
   
   .card-card .cover-image {
     object-fit: cover;
-    max-height: 345px !important;
-    min-height: 345px !important;
+    /* max-height: 345px !important;
+    min-height: 345px !important; */
   }
   
   .card-card .cover {
@@ -120,4 +120,14 @@
     color: #000;
   }
   
+  .blured-img {
+    filter: blur(5px) !important;
+    height:50px !important;
+    width: 100% !important;
+  }
+
+  .img-bl {
+    height: 100% !important;
+    width: 100% !important;
+  }
 

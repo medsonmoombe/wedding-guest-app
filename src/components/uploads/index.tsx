@@ -77,7 +77,7 @@ const ImageGrid = () => {
           >
             <Box
               borderWidth="2px"
-              borderRadius={0}
+              borderRadius={'5px'}
               borderColor={'white'}
               overflow="hidden"
               cursor="pointer"
@@ -90,7 +90,7 @@ const ImageGrid = () => {
                minHeight="160px"
                maxHeight="160px"
                width="100%"
-               borderRadius={'1px'}
+               borderRadius={'5px'}
                objectFit="cover"
               />
                <div style={{ position: "absolute", top: "1px", right: "1px", display:"none" }}  >

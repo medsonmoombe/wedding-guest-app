@@ -48,6 +48,31 @@ const CardCarousel = ({ photos }: CardCarouselProps) => {
     setCurrentImageIndex(newIndex);
   };
 
+
+  function preprocessPhotos(photos: any[], width: any) {
+    return photos.map((photo:  any) => {
+      return {
+        src: photo,
+        style: {
+          width: `${width}%`,
+          minHeight: `100%`,
+          maxHeight: `100%`,
+          objectFit: 'cover',
+        },
+      };
+    });
+  }
+  
+
+  console.log("BACKGROUND ::", backgrounds)
+
+
+
+  const processedPhotos = preprocessPhotos(backgrounds, 100);
+
+  console.log("PROCESSED PHOTOS ::", processedPhotos)
+
+
   return (
     <div className="card" style={{ width: '100%' }}>
       <div style={{ width: "100%", position: "relative" }}>
@@ -61,7 +86,7 @@ const CardCarousel = ({ photos }: CardCarouselProps) => {
                 )}
                 slideWidth={220}
                 carouselWidth={width}
-                data={data}
+                data={processedPhotos}
                 maxVisibleSlide={5}
                 disableSwipe={false}
                 customScales={[1, 0.85, 0.7, 0.55]}
