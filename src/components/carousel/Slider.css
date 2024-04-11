@@ -61,6 +61,8 @@
   
   .card-card .cover-image {
     object-fit: cover;
+    max-height: 345px !important;
+    min-height: 345px !important;
   }
   
   .card-card .cover {
@@ -118,3 +120,4 @@
     color: #000;
   }
   
+
