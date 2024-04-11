@@ -74,7 +74,7 @@ const ImageGrid = () => {
         {images.map((image, index) => (
           <GridItem key={index}>
             <Box
-              borderWidth="5px"
+              borderWidth="2px"
               borderRadius={0}
               borderColor={'white'}
               overflow="hidden"
@@ -84,8 +84,8 @@ const ImageGrid = () => {
               onClick={() => handleImageClick(index)}
             >
               <Image src={image} alt={`Image ${index}`} 
-               minHeight="150px"
-               maxHeight="150px"
+               minHeight="160px"
+               maxHeight="160px"
                width="100%"
                borderRadius={'1px'}
                objectFit="cover"
