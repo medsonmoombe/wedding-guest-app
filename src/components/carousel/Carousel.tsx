@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaExpand } from 'react-icons/fa';
 import "./Slider.css";
-import { Img, Box, Text } from "@chakra-ui/react";
+import { Img, Box } from "@chakra-ui/react";
 
 export const Slide = React.memo(function (StackedCarouselSlideProps) {
   const {
@@ -24,7 +24,7 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
 
   const fitsCard = imageWidth <= cardWidth && imageHeight <= cardHeight;
 
-  const targetRef = useRef();
+  const targetRef = useRef<any>();
   const [dimensions, setDimensions] = useState({ width:0, height: 0 });
 
   useEffect(() => {
