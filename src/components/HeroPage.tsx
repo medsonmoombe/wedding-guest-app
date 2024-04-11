@@ -1,8 +1,7 @@
 import { Box,Collapse, Divider, Flex, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
 
 import { useEffect, useState } from 'react';
-import { CiLocationOn } from 'react-icons/ci';
-import { FaSearch, FaUsers } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 
 
 
@@ -62,7 +61,7 @@ function CollapseEx({ matchingResults, handleNameClick, type, onFocus }: Props )
 }
 
 
-const HeroPage = ({setActiveTabIndex, activeTabIndex, setSelectedUser,onFocus, setOnFocus, uploadedData, setSearchQuery, searchQuery, setNoResult, type }: HeroPageProps) => {
+const HeroPage = ({ setSelectedUser,onFocus, setOnFocus, uploadedData, setSearchQuery, searchQuery, setNoResult, type }: HeroPageProps) => {
     const [matchingResults, setMatchingResults] = useState<any[]>([]);
     // const [isFocused, setIsFocused] = useState(false);
     const [isNameClicked, setIsNameClicked] = useState(false);
@@ -163,19 +162,6 @@ const HeroPage = ({setActiveTabIndex, activeTabIndex, setSelectedUser,onFocus, s
 
     };
 
-    const handleRelocate = () => {
-        // Check if current URL includes "/layout"
-        if (activeTabIndex === 1) {
-            // If current URL includes "/layout", navigate to "/"
-            setSearchQuery("");
-            setActiveTabIndex(0);
-        } else {
-            // Otherwise, navigate to "/layout"
-            setActiveTabIndex(1);
-            setSearchQuery("");
-        }
-    }
-
 
     useEffect(() => {
         if(searchQuery){
@@ -219,10 +205,10 @@ const HeroPage = ({setActiveTabIndex, activeTabIndex, setSelectedUser,onFocus, s
                     />
                     <InputRightElement cursor="pointer" gap={2} pr={8} alignItems={'center'}>
                         <Icon as={FaSearch} color="gray.400" boxSize={18} onClick={handleSearch} zIndex={99} />
-                        <Icon as={type === "users" ? CiLocationOn : FaUsers} color="gray.400" boxSize={25} mt={-1}
+                        {/* <Icon as={type === "users" ? CiLocationOn : FaUsers} color="gray.400" boxSize={25} mt={-1}
                             onClick={handleRelocate}
                             zIndex={99}
-                        />
+                        /> */}
                     </InputRightElement>
                 </InputGroup>
             </Flex>
