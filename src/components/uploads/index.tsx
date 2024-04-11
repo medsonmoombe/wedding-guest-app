@@ -72,14 +72,17 @@ const ImageGrid = () => {
             onChange={handleImageUpload}
           />
         {images.map((image, index) => (
-          <GridItem key={index}>
+          <GridItem key={index}
+          style={{ boxShadow: "8px 8px 8px 8px rgba(0, 0, 0, 0.1)"}}
+          >
             <Box
               borderWidth="2px"
               borderRadius={0}
               borderColor={'white'}
               overflow="hidden"
               cursor="pointer"
-              boxShadow={'lg'}
+              style={{ boxShadow: "4px 4px 8px 4px rgba(0, 0, 0, 0.1)"}}
+              // boxShadow="4px 4px 8px 4px rgba(0, 0, 0, 0.1)"
               position={'relative'}
               onClick={() => handleImageClick(index)}
             >
