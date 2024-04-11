@@ -111,8 +111,11 @@ const ImageGrid = () => {
         ))}
       </Grid>
 
-      <Modal isOpen={isOpen} onClose={handleCloseModal}>
-  <ModalOverlay />
+<Modal isOpen={isOpen} onClose={handleCloseModal}>
+  <ModalOverlay 
+   bg="rgba(0, 0, 0, 0.6)"
+   backdropFilter="blur(2px)"
+  />
   <ModalContent>
     <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} color={'black'} fontWeight={'bold'} />
     <ModalBody width={'100%'} height={'300px'}>
