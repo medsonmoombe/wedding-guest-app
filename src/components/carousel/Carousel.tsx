@@ -30,6 +30,7 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
             style={{ width:'100%' }}
             alt="j"
             className="cover-image"
+            onClick={() => openModal(coverImage)}
             src={coverImage}
           />
           <div className="icon-container">
