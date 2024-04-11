@@ -90,7 +90,7 @@ const ImageGrid = () => {
                borderRadius={'1px'}
                objectFit="cover"
               />
-               <div style={{ position: "absolute", top: "1px", right: "1px" }}>
+               <div style={{ position: "absolute", top: "1px", right: "1px", display:"none" }}  >
                 <IconButton
                   aria-label="Expand"
                   icon={<FaExpand />}

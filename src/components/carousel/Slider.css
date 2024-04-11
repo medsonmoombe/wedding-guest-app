@@ -103,6 +103,7 @@
   }
 
   .icon-container {
+    display: none !important;
     position: absolute;
     top: 1px;
     right: 2px;
