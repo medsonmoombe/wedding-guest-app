@@ -84,16 +84,20 @@ const ImageGrid = () => {
               onClick={() => handleImageClick(index)}
             >
               <Image src={image} alt={`Image ${index}`} 
-               minHeight="300px"
-               maxHeight="300px"
+               minHeight="200px"
+               maxHeight="200px"
                width="100%"
+               borderRadius={'1px'}
                objectFit="cover"
               />
-               <div style={{ position: "absolute", top: "2px", right: "2px" }}>
+               <div style={{ position: "absolute", top: "1px", right: "1px" }}>
                 <IconButton
                   aria-label="Expand"
                   icon={<FaExpand />}
                   bg={'gray.100'}
+                  width={'0px'}
+                  height={'30px'}
+                  borderRadius={0}
                   color={'black'}
                   onClick={(e) => {
                     e.stopPropagation();
