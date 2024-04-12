@@ -66,6 +66,8 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['allImages'] });
+        setIsConfirmed(false);
+    setIsUploadedFile(false);
       }
     }
   );
@@ -108,10 +110,23 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     setIsUploadedFile(false);
   };
 
-  const handleConfirmUpload = () => {
+  const handleComfirm = async() => {
     setIsConfirmed(true);
-    // setIsOpen(false);
-  };
+    try {
+      if(isConfirmed) {
+        await mutateAsync(fileInputRef.current?.files![0] as File);
+      }
+    } catch (error) {
+      toast({
+        title: "Erro ao fazer upload da imagem",
+        description: "Ocorreu um erro ao fazer upload da imagem, tente novamente mais tarde.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  }
+
 
   return (
     <>
@@ -119,7 +134,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
       <Grid templateColumns={{ base: "repeat(2, 1fr)", sm: "repeat(2, 1fr)", md:"repeat(4, 1fr)",lg: "repeat(6, 1fr)"}} gap={4} px={4} mb={'100px'}>
       <IconButton
             aria-label="Upload"
-            icon={ isLoading ? <Spinner size={'sm'} /> : <FaPlus />}
+            icon={ <FaPlus />}
             bg={'blue.100'}
             width={'50px'}
             height={'50px'}
@@ -128,7 +143,6 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
             borderColor={'gray.400'}
             color={'gray.500'}
             position="fixed"
-            isDisabled={isLoading}
             top="75%"
             right="15px"
             zIndex="999"
@@ -225,7 +239,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
       </Box>
     </ModalBody>
     <ModalFooter>
-      <Button colorScheme="blue" mr={3} onClick={handleConfirmUpload}>
+      <Button isLoading={isLoading} colorScheme="blue" mr={3} onClick={handleComfirm} >
         Confirmar
       </Button>
       <Button onClick={handleCloseConfirmationModal}>Cancelar</Button>
