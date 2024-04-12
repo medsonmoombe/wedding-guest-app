@@ -116,7 +116,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   return (
     <>
 
-      <Grid templateColumns="repeat(2, 1fr)" gap={4} px={4} mb={'100px'}>
+      <Grid templateColumns={{ base: "repeat(2, 1fr)", sm: "repeat(2, 1fr)", md:"repeat(4, 1fr)",lg: "repeat(6, 1fr)"}} gap={4} px={4} mb={'100px'}>
       <IconButton
             aria-label="Upload"
             icon={ isLoading ? <Spinner size={'sm'} /> : <FaPlus />}
