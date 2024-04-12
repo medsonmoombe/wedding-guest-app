@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center, Spinner } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center, Spinner, Text } from "@chakra-ui/react";
 import { FaExpand, FaPlus } from "react-icons/fa";
 import axios from "axios";
 import { base_url } from "../constants/enviroments";
@@ -13,8 +13,11 @@ interface ImageGridProps {
 
 const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [ isUploadedFile, setIsUploadedFile ] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<string>('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isConfirmed, setIsConfirmed] = useState(false);
   const toast = useToast();
   const queryClient = useQueryClient();
 
@@ -42,7 +45,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   const { mutateAsync, isLoading  } = useMutation(
     async (file: File) => {
       const url = await axios.get(`${base_url}/s3Url`);
-      if (url) {
+      if (url && isConfirmed) {
         const result = await axios.put(url.data.url, file, {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -78,8 +81,17 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
       return;
     }
     const file = e.target.files[0];
+    if(file) {
+      setSelectedFile(URL.createObjectURL(file));
+      setIsUploadedFile(true);
+    }else {
+      setIsUploadedFile(false);
+      setSelectedFile('');
+    }
     try {
+      if(isConfirmed) {
       await mutateAsync(file);
+      }
     } catch (error) {
       toast({
         title: "Erro ao fazer upload da imagem",
@@ -90,6 +102,16 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
       });
     }
   }
+
+  const handleCloseConfirmationModal = () => {
+    setIsConfirmed(false);
+    setIsUploadedFile(false);
+  };
+
+  const handleConfirmUpload = () => {
+    setIsConfirmed(true);
+    // setIsOpen(false);
+  };
 
   return (
     <>
@@ -186,6 +208,27 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     <ModalFooter>
       <Button onClick={handlePreviousImage}>Anterior</Button>
       <Button ml={2} onClick={handleNextImage}>Próxima</Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
+
+{/* Confirmation modal */}
+<Modal isOpen={isUploadedFile} onClose={handleCloseConfirmationModal} size={'sm'} >
+  <ModalOverlay />
+  <ModalContent>
+    <ModalBody>
+      <Box>
+        <Text fontSize="lg" fontWeight="bold" textAlign={'center'} mb={4}>
+          Confirmar upload da imagem?
+        </Text>
+        <Image src={selectedFile} alt="Uploaded Image" width="100%" height="150px" objectFit="contain" />
+      </Box>
+    </ModalBody>
+    <ModalFooter>
+      <Button colorScheme="blue" mr={3} onClick={handleConfirmUpload}>
+        Confirmar
+      </Button>
+      <Button onClick={handleCloseConfirmationModal}>Cancelar</Button>
     </ModalFooter>
   </ModalContent>
 </Modal>
