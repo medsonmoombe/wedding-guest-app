@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
-import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center, Spinner } from "@chakra-ui/react";
 import { FaExpand, FaPlus } from "react-icons/fa";
 import axios from "axios";
 import { base_url } from "../constants/enviroments";
 import SquareGridSkeleton from "./Skeleton";
+import { useMutation, useQueryClient } from "react-query";
 
 interface ImageGridProps {
   photos: any[];
@@ -15,6 +16,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const toast = useToast();
+  const queryClient = useQueryClient();
 
   const images = photos.length > 0 ? photos :[];
 
@@ -35,45 +37,35 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     setIsOpen(false);
   };
 
-  const handleImageUpload = async(e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) {
-      return;
-    }
-    const file = e.target.files[0];
-    if (file) {
-      // fetch the url from /s3Url endpoint
-      try {
-        const url = await axios.get(`${base_url}/s3Url`);
-        if (url) {
 
-          const result = await axios.put(url.data.url, file, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
 
-          if (result.status === 200) {
-            toast({
-              title: "Imagem enviada com sucesso",
-              description: "A imagem foi enviada com sucesso.",
-              status: "success",
-              duration: 5000,
-              isClosable: true,
-            });
-          }
-        }
-      } catch (error) {
-        console.error(error);
-        toast({
-          title: "Erro ao fazer upload da imagem",
-          description: "Ocorreu um erro ao fazer upload da imagem, tente novamente mais tarde.",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
+  const { mutateAsync, isLoading  } = useMutation(
+    async (file: File) => {
+      const url = await axios.get(`${base_url}/s3Url`);
+      if (url) {
+        const result = await axios.put(url.data.url, file, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         });
+
+        if (result.status === 200) {
+          toast({
+            title: "Imagem enviada com sucesso",
+            description: "A imagem foi enviada com sucesso.",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+      }
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['allImages'] });
       }
     }
-  };
+  );
 
   const handleClickPlusIcon = () => {
     if (fileInputRef.current) {
@@ -81,7 +73,23 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     }
   };
 
-  console.log("PHOTOS ::", photos)
+  const handleSubmit = async(e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    const file = e.target.files[0];
+    try {
+      await mutateAsync(file);
+    } catch (error) {
+      toast({
+        title: "Erro ao fazer upload da imagem",
+        description: "Ocorreu um erro ao fazer upload da imagem, tente novamente mais tarde.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  }
 
   return (
     <>
@@ -89,7 +97,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
       <Grid templateColumns="repeat(2, 1fr)" gap={4} px={4} mb={'100px'}>
       <IconButton
             aria-label="Upload"
-            icon={<FaPlus />}
+            icon={ isLoading ? <Spinner size={'sm'} /> : <FaPlus />}
             bg={'blue.100'}
             width={'50px'}
             height={'50px'}
@@ -98,6 +106,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
             borderColor={'gray.400'}
             color={'gray.500'}
             position="fixed"
+            isDisabled={isLoading}
             top="75%"
             right="15px"
             zIndex="999"
@@ -108,7 +117,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
             type="file"
             accept="image/png, image/jpeg"
             style={{ display: "none" }}
-            onChange={handleImageUpload}
+            onChange={handleSubmit}
           />
         {images?.map((image, index) => (
           <GridItem key={index}

@@ -2,7 +2,7 @@ import { Grid, GridItem, Skeleton } from "@chakra-ui/react";
 
 const SquareGridSkeleton = () => {
   // Create an array of length 10
-  const items = Array(10).fill(null);
+  const items = Array(4).fill(null);
 
   return (
     <Grid templateColumns="repeat(2, 1fr)" gap={4} ml={5}>
