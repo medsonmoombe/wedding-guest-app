@@ -6,6 +6,7 @@ import Papa from 'papaparse';
 import { useToast } from '@chakra-ui/react';
 import { base_url, file_id } from './components/constants/enviroments';
 import HomeDisplay from './pages';
+import { useQuery } from 'react-query';
 
 function App() {
   const [uploadedData, setUploadedData] = useState<CSVRow[]>([]);
@@ -71,25 +72,26 @@ function App() {
   }, [parsedData]);
 
 
-  const getAllImagesFromS3 = async () => {
-    try {
-      const response = await axios.get(`${base_url}/allImages`);
-  
-      if(response){
-        console.log("response", response.data)
-        setPhotos(response.data.images)
-      }
-      
-    } catch (error) {
-      console.log("error", error)
-    }
-  }
-  
-  
-  useEffect(() => {
-    getAllImagesFromS3();
-  }, []);
 
+  const getAllImages = useQuery('allImages', async () => {
+    const response = await axios.get(`${base_url}/allImages`);
+    return response.data.images;
+  }, {
+    onSuccess: (data) => {
+      setPhotos(data);
+    },
+    onError: (error) => {
+      toast({
+        title: 'Error fetching images',
+        description: 'An error occurred while fetching images from the server',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      console.error(error);
+    },
+  }
+  );
 
   console.log(uploadedData)
 
@@ -101,7 +103,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<HomeDisplay uploadedData={filteredData} photos={photos}/>} />
+          <Route path="/" element={<HomeDisplay uploadedData={filteredData} photos={photos} isFetchingImages={getAllImages.isLoading}/>} />
         </Routes>
       </Router>
     </>

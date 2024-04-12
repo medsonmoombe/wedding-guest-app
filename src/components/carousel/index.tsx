@@ -64,13 +64,7 @@ const CardCarousel = ({ photos }: CardCarouselProps) => {
   }
   
 
-  console.log("BACKGROUND ::", backgrounds)
-
-
-
   const processedPhotos = preprocessPhotos(backgrounds, 100);
-
-  console.log("PROCESSED PHOTOS ::", processedPhotos)
 
 
   return (

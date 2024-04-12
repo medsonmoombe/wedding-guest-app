@@ -98,6 +98,7 @@
 
   .card-card .cover-image {
     height: 100% !important;
+    width: 100% !important;
   }
 
   .react-stacked-center-carousel  {

@@ -37,8 +37,6 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
   }, [isCenterSlide, dataIndex, data[dataIndex]?.src, coverImage]);
   
 
-  console.log(dimensions);
-
   return (
     <div className="card-card" draggable={false}>
       <div className={`cover fill ${isCenterSlide ? "off" : "on"}`}>
@@ -64,10 +62,9 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
          
             <Img
               alt="picture_photo"
-              // height={"80%"}
-              width={"100%"}
-              maxHeight={ dimensions.width > dimensions.height ? "100%" : "100%"}
-              minHeight={dimensions.width > dimensions.height ? "100%" : "100%"}
+              width={isCenterSlide ? "100%" : "100%"}
+              maxHeight={ "100%"}
+              minHeight={ "100%"}
               objectFit="contain"
               ref={targetRef}
               onClick={() => openModal(coverImage)}

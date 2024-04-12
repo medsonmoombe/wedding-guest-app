@@ -1,14 +1,22 @@
 import React, { useRef, useState } from "react";
-import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton } from "@chakra-ui/react";
-import { backgrounds } from "../function";
+import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center } from "@chakra-ui/react";
 import { FaExpand, FaPlus } from "react-icons/fa";
+import axios from "axios";
+import { base_url } from "../constants/enviroments";
+import SquareGridSkeleton from "./Skeleton";
 
-const images = backgrounds;
+interface ImageGridProps {
+  photos: any[];
+  isFetchingImages: boolean;
+}
 
-const ImageGrid = () => {
+const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const toast = useToast();
+
+  const images = photos.length > 0 ? photos :[];
 
   const handleImageClick = (index: React.SetStateAction<number>) => {
     setCurrentImageIndex(index);
@@ -27,14 +35,43 @@ const ImageGrid = () => {
     setIsOpen(false);
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async(e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
     }
     const file = e.target.files[0];
     if (file) {
-      // Process the uploaded file (e.g., upload to server)
-      console.log("Uploaded file:", file);
+      // fetch the url from /s3Url endpoint
+      try {
+        const url = await axios.get(`${base_url}/s3Url`);
+        if (url) {
+
+          const result = await axios.put(url.data.url, file, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+
+          if (result.status === 200) {
+            toast({
+              title: "Imagem enviada com sucesso",
+              description: "A imagem foi enviada com sucesso.",
+              status: "success",
+              duration: 5000,
+              isClosable: true,
+            });
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        toast({
+          title: "Erro ao fazer upload da imagem",
+          description: "Ocorreu um erro ao fazer upload da imagem, tente novamente mais tarde.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
     }
   };
 
@@ -43,6 +80,8 @@ const ImageGrid = () => {
       fileInputRef.current.click();
     }
   };
+
+  console.log("PHOTOS ::", photos)
 
   return (
     <>
@@ -71,7 +110,7 @@ const ImageGrid = () => {
             style={{ display: "none" }}
             onChange={handleImageUpload}
           />
-        {images.map((image, index) => (
+        {images?.map((image, index) => (
           <GridItem key={index}
           style={{ boxShadow: "8px 8px 8px 8px rgba(0, 0, 0, 0.1)"}}
           >
@@ -112,6 +151,11 @@ const ImageGrid = () => {
             </Box>
           </GridItem>
         ))}
+
+        {/* render the skeleton in grid if isFetchingImages is true */}
+       {isFetchingImages && <Center>
+        <SquareGridSkeleton/>
+        </Center>}
       </Grid>
 
 <Modal isOpen={isOpen} onClose={handleCloseModal}>
