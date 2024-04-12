@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center, Text, Spinner } from "@chakra-ui/react";
 import { FaExpand, FaPlus } from "react-icons/fa";
 import axios from "axios";
 import { base_url } from "../constants/enviroments";
@@ -45,7 +45,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   const { mutateAsync, isLoading  } = useMutation(
     async (file: File) => {
       const url = await axios.get(`${base_url}/s3Url`);
-      if (url && isConfirmed) {
+      if (url.data.url) {
         const result = await axios.put(url.data.url, file, {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -112,10 +112,12 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
 
   const handleComfirm = async() => {
     setIsConfirmed(true);
+  
     try {
-      if(isConfirmed) {
-        await mutateAsync(fileInputRef.current?.files![0] as File);
-      }
+      await mutateAsync(fileInputRef.current?.files![0] as File);
+
+      // while image is uploading, close the confirmation modal
+      handleCloseConfirmationModal();
     } catch (error) {
       toast({
         title: "Erro ao fazer upload da imagem",
@@ -126,6 +128,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
       });
     }
   }
+  
 
 
   return (
@@ -134,7 +137,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
       <Grid templateColumns={{ base: "repeat(2, 1fr)", sm: "repeat(2, 1fr)", md:"repeat(4, 1fr)",lg: "repeat(6, 1fr)"}} gap={4} px={4} mb={'100px'}>
       <IconButton
             aria-label="Upload"
-            icon={ <FaPlus />}
+            icon={ isLoading ? <Spinner size={'sm'} /> : <FaPlus />}
             bg={'blue.100'}
             width={'50px'}
             height={'50px'}
