@@ -12,8 +12,6 @@ const TimeLine: React.FC = () => {
     setImageLoaded(true);
   };
 
-  console.log("isPortugal", isPortugal)
-
   return (
     <Box width={'full'} position={'relative'} >
         <Box display={'flex'} justifyContent={'flex-end'} width={'100%'} pr={4} position={'absolute'} top={3} >
