@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center, Spinner, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center, Text } from "@chakra-ui/react";
 import { FaExpand, FaPlus } from "react-icons/fa";
 import axios from "axios";
 import { base_url } from "../constants/enviroments";
