@@ -12,9 +12,10 @@ interface LayoutProps {
   setClickedTable: (value: string) => void;
   activeTabIndex: number;
   setSearchQuery: (value: string) => void;
+  searchQuery: string;
 }
 
-const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery }: LayoutProps) => {
+const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, searchQuery }: LayoutProps) => {
 
   const [selectedTable, setSelectedTable] = useState<any[]>([]);
   const [openTable, setOpenTable] = useState<any>(null);
@@ -40,6 +41,37 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery }:
       }
     });
   }
+
+
+  // find the table by search query
+   // if clickedtable is not empty, find the table with the same name as the clicked table
+   useEffect(() => {
+    if (searchQuery) {
+      const table = tables.find((table) => table.tableName.toLowerCase() === searchQuery?.toLowerCase());
+      setOpenTable(table);
+      console.log("Table ::", table)
+      const tableElements = document.querySelectorAll('[id]');
+      tableElements.forEach(tableElement => {
+        if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
+          highlightClickedTable(table?.tableId as string);
+        } else {
+          // reset the styles of the tables with valid IDs
+          const tableId = tableElement.getAttribute('id');
+          if (isValidTableId(tableId as string)) {
+            tableElement.setAttribute('fill', 'white');
+            tableElement.setAttribute('stroke', 'black');
+          }
+        }
+      });
+      let selectedTableArr: any[] = [];
+      uploadedData?.filter((data: any) => {
+        if (data.tableName.toLowerCase() === table?.tableName.toLowerCase()) {
+          selectedTableArr.push(data);
+        }
+      });
+      setSelectedTable(selectedTableArr);
+    }
+  }, [searchQuery]);
 
   const highlightClickedTable = (tableId: string) => {
     // Find the SVG element by its name attribute
@@ -133,8 +165,6 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery }:
       setSelectedTable(selectedTableArr);
     }
   }, [clickedTabel]);
-
-
 
 
   return (

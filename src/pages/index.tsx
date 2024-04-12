@@ -45,7 +45,7 @@ const HomeDisplay = ({ uploadedData, photos, isFetchingImages}: HomeDisplayProps
                 {/* render the component here based on the activeTabIndex */}
                 {activeTabIndex === 0 && <HomePage photos={photos} />}
                 {activeTabIndex === 0 && <PhotosUploadsDisplay photos={photos} isFetchingImages={isFetchingImages}/> }
-                {activeTabIndex === 1 && <Layout setClickedTable={setClickedTable} setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} activeTabIndex={activeTabIndex} />}
+                {activeTabIndex === 1 && <Layout setClickedTable={setClickedTable} searchQuery={searchQuery} setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} activeTabIndex={activeTabIndex} />}
                 {activeTabIndex === 2 && <MenuListPage />}
                 {activeTabIndex === 3 && <Timeline />}
             </PageLayout>
