@@ -16,13 +16,14 @@ const ToggleBox = ({isPortugal, setIsPortugal }: ToggleBoxProps  ) => {
 
   return (
     <Box
-      width="100px"
-      height="100px"
-      bg="white"
+      width="50px"
+      height="30px"
+      bg="inherit"
       display="flex"
       alignItems="center"
       justifyContent="center"
       cursor="pointer"
+      style={{boxShadow: '2px 2px 2px 2px'}}
       onClick={handleClick}
     >
       {isPortugal ? (

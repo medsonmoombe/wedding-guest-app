@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import HeroPage from "../components/HeroPage";
 import { CSVRow } from '../components/Header';
 import {  useEffect, useState } from 'react';
@@ -16,20 +16,20 @@ interface Props {
     type: string;
 }
 
-const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setActiveTabIndex, activeTabIndex ,type, setSearchQuery, selectedUser, setSelectedUser }: Props) => {
+const PageLayout = ({ uploadedData, children, searchQuery,setActiveTabIndex, activeTabIndex ,type, setSearchQuery, selectedUser, setSelectedUser }: Props) => {
   const [onFocus, setOnFocus] = useState(false);
 
 
-  const handleClick = (value: string) => {
-     // set the active tab index to 1 and pass the clicked table name to the layout page
-     if(value){
-      setActiveTabIndex(1);
-    setClickedTable(value);
-    setSearchQuery("");
-      }else {
-  setClickedTable("");
-}
-  }
+//   const handleClick = (value: string) => {
+//      // set the active tab index to 1 and pass the clicked table name to the layout page
+//      if(value){
+//       setActiveTabIndex(1);
+//     setClickedTable(value);
+//     setSearchQuery("");
+//       }else {
+//   setClickedTable("");
+// }
+//   }
  
 
 
@@ -49,7 +49,7 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
       {activeTabIndex === 1  &&  <Box width="full" display="flex" justifyContent="center" alignItems="center" flexDirection="column" mb={20}>
            <HeroPage setActiveTabIndex={setActiveTabIndex} activeTabIndex={activeTabIndex} onFocus={onFocus} selectedUser={selectedUser} setOnFocus={setOnFocus} setSelectedUser={setSelectedUser} type={type} uploadedData={uploadedData} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </Box>}
-        {selectedUser && type !== "layout" && !onFocus && (
+        {/* {selectedUser && type !== "layout" && !onFocus && (
           <Flex justify="center" direction="column" mt={14} textTransform="capitalize" color={'gray.700'} >
             <Text fontSize="2xl" fontFamily="Satisfy, cursive" textAlign="center" fontWeight="bold" onClick={() => handleClick(selectedUser.tableName)}>
               {selectedUser.tableName}
@@ -58,7 +58,7 @@ const PageLayout = ({ uploadedData, setClickedTable, children, searchQuery,setAc
               {selectedUser.tableId}
             </Text>
           </Flex>
-        )}
+        )} */}
         {children}
       </Box>
     </Flex>

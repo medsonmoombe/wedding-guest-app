@@ -13,9 +13,10 @@ interface LayoutProps {
   activeTabIndex: number;
   setSearchQuery: (value: string) => void;
   searchQuery: string;
+  selectedUser: any;
 }
 
-const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, searchQuery }: LayoutProps) => {
+const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, searchQuery, selectedUser }: LayoutProps) => {
 
   const [selectedTable, setSelectedTable] = useState<any[]>([]);
   const [openTable, setOpenTable] = useState<any>(null);
@@ -46,10 +47,9 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
   // find the table by search query
    // if clickedtable is not empty, find the table with the same name as the clicked table
    useEffect(() => {
-    if (searchQuery) {
-      const table = tables.find((table) => table.tableName.toLowerCase() === searchQuery?.toLowerCase());
+    if (selectedUser) {
+      const table = tables.find((table) => table.tableName.toLowerCase() === selectedUser?.tableName?.toLowerCase());
       setOpenTable(table);
-      console.log("Table ::", table)
       const tableElements = document.querySelectorAll('[id]');
       tableElements.forEach(tableElement => {
         if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {

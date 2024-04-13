@@ -14,7 +14,7 @@ const TimeLine: React.FC = () => {
 
   return (
     <Box width={'full'} position={'relative'} >
-        <Box display={'flex'} justifyContent={'flex-end'} width={'100%'} pr={4} position={'absolute'} top={3} >
+        <Box display={'flex'} justifyContent={'flex-end'} width={'100%'} pr={5} position={'absolute'} top={10} >
          <ToggleBox setIsPortugal={setIsPortugal} isPortugal={isPortugal}  />
         </Box>
       {!imageLoaded && (

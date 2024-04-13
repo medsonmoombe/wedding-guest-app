@@ -1,10 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center, Text, Spinner } from "@chakra-ui/react";
 import { FaExpand, FaPlus } from "react-icons/fa";
 import axios from "axios";
 import { base_url } from "../constants/enviroments";
 import SquareGridSkeleton from "./Skeleton";
 import { useMutation, useQueryClient } from "react-query";
+import { IoMdArrowRoundBack, IoMdArrowRoundForward  } from "react-icons/io";
+
 
 interface ImageGridProps {
   photos: any[];
@@ -16,12 +18,15 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   const [ isUploadedFile, setIsUploadedFile ] = useState(false);
   const [selectedFile, setSelectedFile] = useState<string>('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMultipleFiles, setIsMultipleFiles] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const toast = useToast();
   const queryClient = useQueryClient();
+  
 
-  const images = photos.length > 0 ? photos :[];
+
+  const images = photos.length > 0 ? photos : [];
 
   const handleImageClick = (index: React.SetStateAction<number>) => {
     setCurrentImageIndex(index);
@@ -41,36 +46,69 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   };
 
 
-
-  const { mutateAsync, isLoading  } = useMutation(
-    async (file: File) => {
-      const url = await axios.get(`${base_url}/s3Url`);
-      if (url.data.url) {
-        const result = await axios.put(url.data.url, file, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-
-        if (result.status === 200) {
-          toast({
-            title: "Imagem enviada com sucesso",
-            description: "A imagem foi enviada com sucesso.",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
+  const { mutateAsync, isLoading } = useMutation(
+    async (files: FileList) => {
+      const promises = Array.from(files).map(async (file) => {
+        const urlResponse = await axios.get(`${base_url}/s3Url`);
+        const url = urlResponse.data.url;
+        if (url) {
+          return axios.put(url, file, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
           });
         }
-      }
+      });
+  
+      return Promise.all(promises);
     },
     {
       onSuccess: () => {
+        toast({
+          title: "Imagem enviada com sucesso",
+          description: "A imagem foi enviada com sucesso.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
         queryClient.invalidateQueries({ queryKey: ['allImages'] });
         setIsConfirmed(false);
     setIsUploadedFile(false);
-      }
+      },
     }
   );
+  
+
+
+  // const { mutateAsync, isLoading  } = useMutation(
+  //   async (file: File) => {
+  //     const url = await axios.get(`${base_url}/s3Url`);
+  //     if (url.data.url) {
+  //       const result = await axios.put(url.data.url, file, {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       });
+
+  //       if (result.status === 200) {
+  //         toast({
+  //           title: "Imagem enviada com sucesso",
+  //           description: "A imagem foi enviada com sucesso.",
+  //           status: "success",
+  //           duration: 5000,
+  //           isClosable: true,
+  //         });
+  //       }
+  //     }
+  //   },
+  //   {
+    //   onSuccess: () => {
+    //     queryClient.invalidateQueries({ queryKey: ['allImages'] });
+    //     setIsConfirmed(false);
+    // setIsUploadedFile(false);
+    //   }
+  //   }
+  // );
 
   const handleClickPlusIcon = () => {
     if (fileInputRef.current) {
@@ -78,32 +116,23 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     }
   };
 
-  const handleSubmit = async(e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
     }
-    const file = e.target.files[0];
-    if(file) {
-      setSelectedFile(URL.createObjectURL(file));
+
+    const files = Array.from(e.target.files);
+    if(files.length === 1) {
+      setSelectedFile(URL.createObjectURL(files[0]));
       setIsUploadedFile(true);
+    }else if(files.length > 1){
+      setIsMultipleFiles(true);
+      setIsUploadedFile(true);
+      setSelectedFile('');
     }else {
       setIsUploadedFile(false);
-      setSelectedFile('');
     }
-    try {
-      if(isConfirmed) {
-      await mutateAsync(file);
-      }
-    } catch (error) {
-      toast({
-        title: "Erro ao fazer upload da imagem",
-        description: "Ocorreu um erro ao fazer upload da imagem, tente novamente mais tarde.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  }
+  };
 
   const handleCloseConfirmationModal = () => {
     setIsConfirmed(false);
@@ -114,7 +143,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     setIsConfirmed(true);
   
     try {
-      await mutateAsync(fileInputRef.current?.files![0] as File);
+      await mutateAsync(fileInputRef.current?.files as any);
 
       // while image is uploading, close the confirmation modal
       handleCloseConfirmationModal();
@@ -128,7 +157,14 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
       });
     }
   }
-  
+
+useEffect(() => {
+  handleCloseConfirmationModal();
+}, [isConfirmed])
+
+
+console.log("isuploadedfile: ", isUploadedFile)
+
 
 
   return (
@@ -139,6 +175,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
             aria-label="Upload"
             icon={ isLoading ? <Spinner size={'sm'} /> : <FaPlus />}
             bg={'blue.100'}
+            style={{ boxShadow: "2px 2px 4px 2px"}}
             width={'50px'}
             height={'50px'}
             borderRadius={'50%'}
@@ -157,6 +194,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
             accept="image/png, image/jpeg"
             style={{ display: "none" }}
             onChange={handleSubmit}
+            multiple
           />
         {images?.map((image, index) => (
           <GridItem key={index}
@@ -179,6 +217,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
                width="100%"
                borderRadius={'5px'}
                objectFit="cover"
+               onError={() => console.log("ERROR LOADING IMAGE: ", image)}
               />
                <div style={{ position: "absolute", top: "1px", right: "1px", display:"none" }}  >
                 <IconButton
@@ -212,8 +251,9 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
    backdropFilter="blur(2px)"
   />
   <ModalContent>
-    <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} color={'black'} fontWeight={'bold'} />
-    <ModalBody width={'100%'} height={'300px'}>
+    <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} zIndex={99} color={'black'} fontWeight={'bold'} />
+    <ModalBody width={'100%'} height={'300px'}  >
+      <Box pos={'relative'} >
       <Image 
         src={images[currentImageIndex]} 
         alt={`Image ${currentImageIndex}`} 
@@ -221,11 +261,34 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
         height={'100%'} 
         objectFit={'cover'} 
       />
+      <IconButton
+      aria-label="back"
+      icon={<IoMdArrowRoundBack size={20} style={{ zIndex: 99, color:"black", fontWeight:"bold"}} />}
+      bg="rgba(243, 246, 241, 0.73)" opacity={0.7}
+      width={'30px'}
+      height={'30px'}
+      border={'1px solid'}
+      borderColor={'gray.400'}
+      color={'gray.500'}
+      onClick={handlePreviousImage} 
+      position={'absolute'} 
+      left={0} ml={1} top={'50%'}
+      />
+      <IconButton
+      aria-label="back"
+      icon={<IoMdArrowRoundForward size={20} style={{ zIndex: 99, color:"black", fontWeight:"bold"}}/>}
+      bg="rgba(243, 246, 241, 0.73)" opacity={0.7}
+      width={'30px'}
+      height={'30px'}
+      border={'1px solid'}
+      borderColor={'gray.400'}
+      color={'gray.500'}
+      onClick={handleNextImage} 
+      position={'absolute'} 
+      right={0} mr={1} top={'50%'}
+      />
+      </Box>
     </ModalBody>
-    <ModalFooter>
-      <Button onClick={handlePreviousImage}>Anterior</Button>
-      <Button ml={2} onClick={handleNextImage}>Próxima</Button>
-    </ModalFooter>
   </ModalContent>
 </Modal>
 
@@ -238,7 +301,13 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
         <Text fontSize="lg" fontWeight="bold" textAlign={'center'} mb={4}>
           Confirmar upload da imagem?
         </Text>
-        <Image src={selectedFile} alt="Uploaded Image" width="100%" height="150px" objectFit="contain" />
+
+        { isMultipleFiles ? (
+          <Text fontSize="sm" color="gray.500" textAlign={'center'} mb={4}>
+            {fileInputRef.current?.files?.length} imagens selecionadas
+          </Text>
+        
+        ) : <Image src={selectedFile} alt="Uploaded Image" width="100%" height="150px" objectFit="contain" />}
       </Box>
     </ModalBody>
     <ModalFooter>
