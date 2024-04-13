@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import menuList from '../../assets/images/menu.svg';
+import menuList from '../../assets/images/menuFile.svg';
 import { Box, Image, Spinner } from '@chakra-ui/react';
 
 const MenuList: React.FC = () => {

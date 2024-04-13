@@ -168,7 +168,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
 
 
   return (
-    <Box bg={'gray.100'}>
+    <Box>
       <Center width={'full'} flexDirection={'column'}>
         <SVGComponent />
       </Center>

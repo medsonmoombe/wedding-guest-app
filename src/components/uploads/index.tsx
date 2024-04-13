@@ -258,8 +258,8 @@ console.log("isuploadedfile: ", isUploadedFile)
         src={images[currentImageIndex]} 
         alt={`Image ${currentImageIndex}`} 
         width={'100%'} 
-        height={'100%'} 
-        objectFit={'cover'} 
+        height={'360px'} 
+        objectFit={'contain'} 
       />
       <IconButton
       aria-label="back"
