@@ -131,7 +131,7 @@ const HeroPage = ({ setSelectedUser,onFocus, setOnFocus, uploadedData, setSearch
 
     const handleNameClick = (name: any) => {
         setIsNameClicked(true);
-        if (type === "users") {
+
             const selectedUserObj = uploadedData?.find((user: any) => {
                 const useFullNames = user.guestFirstName + ' ' + user.guestLastName;
                 setSearchQuery(useFullNames);
@@ -139,27 +139,6 @@ const HeroPage = ({ setSelectedUser,onFocus, setOnFocus, uploadedData, setSearch
             });
             setSelectedUser(selectedUserObj);
             setMatchingResults([]);
-
-        } else {
-            if (type === "layout") {
-                setSearchQuery(name.tableName);
-            }
-            const selectedUserObj = uploadedData?.find((user: any) => {
-                const useFullNames = user.tableName;
-                setSearchQuery(useFullNames);
-                return useFullNames === (name.tableName);
-            });
-            setSelectedUser(selectedUserObj);
-            setMatchingResults([]);
-
-            if (!selectedUserObj) {
-                setNoResult?.(true);
-            } else {
-                setNoResult?.(false);
-            }
-
-        }
-
     };
 
 

@@ -16,7 +16,7 @@ interface LayoutProps {
   selectedUser: any;
 }
 
-const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, searchQuery, selectedUser }: LayoutProps) => {
+const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, selectedUser }: LayoutProps) => {
 
   const [selectedTable, setSelectedTable] = useState<any[]>([]);
   const [openTable, setOpenTable] = useState<any>(null);
@@ -71,7 +71,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
       });
       setSelectedTable(selectedTableArr);
     }
-  }, [searchQuery]);
+  }, [selectedUser ]);
 
   const highlightClickedTable = (tableId: string) => {
     // Find the SVG element by its name attribute
