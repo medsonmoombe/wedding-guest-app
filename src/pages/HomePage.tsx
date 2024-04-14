@@ -27,7 +27,7 @@ const HomePage = ({photos}: HomePageProps) => {
           </Text>{' '}
         </Flex>
       </Center>
-        <CardCarousel photos={photos}/>
+        <CardCarousel/>
        
         </Box>
     </>
