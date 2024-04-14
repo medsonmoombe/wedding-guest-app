@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import timeline from '../../assets/images/engProgram.svg';
-import pt_timeline from '../../assets/images/ptProgram.svg';
+import timeline from '../../assets/images/newEngPlanning.svg';
+import pt_timeline from '../../assets/images/newPtPlanning.svg';
 import { Box, Image, Spinner } from '@chakra-ui/react';
 import ToggleBox from './Toggle';
 
 const TimeLine: React.FC = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [isPortugal, setIsPortugal] = useState(true);
+  const [isPortugal, setIsPortugal] = useState(false);
 
   const handleImageLoad = () => {
     setImageLoaded(true);

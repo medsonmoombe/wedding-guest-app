@@ -16,7 +16,7 @@ interface LayoutProps {
   selectedUser: any;
 }
 
-const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, selectedUser }: LayoutProps) => {
+const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, searchQuery, selectedUser }: LayoutProps) => {
 
   const [selectedTable, setSelectedTable] = useState<any[]>([]);
   const [openTable, setOpenTable] = useState<any>(null);
@@ -73,6 +73,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
     }
   }, [selectedUser ]);
 
+
   const highlightClickedTable = (tableId: string) => {
     // Find the SVG element by its name attribute
     const tableElements = document.querySelectorAll('[id]');
@@ -87,6 +88,37 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
 
   }
 
+
+  // if searchQuery is empty reset the hightlighted table or search query does not match any table
+
+  useEffect(() => {
+    if (!searchQuery) {
+      const tableElements = document.querySelectorAll('[id]');
+      tableElements.forEach(tableElement => {
+        const tableId = tableElement.getAttribute('id');
+        if (isValidTableId(tableId as string)) {
+          tableElement.setAttribute('fill', 'white');
+          tableElement.setAttribute('stroke', 'black');
+        }
+      });
+    }
+  }, [searchQuery]);
+
+
+  // reset the tables styles when the search query does not match any table
+
+  useEffect(() => {
+    if (searchQuery && !selectedUser) {
+      const tableElements = document.querySelectorAll('[id]');
+      tableElements.forEach(tableElement => {
+        const tableId = tableElement.getAttribute('id');
+        if (isValidTableId(tableId as string)) {
+          tableElement.setAttribute('fill', 'white');
+          tableElement.setAttribute('stroke', 'black');
+        }
+      });
+    }
+  }, [searchQuery, selectedTable]);
 
   // onclick of a table, console.log the table name
   useEffect(() => {
@@ -167,46 +199,55 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
   }, [clickedTabel]);
 
 
+
   return (
     <Box>
+      { selectedUser && openTable && <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={2}>
+        <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} >
+          {`${selectedUser?.guestFirstName} ${selectedUser?.guestLastName}`}
+        </Text>
+        <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} >
+          {`${openTable?.tableId}`}
+        </Text>
+      </Box>}
       <Center width={'full'} flexDirection={'column'}>
         <SVGComponent />
       </Center>
       <Box px={4} mb={8}>
-       {(selectedTable && selectedTable.length !== 0) && 
+       {( (searchQuery || clickedTabel ) && selectedUser  && selectedTable && selectedTable.length !== 0) && 
        <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={4}>
         <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} fontFamily={'Satisfy, cursive'} >
           {`${selectedTable[0]?.tableName} Guests`}
-        </Text>
+         </Text>
               <Box  width={'inherit'}>
                 <GuestList guests={selectedTable} />
               </Box>
               </Box>
            }
-        {(selectedTable.length > 0) &&
+        {( (searchQuery || clickedTabel) &&  selectedTable.length > 0 && selectedUser) &&
           <Box mb={'30%'} mt={4}>
-            <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'}>
-              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text>
+            <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'} gap={2}>
+              {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text> */}
               <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'}>{openTable?.Description_portugues}</Text>
-              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'} mt={2} >English</Text>
+              {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'} mt={2} >English</Text> */}
               <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'} >{openTable?.Description_english}</Text>
             </Box>
           </Box>}
 
-           {selectedTable && selectedTable.length === 0 && openTable && 
+           {(searchQuery || clickedTabel) && selectedUser &&  selectedTable && selectedTable.length === 0 && openTable && 
            <Center flexDirection={'column'}>
               <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'} fontFamily={'Satisfy, cursive'} >
                  {openTable?.tableName}
               </Text>
               <Box mb={'20%'} mt={4}>
-            <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'}>
-              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text>
+            <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'} gap={2}>
+              {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text> */}
               <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'}>{openTable?.Description_portugues}</Text>
-              <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'} mt={2} >English</Text>
+              {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'} mt={2} >English</Text> */}
               <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'} >{openTable?.Description_english}</Text>
             </Box>
           </Box>
-            </Center>}
+          </Center>}
 
       </Box>
     </Box>

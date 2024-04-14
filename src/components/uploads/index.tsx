@@ -64,13 +64,6 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     },
     {
       onSuccess: () => {
-        toast({
-          title: "Imagem enviada com sucesso",
-          description: "A imagem foi enviada com sucesso.",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-        });
         queryClient.invalidateQueries({ queryKey: ['allImages'] });
         setIsConfirmed(false);
     setIsUploadedFile(false);
@@ -79,36 +72,6 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   );
   
 
-
-  // const { mutateAsync, isLoading  } = useMutation(
-  //   async (file: File) => {
-  //     const url = await axios.get(`${base_url}/s3Url`);
-  //     if (url.data.url) {
-  //       const result = await axios.put(url.data.url, file, {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       });
-
-  //       if (result.status === 200) {
-  //         toast({
-  //           title: "Imagem enviada com sucesso",
-  //           description: "A imagem foi enviada com sucesso.",
-  //           status: "success",
-  //           duration: 5000,
-  //           isClosable: true,
-  //         });
-  //       }
-  //     }
-  //   },
-  //   {
-    //   onSuccess: () => {
-    //     queryClient.invalidateQueries({ queryKey: ['allImages'] });
-    //     setIsConfirmed(false);
-    // setIsUploadedFile(false);
-    //   }
-  //   }
-  // );
 
   const handleClickPlusIcon = () => {
     if (fileInputRef.current) {
@@ -162,8 +125,6 @@ useEffect(() => {
   handleCloseConfirmationModal();
 }, [isConfirmed])
 
-
-console.log("isuploadedfile: ", isUploadedFile)
 
 
 
@@ -252,14 +213,14 @@ console.log("isuploadedfile: ", isUploadedFile)
   />
   <ModalContent>
     <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} zIndex={99} color={'black'} fontWeight={'bold'} />
-    <ModalBody width={'100%'} height={'300px'}  >
+    <ModalBody width={'100%'} height={'300px'}>
       <Box pos={'relative'} >
       <Image 
         src={images[currentImageIndex]} 
         alt={`Image ${currentImageIndex}`} 
         width={'100%'} 
-        height={'360px'} 
-        objectFit={'contain'} 
+        height={'500px'} 
+        objectFit={'cover'} 
       />
       <IconButton
       aria-label="back"
