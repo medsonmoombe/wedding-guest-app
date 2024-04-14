@@ -201,7 +201,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
 
 
   return (
-    <Box>
+    <Box height={'auto'} bg={'gray.100'}>
       { selectedUser && openTable && <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={2}>
         <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} >
           {`${selectedUser?.guestFirstName} ${selectedUser?.guestLastName}`}
