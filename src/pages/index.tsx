@@ -42,7 +42,7 @@ const HomeDisplay = ({ uploadedData, photos, isFetchingImages}: HomeDisplayProps
                 setClickedTable={setClickedTable}
             >
                 {/* render the component here based on the activeTabIndex */}
-                {activeTabIndex === 0 && <HomePage photos={photos} />}
+                {activeTabIndex === 0 && <HomePage/>}
                 {activeTabIndex === 0 && <PhotosUploadsDisplay photos={photos} isFetchingImages={isFetchingImages}/> }
                 {activeTabIndex === 1 && <Layout selectedUser={selectedUser} setClickedTable={setClickedTable} searchQuery={searchQuery} setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} activeTabIndex={activeTabIndex} />}
                 {activeTabIndex === 2 && <MenuListPage />}

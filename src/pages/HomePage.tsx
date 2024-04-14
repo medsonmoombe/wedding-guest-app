@@ -3,11 +3,10 @@ import CardCarousel from '../components/carousel/index';
 import loveIcon from '../assets/images/love.png'
 
 
-interface HomePageProps {
-  photos: any;
-}
 
-const HomePage = ({photos}: HomePageProps) => {
+
+const HomePage = () => {
+
 
   return (
     <>
