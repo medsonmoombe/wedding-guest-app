@@ -213,7 +213,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
       <Center width={'full'} flexDirection={'column'}>
         <SVGComponent />
       </Center>
-      <Box px={4} mb={8}>
+      <Box px={4} mb={8} bg={'gray.100'}>
        {( (searchQuery || clickedTabel ) && selectedUser  && selectedTable && selectedTable.length !== 0) && 
        <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={4}>
         <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} fontFamily={'Satisfy, cursive'} >
@@ -235,7 +235,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
           </Box>}
 
            {(searchQuery || clickedTabel) && selectedUser &&  selectedTable && selectedTable.length === 0 && openTable && 
-           <Center flexDirection={'column'}>
+           <Center flexDirection={'column'} >
               <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'} fontFamily={'Satisfy, cursive'} >
                  {openTable?.tableName}
               </Text>
