@@ -161,6 +161,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
               console.log("data", "no data found");
             }
           });
+
           setSelectedTable(selectedTableArr);
           handleOpen(clickedTabeId as string);
         }
@@ -199,10 +200,9 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
   }, [clickedTabel]);
 
 
-
   return (
     <Box height={'auto'} bg={'gray.100'}>
-      { selectedUser && openTable && <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={2}>
+      { (selectedUser && openTable) &&  <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={2}>
         <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} >
           {`${selectedUser?.guestFirstName} ${selectedUser?.guestLastName}`}
         </Text>
@@ -214,7 +214,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
         <SVGComponent />
       </Center>
       <Box px={4} mb={8} bg={'gray.100'} pb={4}>
-       {( (searchQuery || clickedTabel ) && selectedUser  && selectedTable && selectedTable.length !== 0) && 
+       {( searchQuery ||  selectedTable.length !== 0) &&  openTable &&
        <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={4}>
         <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} fontFamily={'Satisfy, cursive'} >
           {`${selectedTable[0]?.tableName} Guests`}
@@ -224,7 +224,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
               </Box>
               </Box>
            }
-        {( (searchQuery || clickedTabel) &&  selectedTable.length > 0 && selectedUser) &&
+        {( (searchQuery || selectedTable.length > 0) && openTable) &&
           <Box mb={'30%'} mt={4}>
             <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'} gap={2}>
               {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text> */}
@@ -234,7 +234,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
             </Box>
           </Box>}
 
-           {(searchQuery || clickedTabel) && selectedUser &&  selectedTable && selectedTable.length === 0 && openTable && 
+            { (!searchQuery && selectedTable.length === 0 ) &&  openTable && 
            <Center flexDirection={'column'} >
               <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'} fontFamily={'Satisfy, cursive'} >
                  {openTable?.tableName}

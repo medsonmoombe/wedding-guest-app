@@ -6,6 +6,7 @@ import { base_url } from "../constants/enviroments";
 import SquareGridSkeleton from "./Skeleton";
 import { useMutation, useQueryClient } from "react-query";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward  } from "react-icons/io";
+import './/styles.css';
 
 
 interface ImageGridProps {
@@ -123,9 +124,24 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
 
 useEffect(() => {
   handleCloseConfirmationModal();
-}, [isConfirmed])
+}, [isConfirmed]);
 
 
+function imageOrientation(src: string) {
+
+  var orientation,
+  img = new window.Image();
+  img.src = src;
+
+  if (img.naturalWidth > img.naturalHeight) {
+      orientation = 'landscape';
+  } else if (img.naturalWidth < img.naturalHeight) {
+      orientation = 'portrait';
+  }
+
+  return orientation;
+
+}
 
 
   return (
@@ -172,6 +188,7 @@ useEffect(() => {
               position={'relative'}
               onClick={() => handleImageClick(index)}
             >
+              
               <Image src={image} alt={`Image ${index}`} 
                minHeight="160px"
                maxHeight="160px"
@@ -216,11 +233,11 @@ useEffect(() => {
     <ModalBody width={'100%'} height={'300px'}>
       <Box pos={'relative'} >
       <Image 
+        className="image-modal"
         src={images[currentImageIndex]} 
-        alt={`Image ${currentImageIndex}`} 
-        width={'100%'} 
-        height={'500px'} 
-        objectFit={'cover'} 
+        alt={`Image ${currentImageIndex}`}  
+        objectFit={ imageOrientation(images[currentImageIndex]) === 'landscape' ? 'contain' : 'cover'}
+        margin={'auto'} 
       />
       <IconButton
       aria-label="back"

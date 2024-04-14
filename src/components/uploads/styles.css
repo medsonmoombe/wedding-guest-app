@@ -69,3 +69,11 @@
   .slick-arrow {
     display: none !important;
   }
+
+  .image-modal {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    margin: auto !important;
+    max-height: 400px !important;
+  }
