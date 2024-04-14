@@ -29,7 +29,7 @@ const HomeDisplay = ({ uploadedData, photos, isFetchingImages}: HomeDisplayProps
     }, [searchQuery]);
 
     return (
-        <Box pos="relative">
+        <Box pos="relative" height={'100vh'} bg={'gray.100'}>
             <PageLayout
                 uploadedData={uploadedData}
                 type={activeTabIndex === 1 ? 'users': ''}
