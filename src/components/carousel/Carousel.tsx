@@ -36,6 +36,21 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
     }
   }, [isCenterSlide, dataIndex, data[dataIndex]?.src, coverImage]);
   
+  function imageOrientation(src: string) {
+
+    var orientation,
+    img = new window.Image();
+    img.src = src;
+  
+    if (img.naturalWidth > img.naturalHeight) {
+        orientation = 'landscape';
+    } else if (img.naturalWidth < img.naturalHeight) {
+        orientation = 'portrait';
+    }
+  
+    return orientation;
+  
+  }
 
   return (
     <div className="card-card" draggable={false}>
@@ -54,18 +69,18 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
           justifyContent="center"
           alignItems={fitsCard ? "center" : "flex-start"}
           height={cardHeight}
+          width={'100%'}
         >
             {dimensions.width > dimensions.height  && <Box height={'10%'} backdropFilter="blur(2px)" className="blured-img" >
             <Img src={coverImage}  alt="blured"  className="img-bl" />
             </Box>}
-          <Box >
+          <Box  width={'100%'}>
          
             <Img
               alt="picture_photo"
-              width={isCenterSlide ? "100%" : "100%"}
-              maxHeight={ "100%"}
-              minHeight={ "100%"}
-              objectFit="contain"
+              width={"100%"}
+              height={ (imageOrientation(coverImage) === 'landscape' && isCenterSlide) ? '100%' : '345px'}
+              objectFit={ imageOrientation(coverImage) === 'landscape' ? 'contain' : 'cover'}
               ref={targetRef}
               onClick={() => openModal(coverImage)}
               src={coverImage}
