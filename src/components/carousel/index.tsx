@@ -95,12 +95,8 @@ const CardCarousel = () => {
         <ModalContent>
           <ModalCloseButton bg={'gray.50'} color={'gray.700'} borderWidth={0} fontWeight={'bold'} borderRadius={'5px'} />
           <ModalBody p={0}>
-            <img src={modalImage} alt="modal" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src={modalImage} alt="modal" style={{ width: "100%", height: "100%", maxHeight: "570px", objectFit: "cover" }} />
           </ModalBody>
-          {/* <ModalFooter>
-            <Button onClick={handlePreviousImage}>Anterior</Button>
-            <Button ml={2} onClick={handleNextImage}>Próxima</Button>
-          </ModalFooter> */}
         </ModalContent>
       </Modal>
     </div>
