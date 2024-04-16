@@ -20,6 +20,7 @@ import img19 from '../../assets/images/img-19.jpg';
 import img20 from '../../assets/images/img-20.jpg';
 import img21 from '../../assets/images/img-21.jpg';
 import img22 from '../../assets/images/img-22.jpg';
+import Resizer from "react-image-file-resizer";
 // import imageIcon from '../../assets/images/images.png';
 
 export const isValidTableId = (tableId: string) => {
@@ -31,5 +32,24 @@ export const isValidTableId = (tableId: string) => {
   
     return regex.test(tableId);
   };
+
+
+// function to resize image
+export const resizeFile = (file: any) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      300,
+      300,
+      "JPEG",
+      100,
+      0,
+      (uri: any) => {
+        resolve(uri);
+      },
+      "file"
+    );
+  });
+ 
 
   export const backgrounds = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22];

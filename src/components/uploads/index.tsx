@@ -7,6 +7,7 @@ import SquareGridSkeleton from "./Skeleton";
 import { useMutation, useQueryClient } from "react-query";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward  } from "react-icons/io";
 import './/styles.css';
+import Resizer from "react-image-file-resizer";
 
 
 interface ImageGridProps {
@@ -46,14 +47,33 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     setIsOpen(false);
   };
 
+  const resizeFile = (file: any) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        300,
+        300,
+        "JPEG",
+        100,
+        0,
+        (uri: any) => {
+          resolve(uri);
+        },
+        "file"
+      );
+    });
+
 
   const { mutateAsync, isLoading } = useMutation(
+
+      // first resize the each image using the resizeFile imported from function and then upload it to S3
     async (files: FileList) => {
       const promises = Array.from(files).map(async (file) => {
+        const resizedImage = await resizeFile(file);
         const urlResponse = await axios.get(`${base_url}/s3Url`);
         const url = urlResponse.data.url;
         if (url) {
-          return axios.put(url, file, {
+          return axios.put(url, resizedImage, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -67,9 +87,10 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['allImages'] });
         setIsConfirmed(false);
-    setIsUploadedFile(false);
+        setIsUploadedFile(false);
       },
     }
+  
   );
   
 

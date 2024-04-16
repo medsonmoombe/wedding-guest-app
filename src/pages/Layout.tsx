@@ -129,7 +129,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
         // find the clicked table
         const clickedTabeId = tableElement.getAttribute('id');
 
-        console.log("clickedTabeId", clickedTabeId);
+
         const isCorrectFormat = isValidTableId(clickedTabeId as string);
 
         if (isCorrectFormat) {
