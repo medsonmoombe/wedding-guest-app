@@ -128,6 +128,8 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
 
         // find the clicked table
         const clickedTabeId = tableElement.getAttribute('id');
+
+        console.log("clickedTabeId", clickedTabeId);
         const isCorrectFormat = isValidTableId(clickedTabeId as string);
 
         if (isCorrectFormat) {
@@ -135,20 +137,23 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
           const clickedTabelName = tables.find((table) => table.tableId.toLowerCase().includes(clickedTabeId?.toLowerCase() as string));
 
           // console.log("clickedTabelName", clickedTabelName);
+          // console.log("clickedTabelName", clickedTabelName);
 
           const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabelName?.tableName?.toLowerCase());
           setOpenTable(table);
           if (tableElement.getAttribute('id')?.toLowerCase() === clickedTabelName?.tableId?.toLowerCase()) {
             highlightClickedTable(clickedTabeId as string);
-          } else {
-            // Fill other tables with white and black
-            tableElements.forEach(element => {
-              if (element !== tableElement) {
-                element.setAttribute('fill', 'white');
-                element.setAttribute('stroke', 'black');
-              }
-            });
           }
+
+          // } else {
+          //   // Fill other tables with white and black
+          //   tableElements.forEach(element => {
+          //     if (element !== tableElement) {
+          //       element.setAttribute('fill', 'white');
+          //       element.setAttribute('stroke', 'black');
+          //     }
+          //   });
+          // }
           let selectedTableArr: any[] = [];
 
           // find a table with the same name as the clicked table
