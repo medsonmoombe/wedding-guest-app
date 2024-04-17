@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import menuList from '../../assets/svg/menu-compressed.svg';
-import svg from '../../assets/svg/pt-compressed.svg';
+// import svg from '../../assets/svg/pt-compressed.svg';
 import { Box, Image, Spinner } from '@chakra-ui/react';
 import ToggleBox from '../planning/Toggle';
 
@@ -48,7 +48,7 @@ const MenuList: React.FC = () => {
         />
       ) : (
         <Image
-          src={svg}
+          src={menuList}
           alt="Menu"
           width={'100%'}
           onLoad={handleImageLoad}
