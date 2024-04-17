@@ -6,7 +6,7 @@ import { base_url } from "../constants/enviroments";
 import SquareGridSkeleton from "./Skeleton";
 import { useMutation, useQueryClient } from "react-query";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward  } from "react-icons/io";
-import './/styles.css';
+import './styles.css';
 import Resizer from "react-image-file-resizer";
 
 
@@ -51,10 +51,10 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     new Promise((resolve) => {
       Resizer.imageFileResizer(
         file,
-        900,
-        900,
+        2000,
+        2000,
         "JPEG",
-        70,
+        60,
         0,
         (uri: any) => {
           resolve(uri);
@@ -263,8 +263,8 @@ function imageOrientation(src: string) {
       <IconButton
       aria-label="back"
       icon={<IoMdArrowRoundBack size={20} style={{ zIndex: 99, color:"black", fontWeight:"bold"}} />}
-      bg="rgba(243, 246, 241, 0.73)" opacity={0.7}
-      width={'30px'}
+      bg="rgba(243, 246, 241, 0.73)" opacity={0}
+      width={'30%'}
       height={'80%'}
       border={'1px solid'}
       borderColor={'gray.400'}
@@ -277,8 +277,9 @@ function imageOrientation(src: string) {
       <IconButton
       aria-label="back"
       icon={<IoMdArrowRoundForward size={20} style={{ zIndex: 99, color:"black", fontWeight:"bold"}}/>}
-      bg="rgba(243, 246, 241, 0.73)" opacity={0.7}
-      width={'30px'}
+      bg="rgba(243, 246, 241, 0.73)"
+       opacity={0}
+      width={'30%'}
       height={'80%'}
       border={'1px solid'}
       borderColor={'gray.400'}
