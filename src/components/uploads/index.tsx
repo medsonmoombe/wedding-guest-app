@@ -51,11 +51,11 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     new Promise((resolve) => {
       Resizer.imageFileResizer(
         file,
-        300,
-        300,
+        900,
+        900,
         "JPEG",
         100,
-        300,
+        0,
         (uri: any) => {
           resolve(uri);
         },
