@@ -55,7 +55,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
         300,
         "JPEG",
         100,
-        0,
+        300,
         (uri: any) => {
           resolve(uri);
         },

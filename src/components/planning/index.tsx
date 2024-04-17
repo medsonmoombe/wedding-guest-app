@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import timeline from '../../assets/images/newEngPlanning.svg';
-import pt_timeline from '../../assets/images/newPtPlanning.svg';
+import timeline from '../../assets/svg/ENG-compressed.svg';
+import pt_timeline from '../../assets/svg/pt-compressed.svg';
 import { Box, Image, Spinner } from '@chakra-ui/react';
 import ToggleBox from './Toggle';
 
