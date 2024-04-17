@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaExpand } from 'react-icons/fa';
 import "./Slider.css";
 import { Img, Box } from "@chakra-ui/react";
+import { imageOrientation } from "../function";
 
 export const Slide = React.memo(function (StackedCarouselSlideProps) {
   const {
@@ -36,21 +37,6 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
     }
   }, [isCenterSlide, dataIndex, data[dataIndex]?.src, coverImage]);
   
-  function imageOrientation(src: string) {
-
-    var orientation,
-    img = new window.Image();
-    img.src = src;
-  
-    if (img.naturalWidth > img.naturalHeight) {
-        orientation = 'landscape';
-    } else if (img.naturalWidth < img.naturalHeight) {
-        orientation = 'portrait';
-    }
-  
-    return orientation;
-  
-  }
 
   return (
     <div className="card-card" draggable={false}>

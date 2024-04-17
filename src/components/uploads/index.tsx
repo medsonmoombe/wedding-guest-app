@@ -250,7 +250,7 @@ function imageOrientation(src: string) {
    backdropFilter="blur(2px)"
   />
   <ModalContent>
-    <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} zIndex={99} color={'black'} fontWeight={'bold'} />
+    <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} zIndex={99} color={'black'} fontWeight={'bold'}  />
     <ModalBody width={'100%'} height={'300px'}>
       <Box pos={'relative'} >
       <Image 

@@ -3,7 +3,7 @@ import { StackedCarousel, ResponsiveContainer } from "react-stacked-center-carou
 import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from "@chakra-ui/react";
 import { useState } from "react";
 import '../modal/styles.css';
-import { backgrounds } from '../function/index';
+import { backgrounds, imageOrientation } from '../function/index';
 
 
 const CardCarousel = () => {
@@ -95,7 +95,7 @@ const CardCarousel = () => {
         <ModalContent>
           <ModalCloseButton bg={'gray.50'} color={'gray.700'} borderWidth={0} fontWeight={'bold'} borderRadius={'5px'} />
           <ModalBody p={0}>
-            <img src={modalImage} alt="modal" style={{ width: "100%", height: "100%", maxHeight: "570px", objectFit: "cover" }} />
+            <img src={modalImage} alt="modal" style={{ width: "100%", height: "100%", maxHeight: "500px", minHeight:"400px", objectFit: imageOrientation(modalImage) === 'landscape' ? 'contain' : 'cover'}} />
           </ModalBody>
         </ModalContent>
       </Modal>
