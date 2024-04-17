@@ -51,8 +51,8 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     new Promise((resolve) => {
       Resizer.imageFileResizer(
         file,
-        900,
-        900,
+        500,
+        500,
         "JPEG",
         100,
         0,
