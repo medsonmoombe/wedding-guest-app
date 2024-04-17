@@ -68,7 +68,7 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
               height={ (imageOrientation(coverImage) === 'landscape' && isCenterSlide) ? '100%' : '345px'}
               objectFit={ imageOrientation(coverImage) === 'landscape' ? 'contain' : 'cover'}
               ref={targetRef}
-              onClick={() => openModal(coverImage)}
+              onClick={() => openModal(coverImage,dataIndex)}
               src={coverImage}
             />
           </Box>

@@ -172,7 +172,7 @@ const SVGComponent: React.FC = () => {
     // </g>
     // </svg>    
 
-    <svg width="300" height="450" viewBox="0 0 1588 2473" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="300" height="450" viewBox="250 0 1008 2273" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Frame 1">
 <rect id="Sala" x="2.5" y="108.5" width="1495" height="1714" fill="white" stroke="black" stroke-width="5"/>
 <rect id="Door 2" x="863" y="1809" width="100" height="15" fill="#FEFBFB"/>
