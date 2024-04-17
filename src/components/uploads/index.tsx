@@ -51,10 +51,10 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     new Promise((resolve) => {
       Resizer.imageFileResizer(
         file,
-        500,
-        500,
+        900,
+        900,
         "JPEG",
-        100,
+        70,
         0,
         (uri: any) => {
           resolve(uri);
@@ -265,26 +265,28 @@ function imageOrientation(src: string) {
       icon={<IoMdArrowRoundBack size={20} style={{ zIndex: 99, color:"black", fontWeight:"bold"}} />}
       bg="rgba(243, 246, 241, 0.73)" opacity={0.7}
       width={'30px'}
-      height={'30px'}
+      height={'80%'}
       border={'1px solid'}
       borderColor={'gray.400'}
       color={'gray.500'}
       onClick={handlePreviousImage} 
       position={'absolute'} 
-      left={0} ml={1} top={'50%'}
+      left={0} ml={1} 
+      top={'10%'}
       />
       <IconButton
       aria-label="back"
       icon={<IoMdArrowRoundForward size={20} style={{ zIndex: 99, color:"black", fontWeight:"bold"}}/>}
       bg="rgba(243, 246, 241, 0.73)" opacity={0.7}
       width={'30px'}
-      height={'30px'}
+      height={'80%'}
       border={'1px solid'}
       borderColor={'gray.400'}
       color={'gray.500'}
       onClick={handleNextImage} 
       position={'absolute'} 
-      right={0} mr={1} top={'50%'}
+      right={0} mr={1} 
+      top={'10%'}
       />
       </Box>
     </ModalBody>
