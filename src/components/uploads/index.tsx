@@ -65,7 +65,6 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
 
 
   const { mutateAsync, isLoading } = useMutation(
-
       // first resize the each image using the resizeFile imported from function and then upload it to S3
     async (files: FileList) => {
       const promises = Array.from(files).map(async (file) => {
