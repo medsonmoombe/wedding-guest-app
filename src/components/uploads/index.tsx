@@ -168,7 +168,7 @@ function imageOrientation(src: string) {
     <>
 
       <Grid templateColumns={{ base: "repeat(2, 1fr)", sm: "repeat(2, 1fr)", md:"repeat(4, 1fr)",lg: "repeat(6, 1fr)"}} gap={4} px={4} mb={'100px'}>
-      <IconButton
+        <IconButton
             aria-label="Upload"
             icon={ isLoading ? <Spinner size={'sm'} /> : <FaPlus />}
             bg={'blue.100'}
