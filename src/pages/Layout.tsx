@@ -2,8 +2,6 @@ import { Box, Text, Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SVGComponent from "../components/LayoutComponent";
 import GuestList from "../components/GuestList";
-// import { IoIosArrowBack } from "react-icons/io";
-import tables from "../tables/tables.json";
 import { isValidTableId } from "../components/function";
 
 interface LayoutProps {
@@ -20,8 +18,6 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
 
   const [selectedTable, setSelectedTable] = useState<any[]>([]);
   const [openTable, setOpenTable] = useState<any>(null);
-
-
 
 
   const handleOpen = (id: string) => {
@@ -48,7 +44,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
    // if clickedtable is not empty, find the table with the same name as the clicked table
    useEffect(() => {
     if (selectedUser) {
-      const table = tables.find((table) => table.tableName.toLowerCase() === selectedUser?.tableName?.toLowerCase());
+      const table = uploadedData.find((table: { tableName: string; }) => table?.tableName?.toLowerCase() === selectedUser?.tableName?.toLowerCase());
       setOpenTable(table);
       const tableElements = document.querySelectorAll('[id]');
       tableElements.forEach(tableElement => {
@@ -77,7 +73,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
   const highlightClickedTable = (tableId: string) => {
     // Find the SVG element by its name attribute
     const tableElements = document.querySelectorAll('[id]');
-    const table = tables.find((table) => table.tableId.toLowerCase() === tableId?.toLowerCase());
+    const table = uploadedData.find((table: { tableId: string; }) => table?.tableId?.toLowerCase() === tableId?.toLowerCase());
     // Loop through each table element to find the matching one
     tableElements.forEach(tableElement => {
       if (tableElement.getAttribute('id')?.toLowerCase() === table?.tableId?.toLowerCase()) {
@@ -87,7 +83,6 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
     });
 
   }
-
 
   // if searchQuery is empty reset the hightlighted table or search query does not match any table
 
@@ -106,7 +101,6 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
 
 
   // reset the tables styles when the search query does not match any table
-
   useEffect(() => {
     if (searchQuery && !selectedUser) {
       const tableElements = document.querySelectorAll('[id]');
@@ -128,36 +122,18 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
 
         // find the clicked table
         const clickedTabeId = tableElement.getAttribute('id');
-
-
+ 
         const isCorrectFormat = isValidTableId(clickedTabeId as string);
-
+        
         if (isCorrectFormat) {
-
-          const clickedTabelName = tables.find((table) => table.tableId.toLowerCase().includes(clickedTabeId?.toLowerCase() as string));
-
-          // console.log("clickedTabelName", clickedTabelName);
-          // console.log("clickedTabelName", clickedTabelName);
-
-          const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabelName?.tableName?.toLowerCase());
+          
+          const clickedTabelName = uploadedData?.find((table: { tableId: string; }) => table.tableId.toLowerCase().includes(clickedTabeId?.toLowerCase() as string));
+          const table = uploadedData?.find((table: { tableName: string; }) => table.tableName.toLowerCase() === clickedTabelName?.tableName?.toLowerCase());
           setOpenTable(table);
           if (tableElement.getAttribute('id')?.toLowerCase() === clickedTabelName?.tableId?.toLowerCase()) {
             highlightClickedTable(clickedTabeId as string);
           }
-
-          // } else {
-          //   // Fill other tables with white and black
-          //   tableElements.forEach(element => {
-          //     if (element !== tableElement) {
-          //       element.setAttribute('fill', 'white');
-          //       element.setAttribute('stroke', 'black');
-          //     }
-          //   });
-          // }
           let selectedTableArr: any[] = [];
-
-          // find a table with the same name as the clicked table
-
           // find the guests whose table matches the clicked table
           uploadedData?.filter((data: any) => {
             if (data.tableName === clickedTabelName?.tableName) {
@@ -175,11 +151,10 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
     });
   }, [uploadedData, clickedTabel]);
 
-
  // if clickedtable is not empty, find the table with the same name as the clicked table
   useEffect(() => {
-    if (clickedTabel) {
-      const table = tables.find((table) => table.tableName.toLowerCase() === clickedTabel?.toLowerCase());
+    if (selectedUser) {
+      const table = uploadedData?.find((table: { tableName: string; }) => table.tableName.toLowerCase() === selectedUser?.toLowerCase());
       setOpenTable(table);
       const tableElements = document.querySelectorAll('[id]');
       tableElements.forEach(tableElement => {
@@ -221,8 +196,8 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
       <Box px={4} mb={8} bg={'gray.100'} pb={4}>
        {( searchQuery ||  selectedTable.length !== 0) &&  openTable &&
        <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={4}>
-        <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} fontFamily={'Satisfy, cursive'} >
-          {`${selectedTable[0]?.tableName} Guests`}
+        <Text fontSize="25px" textAlign="center" fontWeight="bold" color={'black'} fontFamily={'Bilbo'} >
+          {`${selectedTable[0]?.tableName}`}
          </Text>
               <Box  width={'inherit'}>
                 <GuestList guests={selectedTable} />
@@ -233,23 +208,23 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
           <Box mb={'30%'} mt={4}>
             <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'} gap={2}>
               {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text> */}
-              <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'}>{openTable?.Description_portugues}</Text>
+              <Text fontSize="20px" color={'black'} textAlign={'center'} fontFamily={'Bilbo'}>{openTable?.Description_portugues}</Text>
               {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'} mt={2} >English</Text> */}
-              <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'} >{openTable?.Description_english}</Text>
+              <Text fontSize="20px" color={'black'} textAlign={'center'} fontFamily={'Bilbo'} >{openTable?.Description_english}</Text>
             </Box>
           </Box>}
 
             { (!searchQuery && selectedTable.length === 0 ) &&  openTable && 
            <Center flexDirection={'column'} >
-              <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'} fontFamily={'Satisfy, cursive'} >
+              <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'} fontFamily={'Bilbo'} >
                  {openTable?.tableName}
               </Text>
               <Box mb={'20%'} mt={4}>
             <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'} gap={2}>
               {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text> */}
-              <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'}>{openTable?.Description_portugues}</Text>
+              <Text fontSize="20px" color={'black'} textAlign={'center'} fontFamily={'Bilbo'}>{openTable?.Description_portugues}</Text>
               {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'} mt={2} >English</Text> */}
-              <Text fontSize="sm" color={'black'} textAlign={'center'} fontFamily={'Engagement, cursive'} >{openTable?.Description_english}</Text>
+              <Text fontSize="20px" color={'black'} textAlign={'center'} fontFamily={'Bilbo'} >{openTable?.Description_english}</Text>
             </Box>
           </Box>
           </Center>}

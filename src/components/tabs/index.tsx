@@ -4,7 +4,7 @@ import { FaUsers } from "react-icons/fa";
 import menu from '../../assets/images/menuList.png';
 import timeline from '../../assets/images/planning.png';
 import imgIcon from '../../assets/images/images.png';
-import { IoCloudUploadSharp } from "react-icons/io5";
+
 
 interface Props {
     activeTabIndex: number;
@@ -105,22 +105,6 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                         </Text>
                     </Flex>
 
-                    <Flex direction={'column'} justify={'center'} align={'center'} width={'full'}>
-                        <Tab bg={'none'} _selected={{ color: 'black', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
-                            <IconButton
-                                aria-label="uploads"
-                                icon={<IoCloudUploadSharp size={30} />}
-
-                                variant={'none'}
-                                width={'40px'}
-                                height={'40px'}
-                                size="md"
-                            />
-                        </Tab>
-                        <Text fontSize={'12px'} color={ activeTabIndex === 4 ? 'gray.700' : 'gray.600'} fontWeight={activeTabIndex === 4 ? 'bold': 'normal'} textAlign={'center'}>
-                            Uploads
-                        </Text>
-                    </Flex>
 
                 </TabList>
             </Tabs>
