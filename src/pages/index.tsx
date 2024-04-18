@@ -7,6 +7,7 @@ import { Box, Center } from "@chakra-ui/react";
 import Timeline from "../components/planning";
 import FooterTabs from "../components/tabs";
 import PhotosUploadsDisplay from "../components/uploads";
+import FileUploads from "./FileUploads";
 
 interface HomeDisplayProps {
     uploadedData: any;
@@ -47,6 +48,7 @@ const HomeDisplay = ({ uploadedData, photos, isFetchingImages}: HomeDisplayProps
                 {activeTabIndex === 1 && <Layout selectedUser={selectedUser} setClickedTable={setClickedTable} searchQuery={searchQuery} setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} activeTabIndex={activeTabIndex} />}
                 {activeTabIndex === 2 && <MenuListPage />}
                 {activeTabIndex === 3 && <Timeline />}
+                {activeTabIndex === 4 && <FileUploads/> }
             </PageLayout>
             <Box width="full" position="fixed" bottom={0} >
                 <Center>
