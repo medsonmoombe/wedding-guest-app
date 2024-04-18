@@ -188,7 +188,7 @@ const CardCarousel = () => {
         <ModalContent>
           <ModalCloseButton bg={'gray.50'} color={'gray.700'} borderWidth={0} fontWeight={'bold'} borderRadius={'5px'} zIndex={99}/>
           <ModalBody p={0}>
-            <Flex justifyContent="space-between" alignItems="center" mb={4} pos={'relative'}>
+            <Flex justifyContent="space-between" alignItems="center" pos={'relative'}>
               <IconButton
                 aria-label="Previous"
                 position={'absolute'}
