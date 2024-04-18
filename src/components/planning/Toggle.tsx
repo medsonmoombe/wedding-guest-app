@@ -16,21 +16,19 @@ const ToggleBox = ({isPortugal, setIsPortugal }: ToggleBoxProps  ) => {
 
   return (
     <Box
-      width="50px"
-      height="30px"
-      bg="inherit"
+      width="90px"
+      height="15px"
+      bg="transparent"
       display="flex"
       alignItems="center"
+      gap={2}
       justifyContent="center"
       cursor="pointer"
-      style={{boxShadow: '2px 2px 2px 2px'}}
+      // style={{boxShadow: '2px 2px 2px 2px'}}
       onClick={handleClick}
     >
-      {isPortugal ? (
-        <Image src={portugalFlag} alt="Portugal Flag" width="100%" height="auto" />
-      ) : (
-        <Image src={ukFlag} alt="UK Flag" width="100%" height="auto" />
-      )}
+        <Image src={portugalFlag} alt="Portugal Flag" width="50%" height="20px" bg={'transparent'} style={{boxShadow: !isPortugal ? '2px 2px 2px 2px': ''}} />
+        <Image src={ukFlag} alt="UK Flag" width="50%" height="20px" bg={'transparent'} style={{boxShadow: isPortugal ? '2px 2px 2px 2px': ''}}/>
     </Box>
   );
 };
