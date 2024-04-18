@@ -25,7 +25,7 @@ const MenuList: React.FC<{ menuItems: MenuItem[] }> = ({ menuItems }) => {
                       <Text fontSize={'20px'} textAlign={'left'}>{menuItem.Description}</Text>
                       <Divider w={'100%'} borderColor={'black'} />
                     </Flex>
-                  ): (menuItem.Description.toLowerCase() === 'desserts' || menuItem.Description.toLowerCase() === 'starters') ? (
+                  ): (menuItem.Description.toLowerCase() === 'desserts' || menuItem.Description.toLowerCase() === 'starters') || (menuItem.Description.toLowerCase() === 'buffet') ? (
                 <Text fontSize={'35px'} textAlign={'center'}>{menuItem.Description}</Text>
                 ) :
                 (
