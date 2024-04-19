@@ -17,7 +17,7 @@ interface ImageGridProps {
 
 const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isUploadedFile, setIsUploadedFile] = useState(true);
+  const [isUploadedFile, setIsUploadedFile] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isConfirmed, setIsConfirmed] = useState(false);
