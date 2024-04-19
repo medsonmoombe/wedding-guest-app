@@ -1,13 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, Button, IconButton, useToast, Center, Text, Spinner, Flex } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, IconButton, Center, Text, Flex } from "@chakra-ui/react";
 import { FaExpand, FaPlus } from "react-icons/fa";
-import axios from "axios";
-import { base_url } from "../constants/enviroments";
 import SquareGridSkeleton from "./Skeleton";
-import { useMutation, useQueryClient } from "react-query";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import './styles.css';
-import Resizer from "react-image-file-resizer";
 import pt_flag from "../../assets/images/portug_flag.png";
 import eng_flag from "../../assets/images/flag_Uk.png";
 import whatsAppBtn from "../../assets/svg/WhatsappButton.svg";
@@ -22,13 +18,9 @@ interface ImageGridProps {
 const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isUploadedFile, setIsUploadedFile] = useState(true);
-  const [selectedFile, setSelectedFile] = useState<string>('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isMultipleFiles, setIsMultipleFiles] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isConfirmed, setIsConfirmed] = useState(false);
-  const toast = useToast();
-  const queryClient = useQueryClient();
 
 
 
@@ -52,50 +44,50 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     setIsOpen(false);
   };
 
-  const resizeFile = (file: any) =>
-    new Promise((resolve) => {
-      Resizer.imageFileResizer(
-        file,
-        2000,
-        2000,
-        "JPEG",
-        60,
-        0,
-        (uri: any) => {
-          resolve(uri);
-        },
-        "file"
-      );
-    });
+  // const resizeFile = (file: any) =>
+  //   new Promise((resolve) => {
+  //     Resizer.imageFileResizer(
+  //       file,
+  //       2000,
+  //       2000,
+  //       "JPEG",
+  //       60,
+  //       0,
+  //       (uri: any) => {
+  //         resolve(uri);
+  //       },
+  //       "file"
+  //     );
+  //   });
 
 
-  const { mutateAsync, isLoading } = useMutation(
-    // first resize the each image using the resizeFile imported from function and then upload it to S3
-    async (files: FileList) => {
-      const promises = Array.from(files).map(async (file) => {
-        const resizedImage = await resizeFile(file);
-        const urlResponse = await axios.get(`${base_url}/s3Url`);
-        const url = urlResponse.data.url;
-        if (url) {
-          return axios.put(url, resizedImage, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
-        }
-      });
+  // const { mutateAsync, isLoading } = useMutation(
+  //   // first resize the each image using the resizeFile imported from function and then upload it to S3
+  //   async (files: FileList) => {
+  //     const promises = Array.from(files).map(async (file) => {
+  //       const resizedImage = await resizeFile(file);
+  //       const urlResponse = await axios.get(`${base_url}/s3Url`);
+  //       const url = urlResponse.data.url;
+  //       if (url) {
+  //         return axios.put(url, resizedImage, {
+  //           headers: {
+  //             "Content-Type": "multipart/form-data",
+  //           },
+  //         });
+  //       }
+  //     });
 
-      return Promise.all(promises);
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ['allImages'] });
-        setIsConfirmed(false);
-        setIsUploadedFile(false);
-      },
-    }
+  //     return Promise.all(promises);
+  //   },
+  //   {
+  //     onSuccess: () => {
+  //       queryClient.invalidateQueries({ queryKey: ['allImages'] });
+  //       setIsConfirmed(false);
+  //       setIsUploadedFile(false);
+  //     },
+  //   }
 
-  );
+  // );
 
 
 
@@ -113,12 +105,9 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
 
     const files = Array.from(e.target.files);
     if (files.length === 1) {
-      setSelectedFile(URL.createObjectURL(files[0]));
       setIsUploadedFile(true);
     } else if (files.length > 1) {
-      setIsMultipleFiles(true);
       setIsUploadedFile(true);
-      setSelectedFile('');
     } else {
       setIsUploadedFile(false);
     }
@@ -129,24 +118,24 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
     setIsUploadedFile(false);
   };
 
-  const handleComfirm = async () => {
-    setIsConfirmed(true);
+  // const handleComfirm = async () => {
+  //   setIsConfirmed(true);
 
-    try {
-      await mutateAsync(fileInputRef.current?.files as any);
+  //   try {
+  //     await mutateAsync(fileInputRef.current?.files as any);
 
-      // while image is uploading, close the confirmation modal
-      handleCloseConfirmationModal();
-    } catch (error) {
-      toast({
-        title: "Erro ao fazer upload da imagem",
-        description: "Ocorreu um erro ao fazer upload da imagem, tente novamente mais tarde.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  }
+  //     // while image is uploading, close the confirmation modal
+  //     handleCloseConfirmationModal();
+  //   } catch (error) {
+  //     toast({
+  //       title: "Erro ao fazer upload da imagem",
+  //       description: "Ocorreu um erro ao fazer upload da imagem, tente novamente mais tarde.",
+  //       status: "error",
+  //       duration: 5000,
+  //       isClosable: true,
+  //     });
+  //   }
+  // }
 
   useEffect(() => {
     handleCloseConfirmationModal();
@@ -176,15 +165,14 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
       <Grid templateColumns={{ base: "repeat(2, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(4, 1fr)", lg: "repeat(6, 1fr)" }} gap={4} px={4} mb={'100px'}>
         <IconButton
           aria-label="Upload"
-          icon={isLoading ? <Spinner size={'sm'} /> : <FaPlus />}
-          bg={'blue.100'}
-          style={{ boxShadow: "2px 2px 4px 2px" }}
+          icon={<FaPlus />}
+          bg={'#57BA63'}
           width={'50px'}
           height={'50px'}
           borderRadius={'50%'}
           border={'1px solid'}
           borderColor={'gray.400'}
-          color={'gray.500'}
+          color={'white'}
           position="fixed"
           top="75%"
           right="15px"
