@@ -184,7 +184,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
     <Box height={'auto'} bg={'gray.100'}>
       { (selectedUser && openTable) &&  <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={2}>
         <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} >
-          {`${selectedUser?.guestFirstName} ${selectedUser?.guestLastName}`}
+          {`${selectedUser?.guestFirstName} ${ selectedUser?.guestLastName ? selectedUser?.guestLastName : ''}`}
         </Text>
         <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} >
           {`${openTable?.tableId}`}

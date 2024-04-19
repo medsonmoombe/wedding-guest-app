@@ -30,12 +30,12 @@ function CollapseEx({ matchingResults, handleNameClick, type, onFocus }: Props )
     return (
       <>
         <Collapse in={toggle} animateOpacity>
-          <Box bg={'white'} maxHeight="100px" overflowY="auto" mt={1} px={4} width={'inherit'} borderRadius={'10px'} zIndex={99}>
+          <Box bg={'white'} maxHeight="200px" overflowY="auto" mt={1} px={4} width={'inherit'} borderRadius={'10px'} zIndex={99}>
                     {matchingResults?.map((result, index) => (
                         <Box key={index} onClick={() => handleNameClick(result)} cursor="pointer" py={1} px={4}>
 
                             <Text color="gray.600" fontWeight="bold">
-                                {type === "users" ? result.guestFirstName + ' ' + result.guestLastName : result.tableName}
+                                {type === "users" ? result.guestFirstName + ' ' + (result.guestLastName ? result.guestLastName : '') : result.tableName}
                             </Text>
                             <Divider  my={1}/>
                         </Box>
@@ -96,12 +96,12 @@ const HeroPage = ({ setSelectedUser,onFocus, setOnFocus, uploadedData, setSearch
         } else {
 
             const matchingResults = uploadedData?.filter((user: any) => {
-                return (`${user.guestFirstName} ${user.guestLastName}`).toLowerCase().includes(searchQuery.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(searchQuery.toLowerCase());
+                return (`${user.guestFirstName} ${user.guestLastName ? user.guestLastName: ''}`).toLowerCase().includes(searchQuery.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(searchQuery.toLowerCase());
             });
             setMatchingResults(matchingResults);
     
             const selectedUserObj = matchingResults?.find((user: any) => {
-                return (`${user.guestFirstName} ${user.guestLastName}`).toLowerCase().includes(searchQuery.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(searchQuery.toLowerCase());
+                return (`${user.guestFirstName} ${user.guestLastName ? user.guestLastName : ''}`).toLowerCase().includes(searchQuery.toLowerCase()) || user.guestLastName && user.guestLastName.toLowerCase().includes(searchQuery.toLowerCase());
             });
             setSelectedUser(selectedUserObj);
         }
@@ -133,9 +133,9 @@ const HeroPage = ({ setSelectedUser,onFocus, setOnFocus, uploadedData, setSearch
         setIsNameClicked(true);
 
             const selectedUserObj = uploadedData?.find((user: any) => {
-                const useFullNames = user.guestFirstName + ' ' + user.guestLastName;
+                const useFullNames = user.guestFirstName + ' ' + (user.guestLastName ? user.guestLastName: '');
                 setSearchQuery(useFullNames);
-                return useFullNames === (name.guestFirstName + ' ' + name.guestLastName);
+                return useFullNames === (name.guestFirstName + ' ' +(name.guestLastName ? name.guestLastName: ''));
             });
             setSelectedUser(selectedUserObj);
             setMatchingResults([]);
