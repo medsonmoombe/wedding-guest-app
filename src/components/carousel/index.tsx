@@ -194,6 +194,7 @@ const CardCarousel = () => {
                 position={'absolute'}
                 left={0}
                 top={'10%'}
+                outline={'none'}
                 bg="rgba(243, 246, 241, 0.73)" 
                 opacity={0}
                 width={'30%'}
@@ -209,6 +210,7 @@ const CardCarousel = () => {
                 position={'absolute'}
                 right={0}
                 top={'10%'}
+                outline={'none'}
                 bg="rgba(243, 246, 241, 0.73)" 
                 opacity={0}
                 width={'30%'}

@@ -259,6 +259,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
                 bg="rgba(243, 246, 241, 0.73)" opacity={0}
                 width={'30%'}
                 height={'80%'}
+                outline={'none'}
                 border={'1px solid'}
                 borderColor={'gray.400'}
                 color={'gray.500'}
@@ -273,6 +274,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
                 bg="rgba(243, 246, 241, 0.73)"
                 opacity={0}
                 width={'30%'}
+                outline={'none'}
                 height={'80%'}
                 border={'1px solid'}
                 borderColor={'gray.400'}
@@ -315,6 +317,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
               <Button
                 colorScheme="whatsapp"
                 variant="solid"
+                outline={'none'}
                 size="md"
                 width={'100%'}
                 height={'50px'}
