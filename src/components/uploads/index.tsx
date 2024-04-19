@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, IconButton, Center, Text, Flex } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, IconButton, Center, Text, Flex, Button } from "@chakra-ui/react";
 import { FaExpand, FaPlus } from "react-icons/fa";
 import SquareGridSkeleton from "./Skeleton";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import './styles.css';
 import pt_flag from "../../assets/images/portug_flag.png";
 import eng_flag from "../../assets/images/flag_Uk.png";
-import whatsAppBtn from "../../assets/svg/WhatsappButton.svg";
+import img_icon from "../../assets/images/images_white.png";
 import { Link } from "react-router-dom";
 
 
@@ -310,15 +310,22 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
             </Box>
           </ModalBody>
           <ModalFooter>
-            <Center width={'full'}>
-            <Link to={whatAlink}>
-            <IconButton
-              aria-label="back"
-              icon={<Image src={whatsAppBtn} alt="icon_button" width={'100%'} height={'60px'} />}
-              width={'100%'}
-              mb={8}
-              variant={'none'}
-              />
+            <Center width={'full'} px={4}>
+            <Link to={whatAlink} style={{ width: '60%'}} >
+              <Button
+                colorScheme="whatsapp"
+                variant="solid"
+                size="md"
+                width={'100%'}
+                height={'50px'}
+                borderRadius={'10px'}
+                justifyContent={'center'}
+                gap={3}
+                mb={8}
+                >
+                <Image src={img_icon} alt="icon_button" objectFit={'contain'} height={'35px'} filter={'white'} />
+                <Text color="white" fontWeight={500} fontSize={'md'}>WhatsApp</Text>
+                </Button>
               </Link>
               </Center>
           </ModalFooter>
