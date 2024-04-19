@@ -36,7 +36,7 @@ const GuestList = ({guests}: any) => {
                   <Text
                     color={useColorModeValue('black', 'white')}
                     fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
-                    dangerouslySetInnerHTML={{ __html: user.guestFirstName + " " + user.guestLastName }}
+                    dangerouslySetInnerHTML={{ __html: user.guestFirstName + " " + (user.guestLastName ? user.guestLastName: '') }}
                   />
                   <Divider my={1}/>
                 </Flex>
