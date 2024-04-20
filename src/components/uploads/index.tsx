@@ -231,7 +231,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
           </GridItem>
         ))}
 
-        {/* render the skeleton in grid if isFetchingImages is true */}
+
         {isFetchingImages && photos.length  === 0 &&  <Center>
           <SquareGridSkeleton />
         </Center>}
