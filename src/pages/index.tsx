@@ -13,9 +13,10 @@ interface HomeDisplayProps {
     uploadedData: any;
     isFetchingImages: boolean;
     handleAddToHomeScreen: () => void;
+    isAppInstalled: boolean;
 }
 
-const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen}: HomeDisplayProps) => {
+const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen, isAppInstalled}: HomeDisplayProps) => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedUser, setSelectedUser] = useState<any>(null);
@@ -31,9 +32,9 @@ const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen}: H
 
     return (
         <Box pos="relative" height={'auto'} bg={'gray.100'} mb={4}>
-            <Button onClick={handleAddToHomeScreen} position={'absolute'} top={4} right={0} colorScheme="blue" size="sm">
+           {isAppInstalled && <Button onClick={handleAddToHomeScreen} position={'fixed'} zIndex={999}  top={4} fontSize={'sm'} left={1} bg="green.400" color={'white'} size="md">
                 Add to Home Screen
-            </Button>
+            </Button>}
             <PageLayout
                 uploadedData={uploadedData}
                 type={activeTabIndex === 1 ? 'users': ''}

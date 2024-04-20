@@ -19,6 +19,7 @@ function App() {
 
 
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [isAppInstalled, setIsAppInstalled] = useState(false);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (event: any) => {
@@ -52,6 +53,11 @@ function App() {
   };
 
 
+  useEffect(() => {
+    // Check if the app is installed
+    const isAppAlreadyInstalled = window.matchMedia('(display-mode: standalone)').matches;
+    setIsAppInstalled(isAppAlreadyInstalled);
+  }, []);
 
   // useEffect(() => {
   //   const fileId = localStorage.getItem('fileId') || file_id;
@@ -144,7 +150,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<HomeDisplay uploadedData={filteredData} isFetchingImages={getAllImages.isLoading} handleAddToHomeScreen={handleAddToHomeScreen} />} />
+          <Route path="/" element={<HomeDisplay uploadedData={filteredData} isFetchingImages={getAllImages.isLoading} handleAddToHomeScreen={handleAddToHomeScreen} isAppInstalled={isAppInstalled}/>} />
         </Routes>
       </Router>
     </>
