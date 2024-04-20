@@ -3,7 +3,7 @@ import Layout from "./Layout";
 import HomePage from "./HomePage";
 import PageLayout from "../components/PageLayout";
 import MenuListPage from "../components/menu";
-import { Box, Button, Center, Icon, IconButton } from "@chakra-ui/react";
+import { Box, Center, Icon, IconButton } from "@chakra-ui/react";
 import Timeline from "../components/planning";
 import FooterTabs from "../components/tabs";
 import PhotosUploadsDisplay from "../components/uploads";
