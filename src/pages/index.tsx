@@ -33,7 +33,7 @@ const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen, is
 
     return (
         <Box pos="relative" height={'auto'} bg={'gray.100'} mb={4}>
-           {!isAppInstalled && 
+           {!isAppInstalled && activeTabIndex === 0 &&
            <IconButton
                 position="fixed"
                 top={4}
