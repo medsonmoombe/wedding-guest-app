@@ -3,11 +3,12 @@ import Layout from "./Layout";
 import HomePage from "./HomePage";
 import PageLayout from "../components/PageLayout";
 import MenuListPage from "../components/menu";
-import { Box, Button, Center } from "@chakra-ui/react";
+import { Box, Button, Center, Icon, IconButton } from "@chakra-ui/react";
 import Timeline from "../components/planning";
 import FooterTabs from "../components/tabs";
 import PhotosUploadsDisplay from "../components/uploads";
 import FileUploads from "./FileUploads";
+import { FaArrowDown } from "react-icons/fa";
 
 interface HomeDisplayProps {
     uploadedData: any;
@@ -32,9 +33,19 @@ const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen, is
 
     return (
         <Box pos="relative" height={'auto'} bg={'gray.100'} mb={4}>
-           {!isAppInstalled && <Button onClick={handleAddToHomeScreen} position={'fixed'} zIndex={999}  top={4} fontSize={'sm'} left={1} bg="green.400" color={'white'} size="md">
-                Add to Home Screen
-            </Button>}
+           {!isAppInstalled && 
+           <IconButton
+                position="fixed"
+                top={4}
+                left={4}
+                zIndex={999}
+                onClick={handleAddToHomeScreen}
+                aria-label="Add to home screen"
+                icon={<Icon as={FaArrowDown} />}
+                bg={'green.400'}
+                color={'white'}
+                variant="solid"
+            />}
             <PageLayout
                 uploadedData={uploadedData}
                 type={activeTabIndex === 1 ? 'users': ''}
