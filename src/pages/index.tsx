@@ -32,7 +32,7 @@ const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen, is
 
     return (
         <Box pos="relative" height={'auto'} bg={'gray.100'} mb={4}>
-           {isAppInstalled && <Button onClick={handleAddToHomeScreen} position={'fixed'} zIndex={999}  top={4} fontSize={'sm'} left={1} bg="green.400" color={'white'} size="md">
+           {!isAppInstalled && <Button onClick={handleAddToHomeScreen} position={'fixed'} zIndex={999}  top={4} fontSize={'sm'} left={1} bg="green.400" color={'white'} size="md">
                 Add to Home Screen
             </Button>}
             <PageLayout
