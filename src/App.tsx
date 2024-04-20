@@ -18,6 +18,38 @@ function App() {
   const toast = useToast();
 
 
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (event: any) => {
+      event.preventDefault(); // Prevent the default behavior
+      setDeferredPrompt(event); // Save the event for later use
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const handleAddToHomeScreen = () => {
+    if (deferredPrompt) {
+      // Show the installation prompt
+      deferredPrompt.prompt();
+
+      // Wait for the user to respond to the prompt
+      deferredPrompt.userChoice.then((choiceResult: any) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the installation prompt');
+        } else {
+          console.log('User dismissed the installation prompt');
+        }
+
+        setDeferredPrompt(null); // Reset the deferredPrompt state
+      });
+    }
+  };
 
 
 
@@ -108,12 +140,11 @@ function App() {
   // filter the data to avoid duplicates by guest name if guestFirstName and guestLastName are the same
   const filteredData = guestList?.filter((v: { guestFirstName: any; guestLastName: any; }, i: any, a: any[]) => a.findIndex((t: { guestFirstName: any; guestLastName: any; }) => (t.guestFirstName === v.guestFirstName && t.guestLastName === v.guestLastName)) === i);
 
-
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<HomeDisplay uploadedData={filteredData} isFetchingImages={getAllImages.isLoading}/>} />
+          <Route path="/" element={<HomeDisplay uploadedData={filteredData} isFetchingImages={getAllImages.isLoading} handleAddToHomeScreen={handleAddToHomeScreen} />} />
         </Routes>
       </Router>
     </>

@@ -3,7 +3,7 @@ import Layout from "./Layout";
 import HomePage from "./HomePage";
 import PageLayout from "../components/PageLayout";
 import MenuListPage from "../components/menu";
-import { Box, Center } from "@chakra-ui/react";
+import { Box, Button, Center } from "@chakra-ui/react";
 import Timeline from "../components/planning";
 import FooterTabs from "../components/tabs";
 import PhotosUploadsDisplay from "../components/uploads";
@@ -12,9 +12,10 @@ import FileUploads from "./FileUploads";
 interface HomeDisplayProps {
     uploadedData: any;
     isFetchingImages: boolean;
+    handleAddToHomeScreen: () => void;
 }
 
-const HomeDisplay = ({ uploadedData, isFetchingImages}: HomeDisplayProps) => {
+const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen}: HomeDisplayProps) => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedUser, setSelectedUser] = useState<any>(null);
@@ -30,6 +31,9 @@ const HomeDisplay = ({ uploadedData, isFetchingImages}: HomeDisplayProps) => {
 
     return (
         <Box pos="relative" height={'auto'} bg={'gray.100'} mb={4}>
+            <Button onClick={handleAddToHomeScreen} position={'absolute'} top={4} right={0} colorScheme="blue" size="sm">
+                Add to Home Screen
+            </Button>
             <PageLayout
                 uploadedData={uploadedData}
                 type={activeTabIndex === 1 ? 'users': ''}
