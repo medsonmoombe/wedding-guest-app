@@ -8,21 +8,21 @@ import pt_flag from "../../assets/images/portug_flag.png";
 import eng_flag from "../../assets/images/flag_Uk.png";
 import img_icon from "../../assets/images/images_white.png";
 import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { imagesAtom } from "../../recoil/atom";
 
 
 interface ImageGridProps {
-  photos: any[];
   isFetchingImages: boolean;
 }
 
-const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
+const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isUploadedFile, setIsUploadedFile] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isConfirmed, setIsConfirmed] = useState(false);
-
-
+  const photos = useRecoilValue(imagesAtom);
 
   const images = photos.length > 0 ? photos : [];
   const whatAlink = `https://wa.me/+258844530132, gostaria de partilhar as minhas fotos com Judith e Robert. Obrigado!`;
@@ -186,8 +186,8 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
           style={{ display: "none" }}
           onChange={handleSubmit}
           multiple
-        />
-        {images?.map((image, index) => (
+        /> 
+        {images?.map((image: any, index: any) => (
           <GridItem key={index}
             style={{ boxShadow: "8px 8px 8px 8px rgba(0, 0, 0, 0.1)" }}
           >
@@ -232,7 +232,7 @@ const ImageGrid = ({ photos, isFetchingImages }: ImageGridProps) => {
         ))}
 
         {/* render the skeleton in grid if isFetchingImages is true */}
-        {isFetchingImages && <Center>
+        {isFetchingImages && photos.length  === 0 &&  <Center>
           <SquareGridSkeleton />
         </Center>}
       </Grid>

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import { CSVHeaders, CSVResult, CSVRow } from './components/Header';
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import axios from 'axios';
 // import Papa from 'papaparse';
 import { useToast } from '@chakra-ui/react';
@@ -8,6 +8,8 @@ import { base_url } from './components/constants/enviroments';
 import HomeDisplay from './pages';
 import { useQuery } from 'react-query';
 import guestList from './data/guestList.json';
+import { useSetRecoilState } from 'recoil';
+import { imagesAtom } from './recoil/atom';
 
 function App() {
   // const [uploadedData, setUploadedData] = useState<CSVRow[]>([]);
@@ -72,6 +74,13 @@ function App() {
   //   }
   // }, [parsedData]);
 
+  const setImages = useSetRecoilState(imagesAtom);
+
+  useEffect(() => {
+    if (photos.length > 0) {
+      setImages(photos);
+    }
+  }, [photos, setImages]);
 
 
   const getAllImages = useQuery('allImages', async () => {
@@ -94,7 +103,7 @@ function App() {
   }
   );
 
-  // console.log(uploadedData)
+
 
   // filter the data to avoid duplicates by guest name if guestFirstName and guestLastName are the same
   const filteredData = guestList?.filter((v: { guestFirstName: any; guestLastName: any; }, i: any, a: any[]) => a.findIndex((t: { guestFirstName: any; guestLastName: any; }) => (t.guestFirstName === v.guestFirstName && t.guestLastName === v.guestLastName)) === i);
@@ -104,7 +113,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<HomeDisplay uploadedData={filteredData} photos={photos} isFetchingImages={getAllImages.isLoading}/>} />
+          <Route path="/" element={<HomeDisplay uploadedData={filteredData} isFetchingImages={getAllImages.isLoading}/>} />
         </Routes>
       </Router>
     </>

@@ -11,11 +11,10 @@ import FileUploads from "./FileUploads";
 
 interface HomeDisplayProps {
     uploadedData: any;
-    photos: any;
     isFetchingImages: boolean;
 }
 
-const HomeDisplay = ({ uploadedData, photos, isFetchingImages}: HomeDisplayProps) => {
+const HomeDisplay = ({ uploadedData, isFetchingImages}: HomeDisplayProps) => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedUser, setSelectedUser] = useState<any>(null);
@@ -44,7 +43,7 @@ const HomeDisplay = ({ uploadedData, photos, isFetchingImages}: HomeDisplayProps
             >
                 {/* render the component here based on the activeTabIndex */}
                 {activeTabIndex === 0 && <HomePage/>}
-                {activeTabIndex === 0 && <PhotosUploadsDisplay photos={photos} isFetchingImages={isFetchingImages}/> }
+                {activeTabIndex === 0 && <PhotosUploadsDisplay  isFetchingImages={isFetchingImages}/> }
                 {activeTabIndex === 1 && <Layout selectedUser={selectedUser} setClickedTable={setClickedTable} searchQuery={searchQuery} setSearchQuery={setSearchQuery} uploadedData={uploadedData} clickedTabel={clickedTabel} activeTabIndex={activeTabIndex} />}
                 {activeTabIndex === 2 && <MenuListPage />}
                 {activeTabIndex === 3 && <Timeline />}
