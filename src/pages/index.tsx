@@ -3,12 +3,11 @@ import Layout from "./Layout";
 import HomePage from "./HomePage";
 import PageLayout from "../components/PageLayout";
 import MenuListPage from "../components/menu";
-import { Box, Center, Flex, Icon, IconButton, Img } from "@chakra-ui/react";
+import { Box, Center, Flex, IconButton, Img } from "@chakra-ui/react";
 import Timeline from "../components/planning";
 import FooterTabs from "../components/tabs";
 import PhotosUploadsDisplay from "../components/uploads";
 import FileUploads from "./FileUploads";
-import { FaArrowDown } from "react-icons/fa";
 import i_app from '../assets/images/i-app.png';
 import i_app2 from '../assets/images/i-app1.png';
 
