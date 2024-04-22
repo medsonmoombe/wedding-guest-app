@@ -63,6 +63,6 @@ export default defineConfig({
     }),
   ],
   build: {
-    assetsInlineLimit: 5000000000 // or a higher value
+    assetsInlineLimit: 10000 // or a higher value
   }
 });
