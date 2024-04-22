@@ -76,7 +76,7 @@ const CardCarousel = () => {
             );
           }}
         />
-        <Flex justifyContent="flex-end" alignItems="end" pos={'relative'} width={'inherit'} pt={2}>
+        <Flex justifyContent="flex-end"  alignItems="end" pos={'relative'} width={'inherit'} pt={2}>
           <Link to={instaLink} target="_blank">
         <Image src={insta_icon} alt="insta" p={1} border={'2px solid transparent'} boxShadow={'lg'}  borderRadius={'50%'} width={'45px'} height={'45px'} position={'absolute'} bottom={0} right={4} zIndex={99} />
         </Link>
