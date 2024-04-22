@@ -2,6 +2,7 @@ import { Box,Collapse, Divider, Flex, Icon, Input, InputGroup, InputRightElement
 
 import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { MdClose } from "react-icons/md";
 
 
 
@@ -183,11 +184,12 @@ const HeroPage = ({ setSelectedUser,onFocus, setOnFocus, uploadedData, setSearch
                         onKeyPress={handleKeyPress}
                     />
                     <InputRightElement cursor="pointer" gap={2} pr={8} alignItems={'center'}>
-                        <Icon as={FaSearch} color="gray.400" boxSize={18} onClick={handleSearch} zIndex={99} />
-                        {/* <Icon as={type === "users" ? CiLocationOn : FaUsers} color="gray.400" boxSize={25} mt={-1}
-                            onClick={handleRelocate}
-                            zIndex={99}
-                        /> */}
+                        
+                      {
+                        searchQuery && searchQuery.length > 0 ? (
+                            <Icon as={MdClose} color="gray.400" boxSize={18} onClick={() => setSearchQuery('')} zIndex={99} />
+                        ) :<Icon as={FaSearch} color="gray.400" boxSize={18} onClick={handleSearch} zIndex={99} />
+                      }
                     </InputRightElement>
                 </InputGroup>
             </Flex>

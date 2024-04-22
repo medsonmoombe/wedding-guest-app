@@ -41,7 +41,7 @@ export default defineConfig({
       registerType: 'autoUpdate', // Change to 'autoUpdate' for better user experience
       manifest: {
         name: 'J&R Wedding App',
-        short_name: 'J&R App',
+        short_name: 'Nosso Dia',
         description: 'Wedding app for J&R',
         theme_color: '#ffffff',
         background_color: '#ffffff',

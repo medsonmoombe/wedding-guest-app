@@ -3,12 +3,14 @@ import Layout from "./Layout";
 import HomePage from "./HomePage";
 import PageLayout from "../components/PageLayout";
 import MenuListPage from "../components/menu";
-import { Box, Center, Icon, IconButton } from "@chakra-ui/react";
+import { Box, Center, Flex, Icon, IconButton, Img } from "@chakra-ui/react";
 import Timeline from "../components/planning";
 import FooterTabs from "../components/tabs";
 import PhotosUploadsDisplay from "../components/uploads";
 import FileUploads from "./FileUploads";
 import { FaArrowDown } from "react-icons/fa";
+import i_app from '../assets/images/i-app.png';
+import i_app2 from '../assets/images/i-app1.png';
 
 interface HomeDisplayProps {
     uploadedData: any;
@@ -34,18 +36,35 @@ const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen, is
     return (
         <Box pos="relative" height={'auto'} bg={'gray.100'} mb={4}>
            {!isAppInstalled && activeTabIndex === 0 &&
-           <IconButton
-                position="fixed"
-                top={4}
-                left={4}
+           <Flex 
+           gap={1}
+           position="fixed"
+           top={4}
+           zIndex={999}
+           left={8}
+           >
+
+               <IconButton
+
+                    zIndex={999}
+                    onClick={handleAddToHomeScreen}
+                    aria-label="Add to home screen"
+                    icon={<Img src={i_app} alt="i-app" width={'50px'} height={'40px'} />}
+                    // bg={'green.400'}
+                    color={'white'}
+                    variant="solid"
+                />
+             <IconButton
                 zIndex={999}
                 onClick={handleAddToHomeScreen}
                 aria-label="Add to home screen"
-                icon={<Icon as={FaArrowDown} />}
-                bg={'green.400'}
+                icon={<Img src={i_app2} alt="i-app" width={'40px'} height={'40px'} />}
+                // bg={'green.400'}
                 color={'white'}
                 variant="solid"
-            />}
+            />
+           </Flex>
+            }
             <PageLayout
                 uploadedData={uploadedData}
                 type={activeTabIndex === 1 ? 'users': ''}

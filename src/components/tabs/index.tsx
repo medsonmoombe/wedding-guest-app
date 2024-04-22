@@ -1,9 +1,8 @@
 import { Tabs, TabList, Tab, IconButton, Flex, Text } from "@chakra-ui/react";
-import { FaUsers } from "react-icons/fa";
-// import { CiLocationOn } from "react-icons/ci";
-import menu from '../../assets/images/menuList.png';
-import timeline from '../../assets/images/planning.png';
-import imgIcon from '../../assets/images/images.png';
+import { IoImagesOutline } from "react-icons/io5";
+import { LuUsers } from "react-icons/lu";
+import { FaUtensils } from "react-icons/fa6";
+import { MdAccessTime } from "react-icons/md";
 
 
 interface Props {
@@ -39,7 +38,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                         <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
                             <IconButton
                                 aria-label="Search database"
-                                icon={<img src={imgIcon} alt="img-icon" width={'50px'} height={'50px'} />}
+                                icon={<IoImagesOutline size={30}  color="gray.600" />}
                                 width={'40px'}
                                 height={'40px'}
                                 variant={'none'}
@@ -51,11 +50,11 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                         </Text>
                     </Flex>
                     <Flex direction={'column'} justify={'center'} align={'center'} width={'full'}>
-                        <Tab bg={'none'} _selected={{ color: 'white', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
+                        <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
                             <IconButton
                                 aria-label="Search database"
                                 color={'gray.500'}
-                                icon={<FaUsers size={30} />}
+                                icon={<LuUsers size={30}  color="gray.600"/>}
                                 width={'40px'}
                                 height={'40px'}
                                 variant={'none'}
@@ -71,11 +70,11 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
 
 
                     <Flex direction={'column'} justify={'center'} align={'center'} width={'full'}>
-                        <Tab bg={'none'} _selected={{ color: 'white', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
+                        <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
                             <IconButton
                                 aria-label="Search database"
-                                icon={<img src={menu} alt="menu" width={'35px'} height={'25px'} />}
-
+                                icon={<FaUtensils size={30} color="gray.600"/>}
+                                color={'gray.500'}
                                 variant={'none'}
                                 width={'40px'}
                                 height={'40px'}
@@ -89,10 +88,10 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
 
 
                     <Flex direction={'column'} justify={'center'} align={'center'} width={'full'}>
-                        <Tab bg={'none'} _selected={{ color: 'white', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
+                        <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
                             <IconButton
                                 aria-label="Search database"
-                                icon={<img src={timeline} alt="menu" width={'65px'} height={'75px'} />}
+                                icon={<MdAccessTime size={30}  color="gray.600"/>}
 
                                 variant={'none'}
                                 width={'40px'}
