@@ -16,17 +16,26 @@ const CardCarousel = () => {
   const fetchedImages = useRecoilValue(displayImagesAtom);
 
    const photos = fetchedImages.length > 0 ? fetchedImages?.filter((url: string) => {
+    // if url is in this format https://wedding-photo-collection.s3.us-east-1.amazonaws.com/carousel-images/ end with / then return false
+
+    if (url.endsWith('/')) {
+      return false;
+    }
+
     return !(url.endsWith('i-app.png') ||
     url.endsWith('ENG-compressed.svg') ||
     url.endsWith('pt-compressed.svg') ||
     url.endsWith('i-app1.png') ||
     url.endsWith('insta.webp') ||
-    url.endsWith('love.png'));
+    url.endsWith('love.png') || url.endsWith('world-wide-web.png') ||
+    url.endsWith('facebook.png') ||
+    url.endsWith('instagram.png'))
   }) : backgrounds;
 
   
 
   const openModal = (imageUrl: string, index: number) => {
+    console.log('openModal', imageUrl);
     setModalImage(imageUrl);
     setCurrentImageIndex(index);
     setIsModalOpen(true);

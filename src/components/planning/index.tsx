@@ -53,8 +53,6 @@ const TimeLine: React.FC = () => {
     url.endsWith('pt-compressed.svg');
  }) : [pt_timeline, timeline];
 
- console.log("SVGS ::", photos)
-
   const handleImageLoad = () => {
     setImageLoaded(true);
     setIsLoading(false); // Set loading to false when image is loaded

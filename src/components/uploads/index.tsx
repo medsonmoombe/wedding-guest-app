@@ -9,8 +9,9 @@ import eng_flag from "../../assets/images/flag_Uk.png";
 import insta_icon from '../../assets/images/insta.webp';
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { imagesAtom } from "../../recoil/atom";
+import { displayImagesAtom, imagesAtom } from "../../recoil/atom";
 import { IoImagesOutline } from "react-icons/io5";
+import { FaInstagramSquare } from "react-icons/fa";
 
 
 interface ImageGridProps {
@@ -24,7 +25,18 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const photos = useRecoilValue(imagesAtom);
+  const [openSocialModal, setOpenSocialModal] = useState(false);
 
+  const fetchedImages = useRecoilValue(displayImagesAtom);
+
+  const icons = fetchedImages.length > 0 ? fetchedImages?.filter((url: string) => {
+   return url.endsWith('world-wide-web.png') ||
+   url.endsWith('facebook.png') ||
+   url.endsWith('instagram.png')
+ }) : [];
+
+
+ console.log('icons', icons);
   const images = photos.length > 0 ? photos : [];
   const whatAlink = `https://wa.me/+258844530132, gostaria de partilhar as minhas fotos com Judith e Robert. Obrigado!`;
   
@@ -45,6 +57,15 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
   const handleCloseModal = () => {
     setIsOpen(false);
   };
+
+  const handleOpenSocialModal = () => {
+    setOpenSocialModal(true);
+  }
+
+
+  const handleCloseSocialModal = () => {
+    setOpenSocialModal(false);
+  }
 
   // const resizeFile = (file: any) =>
   //   new Promise((resolve) => {
@@ -171,23 +192,24 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
         <IconButton
           aria-label="Upload"
           icon={<>
-          <Link to={instaLink} target="_blank" >
-        <Image position={'fixed'} top={'66%'} right={'20px'}  zIndex={999} src={insta_icon} alt="insta" p={1} border={'2px solid transparent'} boxShadow={'lg'}   borderRadius={'50%'} width={'50px'} height={'50px'} />
-        </Link>
+          {/* <Link to={instaLink} target="_blank" > */}
+        <Image position={'fixed'} top={'66%'} right={'20px'}  zIndex={999} src={insta_icon} alt="insta" p={1}    borderRadius={'50%'} width={'50px'} height={'50px'} />
+        {/* </Link> */}
           </>}
           bg={'white'}
           width={'60px'}
           height={'60px'}
           borderRadius={'50%'}
-          border={'1px solid'}
           borderColor={'gray.500'}
+          boxShadow={'lg'} 
           color={'transparent'}
+          border={'2px solid teal'}
           position="fixed"
           top="65%"
           right="15px"
           variant={'none'}
           zIndex="999"
-          onClick={handleClickPlusIcon}
+          onClick={handleOpenSocialModal}
         />
 
         <IconButton
@@ -357,6 +379,79 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
                 <Text color="white" fontWeight={500} fontSize={'md'}>WhatsApp</Text>
                 </Button>
               </Link>
+              </Center>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+
+      
+      {/* social modal */}
+      <Modal isOpen={openSocialModal} onClose={handleCloseSocialModal} size={'md'} >
+        <ModalOverlay />
+        <ModalContent>
+        <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} zIndex={99} color={'black'} fontWeight={'bold'} />
+          <ModalBody mt={10}>
+            <Box width={'full'} px={4} pt={8}>
+              <Flex align="center" justify="center" direction={'column'}  mb={8} width={'full'}>
+              <Image  zIndex={999} src={insta_icon} alt="insta" p={1} border={'2px solid teal'} boxShadow={'lg'}   borderRadius={'50%'} width={'80px'} height={'80px'} />
+              <Text color="gray.700" fontWeight={'bold'} fontSize={'xl'} mt={4} >
+                  Folha Verde
+                </Text>
+              </Flex>
+              <Flex align="start" justify="start" direction="column"  mb={4} width={'full'} ml={4}>
+                 <Text color="black" fontWeight={500} textTransform={'capitalize'}>
+                  Perfomance & event venue
+                </Text>
+                <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
+                  Nors melhores memontos da sua vida!
+                  </Text>
+                  <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
+                  Contacto: 82 300 4683
+                  </Text>
+                  <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
+                  Commercial@folhaverdemz.com
+                  </Text>
+
+                  <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
+                  Maputo: Av. Thomas Ndunda, 1288
+                  </Text>
+
+                  <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
+                  Matola : Rua de Empasse Parcela 856
+                  </Text>
+              </Flex>
+
+
+
+            </Box>
+          </ModalBody>
+          <ModalFooter>
+          <Center width={'full'} px={2} gap={4}>
+            <IconButton
+              aria-label="instagram"
+              icon={<Image src={icons?.[2]} alt="insta" p={1}    width={'50px'} height={'50px'} />}
+              width={'50px'}
+              height={'50px'}
+              zIndex="999"
+              onClick={() => window.open(instaLink, "_blank")}
+              />
+              <IconButton
+              aria-label="facebook"
+              icon={<Image src={icons?.[1]}  alt="facebook" p={1}    width={'50px'} height={'50px'}/>}
+              width={'50px'}
+              height={'50px'}
+              zIndex="999"
+              onClick={() => window.open(instaLink, "_blank")}
+              />
+              <IconButton
+              aria-label="instagram"
+              icon={<Image src={icons?.[0]} alt="web" p={1}    width={'50px'} height={'50px'} />}
+              width={'50px'}
+              height={'50px'}
+              zIndex="999"
+              onClick={() => window.open(instaLink, "_blank")}
+              />
               </Center>
           </ModalFooter>
         </ModalContent>

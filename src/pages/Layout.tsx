@@ -192,10 +192,16 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
       </Box>}
       <Center width={'full'} flexDirection={'column'}>
         <SVGComponent />
+        <Center mb={3}>
+          <Text fontSize="20px" textAlign="center" fontWeight="600" color={'gray.700'} >
+            { openTable?.tableId ? `${openTable?.tableId}` : "Table not found"}
+          </Text>
+        </Center>
       </Center>
       <Box px={4} mb={8} bg={'gray.100'} pb={4}>
        {( searchQuery ||  selectedTable.length !== 0) &&  openTable &&
        <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={4}>
+        
         <Text fontSize="25px" textAlign="center" fontWeight="bold" color={'black'} fontFamily={'Bilbo'} >
           {`${selectedTable[0]?.tableName}`}
          </Text>

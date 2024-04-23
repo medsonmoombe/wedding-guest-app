@@ -73,7 +73,12 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
             />
           </Box>
             {dimensions.width > dimensions.height  && <Box  height={'10%'} backdropFilter="blur(2px)" className="blured-img">
-            <Img src={coverImage}  alt="blured" backdropFilter="blur(2px)" className="img-bl" />
+            <Img 
+              src={coverImage}  
+              alt="blured" 
+              backdropFilter="blur(2px)" 
+              className="img-bl"
+               />
             </Box>}
         </Box>
         <div className="icon-container">
