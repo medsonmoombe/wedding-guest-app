@@ -124,10 +124,10 @@ function App() {
   }, [photos, setImages]);
 
 useEffect(() => {
-  if(displayPhotos.length > 0) {
+  if (displayPhotos.length > 0) {
     setDisplayImages(displayPhotos);
   }
-}, [displayPhotos, setDisplayImages]);
+},[displayPhotos, setDisplayImages]);
 
 
   const getAllImages = useQuery('allImages', async () => {

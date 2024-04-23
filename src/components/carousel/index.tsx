@@ -15,16 +15,13 @@ const CardCarousel = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const fetchedImages = useRecoilValue(displayImagesAtom);
 
-   const photos = fetchedImages.filter((url: string) => {
+   const photos = fetchedImages?.filter((url: string) => {
     return !(url.endsWith('i-app.png') ||
     url.endsWith('i-app1.png') ||
     url.endsWith('insta.webp') ||
     url.endsWith('love.png'));
   });
 
-  if(photos.length === 0) {
-    return null;
-  }
   
 
   const openModal = (imageUrl: string, index: number) => {
@@ -38,20 +35,20 @@ const CardCarousel = () => {
   };
 
   const handlePreviousImage = () => {
-    const newIndex = (currentImageIndex - 1 + photos.length) % photos.length;
-    setModalImage(photos[newIndex]);
+    const newIndex = (currentImageIndex - 1 + photos?.length) % photos?.length;
+    setModalImage(photos?.[newIndex]);
     setCurrentImageIndex(newIndex);
   };
 
   const handleNextImage = () => {
-    const newIndex = (currentImageIndex + 1) % photos.length;
-    setModalImage(photos[newIndex]);
+    const newIndex = (currentImageIndex + 1) % photos?.length;
+    setModalImage(photos?.[newIndex]);
     setCurrentImageIndex(newIndex);
   };
 
 
-  function preprocessPhotos(photos: any[], width: any) {
-    return photos.map((photo: any) => {
+  function preprocessPhotos (photos: any[], width: any) {
+    return photos?.map((photo: any) => {
       return {
         src: photo,
         style: {
@@ -127,7 +124,7 @@ const CardCarousel = () => {
                 height={'80%'}
                 icon={<FaArrowRight />}
                 onClick={handleNextImage}
-                disabled={currentImageIndex === photos.length - 1}
+                disabled={currentImageIndex === photos?.length - 1}
                 variant="ghost"
               />
             </Flex>
