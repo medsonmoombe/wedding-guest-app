@@ -39,7 +39,7 @@ import { Box, Image, Spinner } from '@chakra-ui/react';
 import ToggleBox from './Toggle';
 import { useRecoilValue } from 'recoil';
 import { displayImagesAtom } from '../../recoil/atom';
-import { backgrounds } from '../function';
+
 
 const TimeLine: React.FC = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
