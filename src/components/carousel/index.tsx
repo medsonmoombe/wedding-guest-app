@@ -1,19 +1,18 @@
 import { Slide } from "./Carousel";
 import { StackedCarousel, ResponsiveContainer } from "react-stacked-center-carousel";
-import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, IconButton, Flex, Image } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, IconButton, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import '../modal/styles.css';
 import { backgrounds, imageOrientation } from '../function/index';
-import insta_icon from '../../assets/images/insta.webp';
-import { Link } from "react-router-dom";
+
 
 const CardCarousel = () => {
   const [modalImage, setModalImage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const instaLink = 'https://www.instagram.com/folhaverde.mz/';
+  
 
   const openModal = (imageUrl: string, index: number) => {
     setModalImage(imageUrl);
@@ -76,11 +75,7 @@ const CardCarousel = () => {
             );
           }}
         />
-        <Flex justifyContent="flex-end"  alignItems="end" pos={'relative'} width={'inherit'} pt={2}>
-          <Link to={instaLink} target="_blank">
-        <Image src={insta_icon} alt="insta" p={1} border={'2px solid transparent'} boxShadow={'lg'}  borderRadius={'50%'} width={'45px'} height={'45px'} position={'absolute'} bottom={0} right={4} zIndex={99} />
-        </Link>
-        </Flex>
+        
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal} size="sm">
         <ModalOverlay

@@ -6,10 +6,11 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import './styles.css';
 import pt_flag from "../../assets/images/portug_flag.png";
 import eng_flag from "../../assets/images/flag_Uk.png";
-import img_icon from "../../assets/images/images_white.png";
+import insta_icon from '../../assets/images/insta.webp';
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { imagesAtom } from "../../recoil/atom";
+import { IoImagesOutline } from "react-icons/io5";
 
 
 interface ImageGridProps {
@@ -158,11 +159,36 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
 
   }
 
+  const instaLink = 'https://www.instagram.com/folhaverde.mz/';
+
 
   return (
     <>
 
       <Grid templateColumns={{ base: "repeat(2, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(4, 1fr)", lg: "repeat(6, 1fr)" }} gap={4} px={4} mb={'100px'}>
+
+        <IconButton
+          aria-label="Upload"
+          icon={<>
+          <Link to={instaLink} target="_blank" >
+        <Image position={'fixed'} top={'66%'} right={'20px'}  zIndex={999} src={insta_icon} alt="insta" p={1} border={'2px solid transparent'} boxShadow={'lg'}   borderRadius={'50%'} width={'50px'} height={'50px'} />
+        </Link>
+          </>}
+          bg={'white'}
+          width={'60px'}
+          height={'60px'}
+          borderRadius={'50%'}
+          border={'1px solid'}
+          borderColor={'gray.500'}
+          color={'transparent'}
+          position="fixed"
+          top="65%"
+          right="15px"
+          variant={'none'}
+          zIndex="999"
+          onClick={handleClickPlusIcon}
+        />
+
         <IconButton
           aria-label="Upload"
           icon={<FaPlus />}
@@ -326,7 +352,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
                 gap={3}
                 mb={8}
                 >
-                <Image src={img_icon} alt="icon_button" objectFit={'contain'} height={'35px'} filter={'white'} />
+                <IoImagesOutline size={30}  color="gray.600" />
                 <Text color="white" fontWeight={500} fontSize={'md'}>WhatsApp</Text>
                 </Button>
               </Link>
