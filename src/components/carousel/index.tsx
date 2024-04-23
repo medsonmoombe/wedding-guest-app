@@ -17,6 +17,8 @@ const CardCarousel = () => {
 
    const photos = fetchedImages.length > 0 ? fetchedImages?.filter((url: string) => {
     return !(url.endsWith('i-app.png') ||
+    url.endsWith('ENG-compressed.svg') ||
+    url.endsWith('pt-compressed.svg') ||
     url.endsWith('i-app1.png') ||
     url.endsWith('insta.webp') ||
     url.endsWith('love.png'));

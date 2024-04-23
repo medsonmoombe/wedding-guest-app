@@ -37,11 +37,23 @@ import timeline from '../../assets/svg/ENG-compressed.svg';
 import pt_timeline from '../../assets/svg/pt-compressed.svg';
 import { Box, Image, Spinner } from '@chakra-ui/react';
 import ToggleBox from './Toggle';
+import { useRecoilValue } from 'recoil';
+import { displayImagesAtom } from '../../recoil/atom';
+import { backgrounds } from '../function';
 
 const TimeLine: React.FC = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isPortugal, setIsPortugal] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // New state for loading status
+
+  const fetchedImages = useRecoilValue(displayImagesAtom);
+
+  const photos = fetchedImages.length > 0 ? fetchedImages?.filter((url: string) => {
+    return url.endsWith('ENG-compressed.svg') ||
+    url.endsWith('pt-compressed.svg');
+ }) : [pt_timeline, timeline];
+
+ console.log("SVGS ::", photos)
 
   const handleImageLoad = () => {
     setImageLoaded(true);
@@ -73,7 +85,7 @@ const TimeLine: React.FC = () => {
       )}
       {isPortugal ? (
         <Image
-          src={timeline}
+          src={photos?.[1]}
           alt="Menu"
           width={'100%'}
           onLoad={handleImageLoad}
@@ -81,7 +93,7 @@ const TimeLine: React.FC = () => {
         />
       ) : (
         <Image
-          src={pt_timeline}
+          src={photos?.[0]}
           alt="Menu"
           width={'100%'}
           onLoad={handleImageLoad}

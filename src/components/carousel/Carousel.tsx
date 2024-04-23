@@ -17,8 +17,8 @@ export const Slide = React.memo(function (StackedCarouselSlideProps) {
 
   const coverImage = data[dataIndex]?.image || data[dataIndex]?.src || data[dataIndex];
   
-  const imageWidth = coverImage.width;
-  const imageHeight = coverImage.height;
+  const imageWidth = coverImage?.width;
+  const imageHeight = coverImage?.height;
 
   const imageRatio = imageWidth / imageHeight;
   const cardWidth = cardHeight * imageRatio;
