@@ -53,7 +53,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                         <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
                             <IconButton
                                 aria-label="Search database"
-                                color={'gray.500'}
+                                // color={'gray.500'}
                                 icon={<LuUsers size={30}  color="gray.600"/>}
                                 width={'40px'}
                                 height={'40px'}
@@ -74,7 +74,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                             <IconButton
                                 aria-label="Search database"
                                 icon={<FaUtensils size={30} color="gray.600"/>}
-                                color={'gray.500'}
+                                // color={'gray.500'}
                                 variant={'none'}
                                 width={'40px'}
                                 height={'40px'}
