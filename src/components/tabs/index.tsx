@@ -92,7 +92,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                             <IconButton
                                 aria-label="Search database"
                                 icon={<MdAccessTime size={30}  color="gray.600"/>}
-
+                                color={'red'}
                                 variant={'none'}
                                 width={'40px'}
                                 height={'40px'}
