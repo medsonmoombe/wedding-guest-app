@@ -4,7 +4,7 @@ import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, IconBut
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import '../modal/styles.css';
-import {imageOrientation } from '../function/index';
+import {backgrounds, imageOrientation } from '../function/index';
 import { displayImagesAtom } from "../../recoil/atom";
 import { useRecoilValue } from "recoil";
 
@@ -15,12 +15,12 @@ const CardCarousel = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const fetchedImages = useRecoilValue(displayImagesAtom);
 
-   const photos = fetchedImages?.filter((url: string) => {
+   const photos = fetchedImages.length > 0 ? fetchedImages?.filter((url: string) => {
     return !(url.endsWith('i-app.png') ||
     url.endsWith('i-app1.png') ||
     url.endsWith('insta.webp') ||
     url.endsWith('love.png'));
-  });
+  }) : backgrounds;
 
   
 
