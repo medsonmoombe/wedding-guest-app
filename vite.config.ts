@@ -39,15 +39,6 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate', // Change to 'autoUpdate' for better user experience
-       // add this to cache all the imports
-       workbox: {
-        globPatterns: ["**/*"],
-    },
-    // add this to cache all the
-    // static assets in the public folder
-    includeAssets: [
-        "**/*",
-    ],
       manifest: {
         name: 'J&R Wedding App',
         short_name: 'Nosso Dia',
@@ -72,6 +63,6 @@ export default defineConfig({
     }),
   ],
   build: {
-    assetsInlineLimit: 9000 // or a higher value
+    assetsInlineLimit: 10000 // or a higher value
   }
 });
