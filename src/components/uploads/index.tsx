@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { displayImagesAtom, imagesAtom } from "../../recoil/atom";
 import { IoImagesOutline } from "react-icons/io5";
-import { FaInstagramSquare } from "react-icons/fa";
 
 
 interface ImageGridProps {
