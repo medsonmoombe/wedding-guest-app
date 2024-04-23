@@ -27,6 +27,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
 
   const images = photos.length > 0 ? photos : [];
   const whatAlink = `https://wa.me/+258844530132, gostaria de partilhar as minhas fotos com Judith e Robert. Obrigado!`;
+  
 
   const handleImageClick = (index: React.SetStateAction<number>) => {
     setCurrentImageIndex(index);

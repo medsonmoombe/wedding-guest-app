@@ -8,3 +8,9 @@ export const imagesAtom = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const displayImagesAtom = atom({
+  key: 'displayImagesAtom',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});

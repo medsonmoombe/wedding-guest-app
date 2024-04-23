@@ -9,12 +9,15 @@ import HomeDisplay from './pages';
 import { useQuery } from 'react-query';
 import guestList from './data/guestList.json';
 import { useSetRecoilState } from 'recoil';
-import { imagesAtom } from './recoil/atom';
+import { displayImagesAtom, imagesAtom } from './recoil/atom';
 
 function App() {
   // const [uploadedData, setUploadedData] = useState<CSVRow[]>([]);
   // const [parsedData, setParsedData] = useState<any>([]);
   const [photos, setPhotos] = useState<any[]>([]);
+  const [displayPhotos, setDisplayPhotos ] = useState<any[]>([]);
+  const setImages = useSetRecoilState(imagesAtom);
+  const setDisplayImages = useSetRecoilState(displayImagesAtom);
   const toast = useToast();
 
 
@@ -112,13 +115,19 @@ function App() {
   //   }
   // }, [parsedData]);
 
-  const setImages = useSetRecoilState(imagesAtom);
+
 
   useEffect(() => {
     if (photos.length > 0) {
       setImages(photos);
     }
   }, [photos, setImages]);
+
+useEffect(() => {
+  if(displayPhotos.length > 0) {
+    setDisplayImages(displayPhotos);
+  }
+}, [displayPhotos, setDisplayImages]);
 
 
   const getAllImages = useQuery('allImages', async () => {
@@ -142,6 +151,26 @@ function App() {
   );
 
 
+useQuery('displayImages', async () => {
+    const response = await axios.get(`${base_url}/display-images`);
+    return response.data.images;
+  }, {
+    onSuccess: (data) => {
+      setDisplayPhotos(data);
+    },
+    onError: (error) => {
+      toast({
+        title: 'Error fetching images',
+        description: 'An error occurred while fetching images from the server',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      console.error(error);
+    },
+  }
+  );
+
   // filter the data to avoid duplicates by guest name if guestFirstName and guestLastName are the same
   const filteredData = guestList?.filter((v: { guestFirstName: any; guestLastName: any; }, i: any, a: any[]) => a.findIndex((t: { guestFirstName: any; guestLastName: any; }) => (t.guestFirstName === v.guestFirstName && t.guestLastName === v.guestLastName)) === i);
 
@@ -149,7 +178,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<HomeDisplay uploadedData={filteredData} isFetchingImages={getAllImages.isLoading} handleAddToHomeScreen={handleAddToHomeScreen} isAppInstalled={isAppInstalled}/>} />
+          <Route path="/" element={<HomeDisplay uploadedData={filteredData} isFetchingImages={getAllImages.isLoading}  handleAddToHomeScreen={handleAddToHomeScreen} isAppInstalled={isAppInstalled}/>} />
         </Routes>
       </Router>
     </>

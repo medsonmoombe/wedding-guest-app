@@ -8,8 +8,8 @@ import Timeline from "../components/planning";
 import FooterTabs from "../components/tabs";
 import PhotosUploadsDisplay from "../components/uploads";
 import FileUploads from "./FileUploads";
-import i_app from '../assets/images/i-app.png';
-import i_app2 from '../assets/images/i-app1.png';
+import { useRecoilValue } from "recoil";
+import { displayImagesAtom } from "../recoil/atom";
 
 interface HomeDisplayProps {
     uploadedData: any;
@@ -24,6 +24,16 @@ const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen, is
     const [selectedUser, setSelectedUser] = useState<any>(null);
     const [clickedTabel, setClickedTable] = useState<string>("");
 
+    const fetchedImages = useRecoilValue(displayImagesAtom);
+
+    const photos = fetchedImages.filter((url: string) => {
+     return url.endsWith('i-app.png') ||
+     url.endsWith('i-app1.png');
+   });
+ 
+   if(photos.length === 0) {
+     return null;
+   }
 
     // if searchQuery is empty setClickedTable to empty string
     useEffect(() => {
@@ -48,7 +58,7 @@ const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen, is
                     zIndex={999}
                     onClick={handleAddToHomeScreen}
                     aria-label="Add to home screen"
-                    icon={<Img src={i_app} alt="i-app" width={'50px'} height={'40px'} />}
+                    icon={<Img src={photos[1]} alt="i-app" width={'50px'} height={'40px'} />}
                     // bg={'green.400'}
                     color={'white'}
                     variant="solid"
@@ -57,7 +67,7 @@ const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen, is
                 zIndex={999}
                 onClick={handleAddToHomeScreen}
                 aria-label="Add to home screen"
-                icon={<Img src={i_app2} alt="i-app" width={'40px'} height={'40px'} />}
+                icon={<Img src={photos[0]} alt="i-app" width={'40px'} height={'40px'} />}
                 // bg={'green.400'}
                 color={'white'}
                 variant="solid"

@@ -4,14 +4,27 @@ import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, IconBut
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import '../modal/styles.css';
-import { backgrounds, imageOrientation } from '../function/index';
+import {imageOrientation } from '../function/index';
+import { displayImagesAtom } from "../../recoil/atom";
+import { useRecoilValue } from "recoil";
 
 
 const CardCarousel = () => {
   const [modalImage, setModalImage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const fetchedImages = useRecoilValue(displayImagesAtom);
 
+   const photos = fetchedImages.filter((url: string) => {
+    return !(url.endsWith('i-app.png') ||
+    url.endsWith('i-app1.png') ||
+    url.endsWith('insta.webp') ||
+    url.endsWith('love.png'));
+  });
+
+  if(photos.length === 0) {
+    return null;
+  }
   
 
   const openModal = (imageUrl: string, index: number) => {
@@ -25,14 +38,14 @@ const CardCarousel = () => {
   };
 
   const handlePreviousImage = () => {
-    const newIndex = (currentImageIndex - 1 + backgrounds.length) % backgrounds.length;
-    setModalImage(backgrounds[newIndex]);
+    const newIndex = (currentImageIndex - 1 + photos.length) % photos.length;
+    setModalImage(photos[newIndex]);
     setCurrentImageIndex(newIndex);
   };
 
   const handleNextImage = () => {
-    const newIndex = (currentImageIndex + 1) % backgrounds.length;
-    setModalImage(backgrounds[newIndex]);
+    const newIndex = (currentImageIndex + 1) % photos.length;
+    setModalImage(photos[newIndex]);
     setCurrentImageIndex(newIndex);
   };
 
@@ -51,7 +64,7 @@ const CardCarousel = () => {
     });
   }
 
-  const processedPhotos = preprocessPhotos(backgrounds, 100);
+  const processedPhotos = preprocessPhotos(photos, 100);
 
   return (
     <div className="card" style={{ width: '100%' }}>
@@ -114,7 +127,7 @@ const CardCarousel = () => {
                 height={'80%'}
                 icon={<FaArrowRight />}
                 onClick={handleNextImage}
-                disabled={currentImageIndex === backgrounds.length - 1}
+                disabled={currentImageIndex === photos.length - 1}
                 variant="ghost"
               />
             </Flex>
