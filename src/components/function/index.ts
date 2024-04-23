@@ -1,5 +1,5 @@
 import img1 from '../../assets/images/img-1.webp';
-import img2 from '../../../public/img-2.jpg';
+import img2 from '/img-2.jpg';
 import img3 from '../../assets/images/img-3.jpg';
 import img4 from '../../assets/images/img-4.jpg';
 import img5 from '../../assets/images/img-5.jpg';
