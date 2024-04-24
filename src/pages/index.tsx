@@ -55,7 +55,7 @@ const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen, is
                     zIndex={999}
                     onClick={handleAddToHomeScreen}
                     aria-label="Add to home screen"
-                    icon={<Img src={photos?.[1]} alt="i-app" width={'50px'} height={'40px'} />}
+                    icon={<Img src={photos?.[1]} alt="i-app" width={'50px'} height={'40px'} objectFit={'contain'} />}
                     // bg={'green.400'}
                     color={'white'}
                     variant="solid"
@@ -64,7 +64,7 @@ const HomeDisplay = ({ uploadedData, isFetchingImages, handleAddToHomeScreen, is
                 zIndex={999}
                 onClick={handleAddToHomeScreen}
                 aria-label="Add to home screen"
-                icon={<Img src={photos?.[0]} alt="i-app" width={'40px'} height={'40px'} />}
+                icon={<Img src={photos?.[0]} alt="i-app" width={'50px'} height={'40px'} objectFit={'contain'} />}
                 // bg={'green.400'}
                 color={'white'}
                 variant="solid"

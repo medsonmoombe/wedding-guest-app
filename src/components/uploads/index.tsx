@@ -31,7 +31,8 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
   const icons = fetchedImages.length > 0 ? fetchedImages?.filter((url: string) => {
    return url.endsWith('world-wide-web.png') ||
    url.endsWith('facebook.png') ||
-   url.endsWith('instagram.png')
+   url.endsWith('instagram.png') ||
+   url.endsWith('icon_2.jpg')
  }) : [];
 
 
@@ -196,6 +197,8 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
   }
 
 
+
+
   return (
     <>
 
@@ -205,7 +208,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
           aria-label="Upload"
           icon={<>
           {/* <Link to={instaLink} target="_blank" > */}
-        <Image objectFit={'contain'}  zIndex={999} src={insta_icon} alt="insta"    borderRadius={'50%'} width={'40px'} height={'40px'} />
+        <Image objectFit={'contain'}  zIndex={999} src={icons?.[2]} alt="insta"    borderRadius={'50%'} width={'40px'} height={'40px'} />
         {/* </Link> */}
           </>}
           bg={'white'}
@@ -227,7 +230,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
         <IconButton
           aria-label="Upload"
           icon={<FaPlus />}
-          bg={'teal'}
+          bg={'#1B5934'}
           width={'60px'}
           height={'60px'}
           borderRadius={'50%'}
@@ -442,7 +445,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
           <Center width={'full'} px={2} gap={4}>
             <IconButton
               aria-label="facebook"
-              icon={<Image src={icons?.[2]} alt="facebook" p={1}    width={'50px'} height={'50px'} />}
+              icon={<Image src={icons?.[3]} alt="facebook" p={1}    width={'50px'} height={'50px'} />}
               width={'50px'}
               height={'50px'}
               zIndex="999"
