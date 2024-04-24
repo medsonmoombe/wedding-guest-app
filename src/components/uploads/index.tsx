@@ -183,6 +183,18 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
   const fbLink = 'https://web.facebook.com/folhaverde.mz/?locale=pt_BR&_rdc=1&_rdr';
   const webLink = 'https://www.folhaverdemz.com/';
 
+  const openInsta = () => {
+    window.open(instaLink, "_blank");
+  }
+
+  const openFb = () => {
+    window.open(fbLink, "_blank");
+  }
+
+  const openWeb = () => {
+    window.open(webLink, "_blank");
+  }
+
 
   return (
     <>
@@ -429,20 +441,20 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
           <ModalFooter>
           <Center width={'full'} px={2} gap={4}>
             <IconButton
-              aria-label="instagram"
-              icon={<Image src={icons?.[2]} alt="insta" p={1}    width={'50px'} height={'50px'} />}
+              aria-label="facebook"
+              icon={<Image src={icons?.[2]} alt="facebook" p={1}    width={'50px'} height={'50px'} />}
               width={'50px'}
               height={'50px'}
               zIndex="999"
-              onClick={() => window.open(instaLink, "_blank")}
+              onClick={openFb}
               />
               <IconButton
-              aria-label="facebook"
-              icon={<Image src={icons?.[1]}  alt="facebook" p={1}    width={'50px'} height={'50px'}/>}
+              aria-label="instagram"
+              icon={<Image src={icons?.[1]}  alt="instagram" p={1}    width={'50px'} height={'50px'}/>}
               width={'50px'}
               height={'50px'}
               zIndex="999"
-              onClick={() => window.open(fbLink, "_blank")}
+              onClick={openInsta}
               />
               <IconButton
               aria-label="web"
@@ -450,7 +462,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
               width={'50px'}
               height={'50px'}
               zIndex="999"
-              onClick={() => window.open(webLink, "_blank")}
+              onClick={openWeb}
               />
               </Center>
           </ModalFooter>
