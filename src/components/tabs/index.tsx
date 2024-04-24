@@ -35,7 +35,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                     backdropFilter="blur(2px)"
                 >
                     <Flex direction={'column'} justify={'center'} align={'center'} width={'full'} >
-                        <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
+                        <Tab bg={'none'} _selected={{ color: '#1B5934', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'#1B5934' }} height={'40px'}>
                             <IconButton
                                 aria-label="Search database"
                                 icon={<IoImagesOutline size={30}  color="gray.600" />}
@@ -50,7 +50,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
                         </Text>
                     </Flex>
                     <Flex direction={'column'} justify={'center'} align={'center'} width={'full'}>
-                        <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
+                        <Tab bg={'none'} _selected={{ color: '#1B5934', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'#1B5934' }} height={'40px'}>
                             <IconButton
                                 aria-label="Search database"
                                 // color={'gray.500'}
@@ -70,7 +70,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
 
 
                     <Flex direction={'column'} justify={'center'} align={'center'} width={'full'}>
-                        <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
+                        <Tab bg={'none'} _selected={{ color: '#1B5934', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'#1B5934' }} height={'40px'}>
                             <IconButton
                                 aria-label="Search database"
                                 icon={<FaUtensils size={30} color="gray.600"/>}
@@ -88,7 +88,7 @@ const FooterTabs = ({ activeTabIndex, setActiveTabIndex }: Props) => {
 
 
                     <Flex direction={'column'} justify={'center'} align={'center'} width={'full'}>
-                        <Tab bg={'none'} _selected={{ color: 'gray', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'gray.500' }} height={'40px'}>
+                        <Tab bg={'none'} _selected={{ color: '#1B5934', bg: 'blue.100', borderRadius: '20px', width: '80px', height: '40px', border: '1px solid', borderColor:'#1B5934' }} height={'40px'}>
                             <IconButton
                                 aria-label="Search database"
                                 icon={<MdAccessTime size={30}  color="gray.600"/>}
