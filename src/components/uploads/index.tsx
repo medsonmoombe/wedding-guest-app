@@ -35,7 +35,6 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
  }) : [];
 
 
- console.log('icons', icons);
   const images = photos.length > 0 ? photos : [];
   const whatAlink = `https://wa.me/+258844530132, gostaria de partilhar as minhas fotos com Judith e Robert. Obrigado!`;
   
@@ -181,6 +180,8 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
   }
 
   const instaLink = 'https://www.instagram.com/folhaverde.mz/';
+  const fbLink = 'https://web.facebook.com/folhaverde.mz/?locale=pt_BR&_rdc=1&_rdr';
+  const webLink = 'https://www.folhaverdemz.com/';
 
 
   return (
@@ -219,7 +220,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
           height={'50px'}
           borderRadius={'50%'}
           border={'1px solid'}
-          borderColor={'gray.400'}
+          borderColor={'#fff'}
           color={'white'}
           position="fixed"
           top="75%"
@@ -441,15 +442,15 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
               width={'50px'}
               height={'50px'}
               zIndex="999"
-              onClick={() => window.open(instaLink, "_blank")}
+              onClick={() => window.open(fbLink, "_blank")}
               />
               <IconButton
-              aria-label="instagram"
+              aria-label="web"
               icon={<Image src={icons?.[0]} alt="web" p={1}    width={'50px'} height={'50px'} />}
               width={'50px'}
               height={'50px'}
               zIndex="999"
-              onClick={() => window.open(instaLink, "_blank")}
+              onClick={() => window.open(webLink, "_blank")}
               />
               </Center>
           </ModalFooter>
