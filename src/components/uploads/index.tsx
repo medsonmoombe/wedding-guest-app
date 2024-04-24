@@ -205,7 +205,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
           aria-label="Upload"
           icon={<>
           {/* <Link to={instaLink} target="_blank" > */}
-        <Image position={'fixed'} top={'66%'} right={'20px'}  zIndex={999} src={insta_icon} alt="insta" p={1}    borderRadius={'50%'} width={'50px'} height={'50px'} />
+        <Image objectFit={'contain'}  zIndex={999} src={insta_icon} alt="insta"    borderRadius={'50%'} width={'40px'} height={'40px'} />
         {/* </Link> */}
           </>}
           bg={'white'}
