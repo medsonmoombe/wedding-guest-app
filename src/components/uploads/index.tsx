@@ -410,7 +410,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
             <Box width={'full'} px={4} pt={8}>
               <Flex align="center" justify="center" direction={'column'}  mb={8} width={'full'}>
               <Image  zIndex={999} src={insta_icon} alt="insta" p={1} border={'2px solid teal'} boxShadow={'lg'}   borderRadius={'50%'} width={'80px'} height={'80px'} />
-              <Text color="gray.700" fontWeight={'bold'} fontSize={'xl'} mt={4} >
+              <Text color="#1B5934" fontWeight={'bold'} fontSize={'xl'} mt={4} >
                   Folha Verde
                 </Text>
               </Flex>
