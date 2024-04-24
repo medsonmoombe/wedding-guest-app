@@ -17,7 +17,7 @@ const MenuList: React.FC<{ menuItems: MenuItem[] }> = ({ menuItems }) => {
             <Box key={menuItem.ID} fontFamily={menuItem.Font} width={'100%'}>
                 {/* If description is equal to "Menu", display it differently */}
                 {menuItem.Description.toLowerCase() === 'menu' ? (
-                <Text fontSize='90px' textAlign={'center'}>
+                <Text fontSize='90px' mt={16} textAlign={'center'}>
                     {menuItem.Description}
                 </Text>
                 ) :(menuItem.Description.toLowerCase() === 'salads' || menuItem.Description.toLowerCase() === 'hot dishes') || menuItem.Description.toLowerCase() === 'traditional dishes' || menuItem.Description.toLowerCase() === 'side dishes' ? (
@@ -26,7 +26,7 @@ const MenuList: React.FC<{ menuItems: MenuItem[] }> = ({ menuItems }) => {
                       <Divider w={'100%'} borderColor={'black'} />
                     </Flex>
                   ): (menuItem.Description.toLowerCase() === 'desserts' || menuItem.Description.toLowerCase() === 'starters') || (menuItem.Description.toLowerCase() === 'buffet') ? (
-                <Text fontSize={'35px'} textAlign={'center'}>{menuItem.Description}</Text>
+                <Text fontSize={'35px'} pt={menuItem.Description.toLowerCase() === 'buffet' || menuItem.Description.toLowerCase() === 'desserts' ? 12: 0 } textAlign={'center'}>{menuItem.Description}</Text>
                 ) :
                 (
                     <Text fontSize={'20px'} textAlign={'center'}>{menuItem.Description}</Text>

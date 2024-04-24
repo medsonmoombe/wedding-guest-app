@@ -6,7 +6,7 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import './styles.css';
 import pt_flag from "../../assets/images/portug_flag.png";
 import eng_flag from "../../assets/images/flag_Uk.png";
-import insta_icon from '../../assets/images/insta.webp';
+import insta_icon from '../../assets/images/icon_2.jpg';
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { displayImagesAtom, imagesAtom } from "../../recoil/atom";
