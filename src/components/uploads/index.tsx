@@ -227,9 +227,9 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
         <IconButton
           aria-label="Upload"
           icon={<FaPlus />}
-          bg={'#57BA63'}
-          width={'50px'}
-          height={'50px'}
+          bg={'teal'}
+          width={'60px'}
+          height={'60px'}
           borderRadius={'50%'}
           border={'1px solid'}
           borderColor={'#fff'}

@@ -18,6 +18,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
 
   const [selectedTable, setSelectedTable] = useState<any[]>([]);
   const [openTable, setOpenTable] = useState<any>(null);
+  const [clickedTableId , setClickedTableId] = useState<string>("");
 
 
   const handleOpen = (id: string) => {
@@ -126,7 +127,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
         const isCorrectFormat = isValidTableId(clickedTabeId as string);
         
         if (isCorrectFormat) {
-          
+          setClickedTableId(clickedTabeId as string);
           const clickedTabelName = uploadedData?.find((table: { tableId: string; }) => table.tableId.toLowerCase().includes(clickedTabeId?.toLowerCase() as string));
           const table = uploadedData?.find((table: { tableName: string; }) => table.tableName.toLowerCase() === clickedTabelName?.tableName?.toLowerCase());
           setOpenTable(table);
@@ -138,8 +139,6 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
           uploadedData?.filter((data: any) => {
             if (data.tableName === clickedTabelName?.tableName) {
               selectedTableArr.push(data);
-            } else {
-              console.log("data", "no data found");
             }
           });
 
@@ -186,15 +185,15 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
         <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} >
           {`${selectedUser?.guestFirstName} ${ selectedUser?.guestLastName ? selectedUser?.guestLastName : ''}`}
         </Text>
-        <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} >
-          {`${openTable?.tableId}`}
+        <Text fontSize="lg" textAlign="center" color={'black'} >
+          {clickedTableId && clickedTableId}
         </Text>
       </Box>}
       <Center width={'full'} flexDirection={'column'}>
         <SVGComponent />
-        <Center mb={3}>
-          <Text fontSize="20px" textAlign="center" fontWeight="600" color={'gray.700'} >
-            { openTable?.tableId ? `${openTable?.tableId}` : "Table not found"}
+        <Center mb={8} mt={-20}>
+        <Text fontSize="20px" textAlign="center" color={'gray.700'} >
+            { clickedTableId&&clickedTableId}
           </Text>
         </Center>
       </Center>
@@ -202,7 +201,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
        {( searchQuery ||  selectedTable.length !== 0) &&  openTable &&
        <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={4}>
         
-        <Text fontSize="25px" textAlign="center" fontWeight="bold" color={'black'} fontFamily={'Bilbo'} >
+        <Text fontSize="22px" textAlign="center" mt={-4} mb={4} fontWeight={'bold'} color={'black'} fontFamily={'Montserrat'} >
           {`${selectedTable[0]?.tableName}`}
          </Text>
               <Box  width={'inherit'}>
@@ -211,12 +210,12 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
               </Box>
            }
         {( (searchQuery || selectedTable.length > 0) && openTable) &&
-          <Box mb={'30%'} mt={4}>
-            <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'} gap={2}>
+          <Box mb={'30%'} mt={8}>
+            <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'} gap={8}>
               {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text> */}
-              <Text fontSize="20px" color={'black'} textAlign={'center'} fontFamily={'Bilbo'}>{openTable?.Description_portugues}</Text>
+              <Text fontSize="16px" color={'black'} textAlign={'center'} fontFamily={'Montserrat'}>{openTable?.Description_portugues}</Text>
               {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'} mt={2} >English</Text> */}
-              <Text fontSize="20px" color={'black'} textAlign={'center'} fontFamily={'Bilbo'} >{openTable?.Description_english}</Text>
+              <Text fontSize="16px" color={'black'} textAlign={'center'} fontFamily={'Montserrat'} >{openTable?.Description_english}</Text>
             </Box>
           </Box>}
 
@@ -225,12 +224,12 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
               <Text fontSize="md" color={'black'} textAlign={'center'} fontWeight={'bold'} fontFamily={'Bilbo'} >
                  {openTable?.tableName}
               </Text>
-              <Box mb={'20%'} mt={4}>
-            <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'} gap={2}>
+              <Box mb={'20%'} mt={8}>
+            <Box width={'full'} display={'flex'} justifyContent={'center'} borderRadius={'5px'} alignItems={'center'} flexDirection={'column'} gap={8}>
               {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'}>Portugues</Text> */}
-              <Text fontSize="20px" color={'black'} textAlign={'center'} fontFamily={'Bilbo'}>{openTable?.Description_portugues}</Text>
+              <Text fontSize="16px" color={'black'} textAlign={'center'} fontFamily={'Montserrat'}>{openTable?.Description_portugues}</Text>
               {/* <Text fontSize="md" fontWeight={'bold'} color={'black'} textAlign={'center'} borderBottom={'2px'} borderBottomColor={'blue.400'} mt={2} >English</Text> */}
-              <Text fontSize="20px" color={'black'} textAlign={'center'} fontFamily={'Bilbo'} >{openTable?.Description_english}</Text>
+              <Text fontSize="16px" color={'black'} textAlign={'center'} fontFamily={'Montserrat'} >{openTable?.Description_english}</Text>
             </Box>
           </Box>
           </Center>}
