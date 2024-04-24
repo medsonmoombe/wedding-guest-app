@@ -29,8 +29,7 @@ const CardCarousel = () => {
     url.endsWith('insta.webp') ||
     url.endsWith('love.png') || url.endsWith('world-wide-web.png') ||
     url.endsWith('facebook.png') ||
-    url.endsWith('instagram.png')) ||
-    url.endsWith('icon_2.jpg')
+    url.endsWith('instagram.png') || url.endsWith('icon_2.jpg'))
   }) : backgrounds;
 
   
