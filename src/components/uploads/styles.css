@@ -70,13 +70,13 @@
     display: none !important;
   }
 
-  .image-modal {
+  /* .image-modal {
     width: 100% !important;
     height: 100% !important;
     min-width: 100% !important;
     margin: auto !important;
     max-height: 400px !important;
-  }
+  } */
 
   .chakra-modal__content {
     top: 10% !important;
