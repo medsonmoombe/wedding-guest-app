@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Grid, GridItem, Box, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, IconButton, Center, Text, Flex, Button } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Image, Modal, ModalOverlay,useToast, ModalContent, ModalCloseButton, ModalBody, ModalFooter, IconButton, Center, Text, Flex, Button, Spinner } from "@chakra-ui/react";
 import { FaExpand, FaPlus } from "react-icons/fa";
 import SquareGridSkeleton from "./Skeleton";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import './styles.css';
-import pt_flag from "../../assets/images/portug_flag.png";
-import eng_flag from "../../assets/images/flag_Uk.png";
 import insta_icon from '../../assets/images/icon_2.jpg';
-import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { displayImagesAtom, imagesAtom } from "../../recoil/atom";
-import { IoImagesOutline } from "react-icons/io5";
+import { useMutation } from "react-query";
+import axios from "axios";
+import Resizer from "react-image-file-resizer";
+import { base_url } from "../constants/enviroments";
 
 
 interface ImageGridProps {
@@ -25,6 +25,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const photos = useRecoilValue(imagesAtom);
   const [openSocialModal, setOpenSocialModal] = useState(false);
+  const toast = useToast();
 
   const fetchedImages = useRecoilValue(displayImagesAtom);
 
@@ -37,9 +38,6 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
 
 
   const images = photos.length > 0 ? photos : [];
-  const whatAlink = `https://wa.me/+258844530132, gostaria de partilhar as minhas fotos com Judith e Robert. Obrigado!`;
-  
-
   const handleImageClick = (index: React.SetStateAction<number>) => {
     setCurrentImageIndex(index);
     setIsOpen(true);
@@ -66,58 +64,58 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
     setOpenSocialModal(false);
   }
 
-  // const resizeFile = (file: any) =>
-  //   new Promise((resolve) => {
-  //     Resizer.imageFileResizer(
-  //       file,
-  //       2000,
-  //       2000,
-  //       "JPEG",
-  //       60,
-  //       0,
-  //       (uri: any) => {
-  //         resolve(uri);
-  //       },
-  //       "file"
-  //     );
-  //   });
+  const resizeFile = (file: any) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        2000,
+        2000,
+        "JPEG",
+        60,
+        0,
+        (uri: any) => {
+          resolve(uri);
+        },
+        "file"
+      );
+    });
 
 
-  // const { mutateAsync, isLoading } = useMutation(
-  //   // first resize the each image using the resizeFile imported from function and then upload it to S3
-  //   async (files: FileList) => {
-  //     const promises = Array.from(files).map(async (file) => {
-  //       const resizedImage = await resizeFile(file);
-  //       const urlResponse = await axios.get(`${base_url}/s3Url`);
-  //       const url = urlResponse.data.url;
-  //       if (url) {
-  //         return axios.put(url, resizedImage, {
-  //           headers: {
-  //             "Content-Type": "multipart/form-data",
-  //           },
-  //         });
-  //       }
-  //     });
+  const { mutateAsync, isLoading } = useMutation(
+    // first resize the each image using the resizeFile imported from function and then upload it to S3
+    async (files: FileList) => {
+      const promises = Array.from(files).map(async (file) => {
+        const resizedImage = await resizeFile(file);
+        const urlResponse = await axios.get(`${base_url}/users-uploads-url`);
+        const url = urlResponse.data.url;
+        if (url) {
+          return axios.put(url, resizedImage, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+        }
+      });
 
-  //     return Promise.all(promises);
-  //   },
-  //   {
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries({ queryKey: ['allImages'] });
-  //       setIsConfirmed(false);
-  //       setIsUploadedFile(false);
-  //     },
-  //   }
+      return Promise.all(promises);
+    },
+    {
+      onSuccess: () => {
+        // queryClient.invalidateQueries({ queryKey: ['allImages'] });
+        setIsConfirmed(false);
+        setIsUploadedFile(false);
+      },
+    }
 
-  // );
+  );
 
 
 
   const handleClickPlusIcon = () => {
-    setIsUploadedFile(true);
-    // if (fileInputRef.current) {
-    //   fileInputRef.current.click();
-    // }
+    // setIsUploadedFile(true);
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,24 +138,24 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
     setIsUploadedFile(false);
   };
 
-  // const handleComfirm = async () => {
-  //   setIsConfirmed(true);
+  const handleComfirm = async () => {
+    setIsConfirmed(true);
 
-  //   try {
-  //     await mutateAsync(fileInputRef.current?.files as any);
+    try {
+      await mutateAsync(fileInputRef.current?.files as any);
 
-  //     // while image is uploading, close the confirmation modal
-  //     handleCloseConfirmationModal();
-  //   } catch (error) {
-  //     toast({
-  //       title: "Erro ao fazer upload da imagem",
-  //       description: "Ocorreu um erro ao fazer upload da imagem, tente novamente mais tarde.",
-  //       status: "error",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //   }
-  // }
+      // while image is uploading, close the confirmation modal
+      handleCloseConfirmationModal();
+    } catch (error) {
+      toast({
+        title: "Erro ao fazer upload da imagem",
+        description: "Ocorreu um erro ao fazer upload da imagem, tente novamente mais tarde.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  }
 
   useEffect(() => {
     handleCloseConfirmationModal();
@@ -229,7 +227,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
 
         <IconButton
           aria-label="Upload"
-          icon={<FaPlus />}
+          icon={ isLoading ? <Spinner size={'sm'} color="gray.400"/> : <FaPlus />}
           bg={'#1B5934'}
           width={'60px'}
           height={'60px'}
@@ -360,24 +358,18 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
         <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} zIndex={99} color={'black'} fontWeight={'bold'} />
           <ModalBody mt={10}>
             <Box width={'full'} px={4} pt={8}>
-              <Flex align="start" justify="start" direction="column"  mb={8} width={'full'}>
-                <Image src={pt_flag} alt="pt_flag" width="50px" height="20px" objectFit="contain" />
-                <Text color="gray.700" fontWeight={500} mb={4} >
-                  Compartilhe suas belas fotos com Judith e Robert
+              {/* display the image else if more than one image is uploaded then display the text */}
+              {fileInputRef.current?.files?.length === 1 ? (
+                <Image src={URL.createObjectURL(fileInputRef.current?.files[0])}  objectFit={'contain'} alt="uploaded" width={'100%'} height={'300px'} />
+              ) : (
+                <Text color="gray.700" fontWeight={500} fontSize={'sm'} textAlign={'center'} >
+                  {fileInputRef.current?.files?.length} imagens selecionadas
                 </Text>
-              </Flex>
-              <Flex align="start" justify="start" direction="column"  mb={4} width={'full'}>
-                <Image src={eng_flag} alt="engl_flag" width="50px" height="20px" objectFit="contain" />
-                <Text color="gray.700" fontWeight={500}  mb={4}>
-                  Share your beautiful pictures with Judith and Robert
-                </Text>
-              </Flex>
-
+              )}
             </Box>
           </ModalBody>
           <ModalFooter>
-            <Center width={'full'} px={4}>
-            <Link to={whatAlink} style={{ width: '60%'}} >
+            <Center width={'full'} px={4} gap={2}>
               <Button
                 colorScheme="whatsapp"
                 variant="solid"
@@ -389,11 +381,27 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
                 justifyContent={'center'}
                 gap={3}
                 mb={8}
+                onClick={handleComfirm}
                 >
-                <IoImagesOutline size={30}  color="gray.600" />
-                <Text color="white" fontWeight={500} fontSize={'md'}>WhatsApp</Text>
+                {/* <IoImagesOutline size={30}  color="gray.600" />
+                <Text color="white" fontWeight={500} fontSize={'md'}>WhatsApp</Text> */}
+                Confirm
                 </Button>
-              </Link>
+                <Button
+                colorScheme="red"
+                variant="solid"
+                outline={'none'}
+                size="md"
+                width={'100%'}
+                height={'50px'}
+                borderRadius={'10px'}
+                justifyContent={'center'}
+                gap={3}
+                mb={8}
+                onClick={handleCloseConfirmationModal}
+                >
+                  Cancel
+                </Button>
               </Center>
           </ModalFooter>
         </ModalContent>
