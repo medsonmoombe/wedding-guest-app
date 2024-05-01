@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Grid, GridItem, Box, Image, Modal, ModalOverlay,useToast, ModalContent, ModalCloseButton, ModalBody, ModalFooter, IconButton, Center, Text, Flex, Button, Spinner } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Image, Modal, ModalOverlay, useToast, ModalContent, ModalCloseButton, ModalBody, ModalFooter, IconButton, Center, Text, Flex, Button, Spinner } from "@chakra-ui/react";
 import { FaExpand, FaPlus } from "react-icons/fa";
 import SquareGridSkeleton from "./Skeleton";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
@@ -30,11 +30,11 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
   const fetchedImages = useRecoilValue(displayImagesAtom);
 
   const icons = fetchedImages.length > 0 ? fetchedImages?.filter((url: string) => {
-   return url.endsWith('world-wide-web.png') ||
-   url.endsWith('facebook.png') ||
-   url.endsWith('instagram.png') ||
-   url.endsWith('icon_2.jpg')
- }) : [];
+    return url.endsWith('world-wide-web.png') ||
+      url.endsWith('facebook.png') ||
+      url.endsWith('instagram.png') ||
+      url.endsWith('icon_2.jpg')
+  }) : [];
 
 
   const images = photos.length > 0 ? photos : [];
@@ -205,16 +205,16 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
         <IconButton
           aria-label="Upload"
           icon={<>
-          {/* <Link to={instaLink} target="_blank" > */}
-        <Image objectFit={'contain'}  zIndex={999} src={icons?.[2]} alt="insta"    borderRadius={'50%'} width={'40px'} height={'40px'} />
-        {/* </Link> */}
+            {/* <Link to={instaLink} target="_blank" > */}
+            <Image objectFit={'contain'} zIndex={999} src={icons?.[2]} alt="insta" borderRadius={'50%'} width={'40px'} height={'40px'} />
+            {/* </Link> */}
           </>}
           bg={'white'}
           width={'60px'}
           height={'60px'}
           borderRadius={'50%'}
           borderColor={'gray.500'}
-          boxShadow={'lg'} 
+          boxShadow={'lg'}
           color={'transparent'}
           border={'2px solid teal'}
           position="fixed"
@@ -227,7 +227,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
 
         <IconButton
           aria-label="Upload"
-          icon={ isLoading ? <Spinner size={'sm'} color="gray.400"/> : <FaPlus />}
+          icon={isLoading ? <Spinner size={'sm'} color="gray.400" /> : <FaPlus />}
           bg={'#1B5934'}
           width={'60px'}
           height={'60px'}
@@ -248,7 +248,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
           style={{ display: "none" }}
           onChange={handleSubmit}
           multiple
-        /> 
+        />
         {images?.map((image: any, index: any) => (
           <GridItem key={index}
             style={{ boxShadow: "8px 8px 8px 8px rgba(0, 0, 0, 0.1)" }}
@@ -294,7 +294,7 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
         ))}
 
 
-        {isFetchingImages && photos.length  === 0 &&  <Center>
+        {isFetchingImages && photos.length === 0 && <Center>
           <SquareGridSkeleton />
         </Center>}
       </Grid>
@@ -355,15 +355,38 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
       <Modal isOpen={isUploadedFile} onClose={handleCloseConfirmationModal} size={'md'} >
         <ModalOverlay />
         <ModalContent>
-        <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} zIndex={99} color={'black'} fontWeight={'bold'} />
+          <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} zIndex={99} color={'black'} fontWeight={'bold'} />
           <ModalBody mt={10}>
             <Box width={'full'} px={4} pt={8}>
               {/* display the image else if more than one image is uploaded then display the text */}
               {fileInputRef.current?.files?.length === 1 ? (
-                <Image src={URL.createObjectURL(fileInputRef.current?.files[0])}  objectFit={'contain'} alt="uploaded" width={'100%'} height={'300px'} />
+                <Image src={URL.createObjectURL(fileInputRef.current?.files[0])} objectFit={'contain'} alt="uploaded" width={'100%'} height={'300px'} />
               ) : (
                 <Text color="gray.700" fontWeight={500} fontSize={'sm'} textAlign={'center'} >
-                  {fileInputRef.current?.files?.length} imagens selecionadas
+                  {/* display the grid of images here if more than one image is uploaded */}
+                  <Grid templateColumns={{ base: "repeat(3, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(4, 1fr)", lg: "repeat(6, 1fr)" }} gap={4} px={4} mb={'100px'}>
+                    {fileInputRef.current && Array.from(fileInputRef?.current?.files as any).map((file: any, index: number) => (
+                      <GridItem key={index}>
+                        <Box
+                          borderWidth="2px"
+                          borderRadius={'5px'}
+                          borderColor={'white'}
+                          overflow="hidden"
+                          cursor="pointer"
+                          style={{ boxShadow: "4px 4px 8px 4px rgba(0, 0, 0, 0.1)" }}
+                        >
+                          <Image src={URL.createObjectURL(file)} alt={`Image ${index}`}
+                            minHeight="100px"
+                            maxHeight="100px"
+                            width="100%"
+                            borderRadius={'5px'}
+                            objectFit="cover"
+                          />
+                        </Box>
+                      </GridItem>
+                    ))}
+                  </Grid>
+
                 </Text>
               )}
             </Box>
@@ -382,12 +405,12 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
                 gap={3}
                 mb={8}
                 onClick={handleComfirm}
-                >
+              >
                 {/* <IoImagesOutline size={30}  color="gray.600" />
                 <Text color="white" fontWeight={500} fontSize={'md'}>WhatsApp</Text> */}
                 Confirm
-                </Button>
-                <Button
+              </Button>
+              <Button
                 colorScheme="red"
                 variant="solid"
                 outline={'none'}
@@ -399,50 +422,50 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
                 gap={3}
                 mb={8}
                 onClick={handleCloseConfirmationModal}
-                >
-                  Cancel
-                </Button>
-              </Center>
+              >
+                Cancel
+              </Button>
+            </Center>
           </ModalFooter>
         </ModalContent>
       </Modal>
 
 
-      
+
       {/* social modal */}
       <Modal isOpen={openSocialModal} onClose={handleCloseSocialModal} size={'md'} >
         <ModalOverlay />
         <ModalContent>
-        <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} zIndex={99} color={'black'} fontWeight={'bold'} />
+          <ModalCloseButton border={'1px solid'} borderColor={'gray.400'} bg={'gray.50'} zIndex={99} color={'black'} fontWeight={'bold'} />
           <ModalBody mt={10}>
             <Box width={'full'} px={4} pt={8}>
-              <Flex align="center" justify="center" direction={'column'}  mb={8} width={'full'}>
-              <Image  zIndex={999} src={insta_icon} alt="insta" p={1} border={'2px solid teal'} boxShadow={'lg'}   borderRadius={'50%'} width={'80px'} height={'80px'} />
-              <Text color="#1B5934" fontWeight={'bold'} fontSize={'xl'} mt={4} >
+              <Flex align="center" justify="center" direction={'column'} mb={8} width={'full'}>
+                <Image zIndex={999} src={insta_icon} alt="insta" p={1} border={'2px solid teal'} boxShadow={'lg'} borderRadius={'50%'} width={'80px'} height={'80px'} />
+                <Text color="#1B5934" fontWeight={'bold'} fontSize={'xl'} mt={4} >
                   Folha Verde
                 </Text>
               </Flex>
-              <Flex align="start" justify="start" direction="column"  mb={4} width={'full'} ml={4}>
-                 <Text color="black" fontWeight={500} textTransform={'capitalize'}>
+              <Flex align="start" justify="start" direction="column" mb={4} width={'full'} ml={4}>
+                <Text color="black" fontWeight={500} textTransform={'capitalize'}>
                   Perfomance & event venue
                 </Text>
                 <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
                   Nors melhores memontos da sua vida!
-                  </Text>
-                  <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
+                </Text>
+                <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
                   Contacto: 82 300 4683
-                  </Text>
-                  <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
+                </Text>
+                <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
                   Commercial@folhaverdemz.com
-                  </Text>
+                </Text>
 
-                  <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
+                <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
                   Maputo: Av. Thomas Ndunda, 1288
-                  </Text>
+                </Text>
 
-                  <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
+                <Text color="gray.700" fontWeight={500} fontSize={'sm'} >
                   Matola : Rua de Empasse Parcela 856
-                  </Text>
+                </Text>
               </Flex>
 
 
@@ -450,32 +473,32 @@ const ImageGrid = ({ isFetchingImages }: ImageGridProps) => {
             </Box>
           </ModalBody>
           <ModalFooter>
-          <Center width={'full'} px={2} gap={4}>
-            <IconButton
-              aria-label="facebook"
-              icon={<Image src={icons?.[3]} alt="facebook" p={1}    width={'50px'} height={'50px'} />}
-              width={'50px'}
-              height={'50px'}
-              zIndex="999"
-              onClick={openFb}
+            <Center width={'full'} px={2} gap={4}>
+              <IconButton
+                aria-label="facebook"
+                icon={<Image src={icons?.[3]} alt="facebook" p={1} width={'50px'} height={'50px'} />}
+                width={'50px'}
+                height={'50px'}
+                zIndex="999"
+                onClick={openFb}
               />
               <IconButton
-              aria-label="instagram"
-              icon={<Image src={icons?.[1]}  alt="instagram" p={1}    width={'50px'} height={'50px'}/>}
-              width={'50px'}
-              height={'50px'}
-              zIndex="999"
-              onClick={openInsta}
+                aria-label="instagram"
+                icon={<Image src={icons?.[1]} alt="instagram" p={1} width={'50px'} height={'50px'} />}
+                width={'50px'}
+                height={'50px'}
+                zIndex="999"
+                onClick={openInsta}
               />
               <IconButton
-              aria-label="web"
-              icon={<Image src={icons?.[0]} alt="web" p={1}    width={'50px'} height={'50px'} />}
-              width={'50px'}
-              height={'50px'}
-              zIndex="999"
-              onClick={openWeb}
+                aria-label="web"
+                icon={<Image src={icons?.[0]} alt="web" p={1} width={'50px'} height={'50px'} />}
+                width={'50px'}
+                height={'50px'}
+                zIndex="999"
+                onClick={openWeb}
               />
-              </Center>
+            </Center>
           </ModalFooter>
         </ModalContent>
       </Modal>
