@@ -668,7 +668,7 @@
     {
         "guestFirstName": "Madame Dusabeyezu Jean Dedieu",
         "guestLastName": null,
-        "tableName": "2 Corinthians 13:4 (NIV)",
+        "tableName": "1 Corinthians 13:4 (NIV)",
         "tableZone": null,
         "tableId": "Zone D - T1",
         "Description_english": "Love is patient, love is kind. It does not envy, it does not boast, it is not proud.",
@@ -677,7 +677,7 @@
     {
         "guestFirstName": "Mama Sophie",
         "guestLastName": null,
-        "tableName": "3 Corinthians 13:4 (NIV)",
+        "tableName": "1 Corinthians 13:4 (NIV)",
         "tableZone": null,
         "tableId": "Zone D - T1",
         "Description_english": "Love is patient, love is kind. It does not envy, it does not boast, it is not proud.",
@@ -2680,5 +2680,914 @@
         "tableId": "Zone 4 - T9",
         "Description_english": "But you, beloved, building yourselves up on your most holy faith, praying in the Holy Spirit, keep yourselves in the love of God, looking for the mercy of our Lord Jesus Christ unto eternal life.",
         "Description_portugues": "\"Conservai-vos a vós mesmos no amor de Deus, esperando a misericórdia de nosso Senhor Jesus Cristo para a vida eterna.\" - Judas 1:20-21 (NVI)"
+    },
+    {
+        "guestFirstName": "Mukecuru Wa mama",
+        "guestLastName": null,
+        "tableName": "Jude 1:20-21 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T9",
+        "Description_english": "But you, beloved, building yourselves up on your most holy faith, praying in the Holy Spirit, keep yourselves in the love of God, looking for the mercy of our Lord Jesus Christ unto eternal life.",
+        "Description_portugues": "\"Conservai-vos a vós mesmos no amor de Deus, esperando a misericórdia de nosso Senhor Jesus Cristo para a vida eterna.\" - Judas 1:20-21 (NVI)"
+    },
+    {
+        "guestFirstName": "Mukecuru Wa Manuel",
+        "guestLastName": null,
+        "tableName": "Jude 1:20-21 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T9",
+        "Description_english": "But you, beloved, building yourselves up on your most holy faith, praying in the Holy Spirit, keep yourselves in the love of God, looking for the mercy of our Lord Jesus Christ unto eternal life.",
+        "Description_portugues": "\"Conservai-vos a vós mesmos no amor de Deus, esperando a misericórdia de nosso Senhor Jesus Cristo para a vida eterna.\" - Judas 1:20-21 (NVI)"
+    },
+    {
+        "guestFirstName": "Mama Paul",
+        "guestLastName": null,
+        "tableName": "Jude 1:20-21 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T9",
+        "Description_english": "But you, beloved, building yourselves up on your most holy faith, praying in the Holy Spirit, keep yourselves in the love of God, looking for the mercy of our Lord Jesus Christ unto eternal life.",
+        "Description_portugues": "\"Conservai-vos a vós mesmos no amor de Deus, esperando a misericórdia de nosso Senhor Jesus Cristo para a vida eterna.\" - Judas 1:20-21 (NVI)"
+    },
+    {
+        "guestFirstName": "Karitasi",
+        "guestLastName": null,
+        "tableName": "Jude 1:20-21 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T9",
+        "Description_english": "But you, beloved, building yourselves up on your most holy faith, praying in the Holy Spirit, keep yourselves in the love of God, looking for the mercy of our Lord Jesus Christ unto eternal life.",
+        "Description_portugues": "\"Conservai-vos a vós mesmos no amor de Deus, esperando a misericórdia de nosso Senhor Jesus Cristo para a vida eterna.\" - Judas 1:20-21 (NVI)"
+    },
+    {
+        "guestFirstName": "Shima",
+        "guestLastName": "Papa Paul",
+        "tableName": "Thessalonians 3:5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T8",
+        "Description_english": "May the Lord direct your hearts into God’s love and Christ’s perseverance.",
+        "Description_portugues": "\"O Senhor conduza o coração de vocês ao amor de Deus e à perseverança de Cristo.\" - 2 Tessalonicenses 3:5 (NVI)"
+    },
+    {
+        "guestFirstName": "Sister Paul",
+        "guestLastName": "Filha Shima",
+        "tableName": "Thessalonians 3:5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T8",
+        "Description_english": "May the Lord direct your hearts into God’s love and Christ’s perseverance.",
+        "Description_portugues": "\"O Senhor conduza o coração de vocês ao amor de Deus e à perseverança de Cristo.\" - 2 Tessalonicenses 3:5 (NVI)"
+    },
+    {
+        "guestFirstName": "Lambert Mozal",
+        "guestLastName": null,
+        "tableName": "Thessalonians 3:5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T8",
+        "Description_english": "May the Lord direct your hearts into God’s love and Christ’s perseverance.",
+        "Description_portugues": "\"O Senhor conduza o coração de vocês ao amor de Deus e à perseverança de Cristo.\" - 2 Tessalonicenses 3:5 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Lambert Mozal",
+        "guestLastName": null,
+        "tableName": "Thessalonians 3:5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T8",
+        "Description_english": "May the Lord direct your hearts into God’s love and Christ’s perseverance.",
+        "Description_portugues": "\"O Senhor conduza o coração de vocês ao amor de Deus e à perseverança de Cristo.\" - 2 Tessalonicenses 3:5 (NVI)"
+    },
+    {
+        "guestFirstName": "Manuel Mozal",
+        "guestLastName": "Emmanuel",
+        "tableName": "Thessalonians 3:5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T8",
+        "Description_english": "May the Lord direct your hearts into God’s love and Christ’s perseverance.",
+        "Description_portugues": "\"O Senhor conduza o coração de vocês ao amor de Deus e à perseverança de Cristo.\" - 2 Tessalonicenses 3:5 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Manuel Mozal",
+        "guestLastName": "Emmanuel",
+        "tableName": "Thessalonians 3:5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T8",
+        "Description_english": "May the Lord direct your hearts into God’s love and Christ’s perseverance.",
+        "Description_portugues": "\"O Senhor conduza o coração de vocês ao amor de Deus e à perseverança de Cristo.\" - 2 Tessalonicenses 3:5 (NVI)"
+    },
+    {
+        "guestFirstName": "Ambassadeur 2",
+        "guestLastName": null,
+        "tableName": "Thessalonians 3:5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T8",
+        "Description_english": "May the Lord direct your hearts into God’s love and Christ’s perseverance.",
+        "Description_portugues": "\"O Senhor conduza o coração de vocês ao amor de Deus e à perseverança de Cristo.\" - 2 Tessalonicenses 3:5 (NVI)"
+    },
+    {
+        "guestFirstName": "Ambassadeur 3",
+        "guestLastName": null,
+        "tableName": "Thessalonians 3:5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T8",
+        "Description_english": "May the Lord direct your hearts into God’s love and Christ’s perseverance.",
+        "Description_portugues": "\"O Senhor conduza o coração de vocês ao amor de Deus e à perseverança de Cristo.\" - 2 Tessalonicenses 3:5 (NVI)"
+    },
+    {
+        "guestFirstName": "Job",
+        "guestLastName": null,
+        "tableName": null,
+        "tableZone": null,
+        "tableId": "Zone 4 - T8",
+        "Description_english": null,
+        "Description_portugues": null
+    },
+    {
+        "guestFirstName": "Claude Kanyenzi",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T7",
+        "Description_english": "But God, who is rich in mercy, because of His great love with which He loved us, even when we were dead in trespasses, made us alive together with Christ (by grace you have been saved).",
+        "Description_portugues": "\"Mas Deus, sendo rico em misericórdia, por causa do grande amor com que nos amou,\" - Efésios 2:4-5 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Claude Kanyenzi",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T7",
+        "Description_english": "But God, who is rich in mercy, because of His great love with which He loved us, even when we were dead in trespasses, made us alive together with Christ (by grace you have been saved).",
+        "Description_portugues": "\"Mas Deus, sendo rico em misericórdia, por causa do grande amor com que nos amou,\" - Efésios 2:4-5 (NVI)"
+    },
+    {
+        "guestFirstName": "Paul Mozal",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T7",
+        "Description_english": "But God, who is rich in mercy, because of His great love with which He loved us, even when we were dead in trespasses, made us alive together with Christ (by grace you have been saved).",
+        "Description_portugues": "\"Mas Deus, sendo rico em misericórdia, por causa do grande amor com que nos amou,\" - Efésios 2:4-5 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Paul Mozal",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T7",
+        "Description_english": "But God, who is rich in mercy, because of His great love with which He loved us, even when we were dead in trespasses, made us alive together with Christ (by grace you have been saved).",
+        "Description_portugues": "\"Mas Deus, sendo rico em misericórdia, por causa do grande amor com que nos amou,\" - Efésios 2:4-5 (NVI)"
+    },
+    {
+        "guestFirstName": "Clemence Martin",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T7",
+        "Description_english": "But God, who is rich in mercy, because of His great love with which He loved us, even when we were dead in trespasses, made us alive together with Christ (by grace you have been saved).",
+        "Description_portugues": "\"Mas Deus, sendo rico em misericórdia, por causa do grande amor com que nos amou,\" - Efésios 2:4-5 (NVI)"
+    },
+    {
+        "guestFirstName": "Martin Clemence",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T7",
+        "Description_english": "But God, who is rich in mercy, because of His great love with which He loved us, even when we were dead in trespasses, made us alive together with Christ (by grace you have been saved).",
+        "Description_portugues": "\"Mas Deus, sendo rico em misericórdia, por causa do grande amor com que nos amou,\" - Efésios 2:4-5 (NVI)"
+    },
+    {
+        "guestFirstName": "Sylvestre",
+        "guestLastName": "700",
+        "tableName": "Ephesians 2:4-5 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T7",
+        "Description_english": "But God, who is rich in mercy, because of His great love with which He loved us, even when we were dead in trespasses, made us alive together with Christ (by grace you have been saved).",
+        "Description_portugues": "\"Mas Deus, sendo rico em misericórdia, por causa do grande amor com que nos amou,\" - Efésios 2:4-5 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Sylvestre",
+        "guestLastName": "700",
+        "tableName": "Ephesians 2:4-5 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T7",
+        "Description_english": "But God, who is rich in mercy, because of His great love with which He loved us, even when we were dead in trespasses, made us alive together with Christ (by grace you have been saved).",
+        "Description_portugues": "\"Mas Deus, sendo rico em misericórdia, por causa do grande amor com que nos amou,\" - Efésios 2:4-5 (NVI)"
+    },
+    {
+        "guestFirstName": "Jean Aime",
+        "guestLastName": null,
+        "tableName": "Galatians 2:20 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T6",
+        "Description_english": "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+        "Description_portugues": "\"Fui crucificado com Cristo. Assim, já não sou eu quem vive, mas Cristo vive em mim. A vida que agora vivo no corpo, vivo-a pela fé no filho de Deus, que me amou e se entregou por mim.\" - Gálatas 2:20 (NVI)"
+    },
+    {
+        "guestFirstName": "Melissa Rutayisire",
+        "guestLastName": null,
+        "tableName": "Galatians 2:20 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T6",
+        "Description_english": "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+        "Description_portugues": "\"Fui crucificado com Cristo. Assim, já não sou eu quem vive, mas Cristo vive em mim. A vida que agora vivo no corpo, vivo-a pela fé no filho de Deus, que me amou e se entregou por mim.\" - Gálatas 2:20 (NVI)"
+    },
+    {
+        "guestFirstName": "Messi Kabanda",
+        "guestLastName": null,
+        "tableName": "Galatians 2:20 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T6",
+        "Description_english": "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+        "Description_portugues": "\"Fui crucificado com Cristo. Assim, já não sou eu quem vive, mas Cristo vive em mim. A vida que agora vivo no corpo, vivo-a pela fé no filho de Deus, que me amou e se entregou por mim.\" - Gálatas 2:20 (NVI)"
+    },
+    {
+        "guestFirstName": "Nadege Julie",
+        "guestLastName": null,
+        "tableName": "Galatians 2:20 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T6",
+        "Description_english": "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+        "Description_portugues": "\"Fui crucificado com Cristo. Assim, já não sou eu quem vive, mas Cristo vive em mim. A vida que agora vivo no corpo, vivo-a pela fé no filho de Deus, que me amou e se entregou por mim.\" - Gálatas 2:20 (NVI)"
+    },
+    {
+        "guestFirstName": "Sandra",
+        "guestLastName": "Adventist",
+        "tableName": "Galatians 2:20 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T6",
+        "Description_english": "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+        "Description_portugues": "\"Fui crucificado com Cristo. Assim, já não sou eu quem vive, mas Cristo vive em mim. A vida que agora vivo no corpo, vivo-a pela fé no filho de Deus, que me amou e se entregou por mim.\" - Gálatas 2:20 (NVI)"
+    },
+    {
+        "guestFirstName": "Husband Sandra",
+        "guestLastName": "Adventist",
+        "tableName": "Galatians 2:20 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T6",
+        "Description_english": "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+        "Description_portugues": "\"Fui crucificado com Cristo. Assim, já não sou eu quem vive, mas Cristo vive em mim. A vida que agora vivo no corpo, vivo-a pela fé no filho de Deus, que me amou e se entregou por mim.\" - Gálatas 2:20 (NVI)"
+    },
+    {
+        "guestFirstName": "Gilbert Musoni",
+        "guestLastName": null,
+        "tableName": "Galatians 2:20 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T6",
+        "Description_english": "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+        "Description_portugues": "\"Fui crucificado com Cristo. Assim, já não sou eu quem vive, mas Cristo vive em mim. A vida que agora vivo no corpo, vivo-a pela fé no filho de Deus, que me amou e se entregou por mim.\" - Gálatas 2:20 (NVI)"
+    },
+    {
+        "guestFirstName": "Dorcas",
+        "guestLastName": null,
+        "tableName": "Galatians 2:20 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T6",
+        "Description_english": "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+        "Description_portugues": "\"Fui crucificado com Cristo. Assim, já não sou eu quem vive, mas Cristo vive em mim. A vida que agora vivo no corpo, vivo-a pela fé no filho de Deus, que me amou e se entregou por mim.\" - Gálatas 2:20 (NVI)"
+    },
+    {
+        "guestFirstName": "Rutayisire Fidele",
+        "guestLastName": "Papa Melissa",
+        "tableName": "1 John 3:18 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T5",
+        "Description_english": "Dear children, let us not love with words or speech but with actions and in truth.",
+        "Description_portugues": "\"Filhinhos, não amemos de palavra nem de boca, mas em ação e em verdade.\" - 1 João 3:18 (NVI)"
+    },
+    {
+        "guestFirstName": "Kabanda Felicien",
+        "guestLastName": null,
+        "tableName": "1 John 3:18 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T5",
+        "Description_english": "Dear children, let us not love with words or speech but with actions and in truth.",
+        "Description_portugues": "\"Filhinhos, não amemos de palavra nem de boca, mas em ação e em verdade.\" - 1 João 3:18 (NVI)"
+    },
+    {
+        "guestFirstName": "Musoni Jean Marie Vianney",
+        "guestLastName": null,
+        "tableName": "1 John 3:18 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T5",
+        "Description_english": "Dear children, let us not love with words or speech but with actions and in truth.",
+        "Description_portugues": "\"Filhinhos, não amemos de palavra nem de boca, mas em ação e em verdade.\" - 1 João 3:18 (NVI)"
+    },
+    {
+        "guestFirstName": "Ndagijimana",
+        "guestLastName": "Papa Rosine",
+        "tableName": "1 John 3:18 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T5",
+        "Description_english": "Dear children, let us not love with words or speech but with actions and in truth.",
+        "Description_portugues": "\"Filhinhos, não amemos de palavra nem de boca, mas em ação e em verdade.\" - 1 João 3:18 (NVI)"
+    },
+    {
+        "guestFirstName": "Asiel",
+        "guestLastName": null,
+        "tableName": "1 John 3:18 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T5",
+        "Description_english": "Dear children, let us not love with words or speech but with actions and in truth.",
+        "Description_portugues": "\"Filhinhos, não amemos de palavra nem de boca, mas em ação e em verdade.\" - 1 João 3:18 (NVI)"
+    },
+    {
+        "guestFirstName": "Kabayiza",
+        "guestLastName": null,
+        "tableName": "1 John 3:18 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T5",
+        "Description_english": "Dear children, let us not love with words or speech but with actions and in truth.",
+        "Description_portugues": "\"Filhinhos, não amemos de palavra nem de boca, mas em ação e em verdade.\" - 1 João 3:18 (NVI)"
+    },
+    {
+        "guestFirstName": "Papa Beata",
+        "guestLastName": null,
+        "tableName": "1 John 3:18 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T5",
+        "Description_english": "Dear children, let us not love with words or speech but with actions and in truth.",
+        "Description_portugues": "\"Filhinhos, não amemos de palavra nem de boca, mas em ação e em verdade.\" - 1 João 3:18 (NVI)"
+    },
+    {
+        "guestFirstName": "Edward Nzabakirana",
+        "guestLastName": null,
+        "tableName": "1 John 3:18 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T5",
+        "Description_english": "Dear children, let us not love with words or speech but with actions and in truth.",
+        "Description_portugues": "\"Filhinhos, não amemos de palavra nem de boca, mas em ação e em verdade.\" - 1 João 3:18 (NVI)"
+    },
+    {
+        "guestFirstName": "Alphonse",
+        "guestLastName": "Mubasaza",
+        "tableName": "1 John 3:18 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T5",
+        "Description_english": "Dear children, let us not love with words or speech but with actions and in truth.",
+        "Description_portugues": "\"Filhinhos, não amemos de palavra nem de boca, mas em ação e em verdade.\" - 1 João 3:18 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Rutayisire Fidele",
+        "guestLastName": "Mama Melissa",
+        "tableName": "Zephaniah 3:17 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T4",
+        "Description_english": "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+        "Description_portugues": "\"O Senhor, o seu Deus, está em seu meio, poderoso para salvar. Ele se regozijará em você; com o seu amor a renovará, ele se regozijará em você com brados de alegria.\" - Sofonias 3:17 (NVI)"
+    },
+    {
+        "guestFirstName": "Mama Julus",
+        "guestLastName": null,
+        "tableName": "Zephaniah 3:17 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T4",
+        "Description_english": "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+        "Description_portugues": "\"O Senhor, o seu Deus, está em seu meio, poderoso para salvar. Ele se regozijará em você; com o seu amor a renovará, ele se regozijará em você com brados de alegria.\" - Sofonias 3:17 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Kabanda",
+        "guestLastName": "Mama Messi",
+        "tableName": "Zephaniah 3:17 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T4",
+        "Description_english": "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+        "Description_portugues": "\"O Senhor, o seu Deus, está em seu meio, poderoso para salvar. Ele se regozijará em você; com o seu amor a renovará, ele se regozijará em você com brados de alegria.\" - Sofonias 3:17 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Musoni Jean Marie",
+        "guestLastName": "Mama Brian",
+        "tableName": "Zephaniah 3:17 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T4",
+        "Description_english": "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+        "Description_portugues": "\"O Senhor, o seu Deus, está em seu meio, poderoso para salvar. Ele se regozijará em você; com o seu amor a renovará, ele se regozijará em você com brados de alegria.\" - Sofonias 3:17 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Ndahimana Jean Pierre",
+        "guestLastName": "Mama Dylan",
+        "tableName": "Zephaniah 3:17 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T4",
+        "Description_english": "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+        "Description_portugues": "\"O Senhor, o seu Deus, está em seu meio, poderoso para salvar. Ele se regozijará em você; com o seu amor a renovará, ele se regozijará em você com brados de alegria.\" - Sofonias 3:17 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Roger Fomento",
+        "guestLastName": "Mama Ange",
+        "tableName": "Zephaniah 3:17 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T4",
+        "Description_english": "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+        "Description_portugues": "\"O Senhor, o seu Deus, está em seu meio, poderoso para salvar. Ele se regozijará em você; com o seu amor a renovará, ele se regozijará em você com brados de alegria.\" - Sofonias 3:17 (NVI)"
+    },
+    {
+        "guestFirstName": "Esther",
+        "guestLastName": null,
+        "tableName": "Zephaniah 3:17 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T4",
+        "Description_english": "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+        "Description_portugues": "\"O Senhor, o seu Deus, está em seu meio, poderoso para salvar. Ele se regozijará em você; com o seu amor a renovará, ele se regozijará em você com brados de alegria.\" - Sofonias 3:17 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Janvier",
+        "guestLastName": "Mama Tonny",
+        "tableName": "Zephaniah 3:17 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T4",
+        "Description_english": "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+        "Description_portugues": "\"O Senhor, o seu Deus, está em seu meio, poderoso para salvar. Ele se regozijará em você; com o seu amor a renovará, ele se regozijará em você com brados de alegria.\" - Sofonias 3:17 (NVI)"
+    },
+    {
+        "guestFirstName": "Ndahimana Jean Pierre",
+        "guestLastName": "Ndage",
+        "tableName": "Psalm 86:15  (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T3",
+        "Description_english": "But you, Lord, are a compassionate and gracious God, slow to anger, abounding in love and faithfulness.",
+        "Description_portugues": "\"Mas tu, Senhor, és Deus compassivo e misericordioso, muito paciente, rico em amor e em fidelidade.\" - Salmos 86:15 (NVI)"
+    },
+    {
+        "guestFirstName": "Alexi Coca Cola",
+        "guestLastName": null,
+        "tableName": "Psalm 86:15  (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T3",
+        "Description_english": "But you, Lord, are a compassionate and gracious God, slow to anger, abounding in love and faithfulness.",
+        "Description_portugues": "\"Mas tu, Senhor, és Deus compassivo e misericordioso, muito paciente, rico em amor e em fidelidade.\" - Salmos 86:15 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Alexi Coca Cola",
+        "guestLastName": null,
+        "tableName": "Psalm 86:15  (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T3",
+        "Description_english": "But you, Lord, are a compassionate and gracious God, slow to anger, abounding in love and faithfulness.",
+        "Description_portugues": "\"Mas tu, Senhor, és Deus compassivo e misericordioso, muito paciente, rico em amor e em fidelidade.\" - Salmos 86:15 (NVI)"
+    },
+    {
+        "guestFirstName": "Lambert Alexi",
+        "guestLastName": null,
+        "tableName": "Psalm 86:15  (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T3",
+        "Description_english": "But you, Lord, are a compassionate and gracious God, slow to anger, abounding in love and faithfulness.",
+        "Description_portugues": "\"Mas tu, Senhor, és Deus compassivo e misericordioso, muito paciente, rico em amor e em fidelidade.\" - Salmos 86:15 (NVI)"
+    },
+    {
+        "guestFirstName": "Francis",
+        "guestLastName": "Ambassade",
+        "tableName": "Psalm 86:15  (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T3",
+        "Description_english": "But you, Lord, are a compassionate and gracious God, slow to anger, abounding in love and faithfulness.",
+        "Description_portugues": "\"Mas tu, Senhor, és Deus compassivo e misericordioso, muito paciente, rico em amor e em fidelidade.\" - Salmos 86:15 (NVI)"
+    },
+    {
+        "guestFirstName": "Ambassadeur",
+        "guestLastName": null,
+        "tableName": "Psalm 86:15  (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T3",
+        "Description_english": "But you, Lord, are a compassionate and gracious God, slow to anger, abounding in love and faithfulness.",
+        "Description_portugues": "\"Mas tu, Senhor, és Deus compassivo e misericordioso, muito paciente, rico em amor e em fidelidade.\" - Salmos 86:15 (NVI)"
+    },
+    {
+        "guestFirstName": "Ngarambe Rellis",
+        "guestLastName": null,
+        "tableName": "Psalm 86:15  (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T3",
+        "Description_english": "But you, Lord, are a compassionate and gracious God, slow to anger, abounding in love and faithfulness.",
+        "Description_portugues": "\"Mas tu, Senhor, és Deus compassivo e misericordioso, muito paciente, rico em amor e em fidelidade.\" - Salmos 86:15 (NVI)"
+    },
+    {
+        "guestFirstName": "Bosco",
+        "guestLastName": "Nampula",
+        "tableName": "Psalm 86:15  (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T3",
+        "Description_english": "But you, Lord, are a compassionate and gracious God, slow to anger, abounding in love and faithfulness.",
+        "Description_portugues": "\"Mas tu, Senhor, és Deus compassivo e misericordioso, muito paciente, rico em amor e em fidelidade.\" - Salmos 86:15 (NVI)"
+    },
+    {
+        "guestFirstName": "Roger Fomento",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T2",
+        "Description_english": "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions—it is by grace you have been saved.",
+        "Description_portugues": "\"Mas, porque é rico em misericórdia, Deus os amou com grande amor.\" - Efésios 2:4 (NVI)"
+    },
+    {
+        "guestFirstName": "Ester Nsenga",
+        "guestLastName": "Adventist",
+        "tableName": "Ephesians 2:4-5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T2",
+        "Description_english": "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions—it is by grace you have been saved.",
+        "Description_portugues": "\"Mas, porque é rico em misericórdia, Deus os amou com grande amor.\" - Efésios 2:4 (NVI)"
+    },
+    {
+        "guestFirstName": "Ester Nsenga +1",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T2",
+        "Description_english": "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions—it is by grace you have been saved.",
+        "Description_portugues": "\"Mas, porque é rico em misericórdia, Deus os amou com grande amor.\" - Efésios 2:4 (NVI)"
+    },
+    {
+        "guestFirstName": "Janvier",
+        "guestLastName": "Papa Tonny",
+        "tableName": "Ephesians 2:4-5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T2",
+        "Description_english": "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions—it is by grace you have been saved.",
+        "Description_portugues": "\"Mas, porque é rico em misericórdia, Deus os amou com grande amor.\" - Efésios 2:4 (NVI)"
+    },
+    {
+        "guestFirstName": "Kamonyo",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T2",
+        "Description_english": "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions—it is by grace you have been saved.",
+        "Description_portugues": "\"Mas, porque é rico em misericórdia, Deus os amou com grande amor.\" - Efésios 2:4 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Kamonyo",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T2",
+        "Description_english": "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions—it is by grace you have been saved.",
+        "Description_portugues": "\"Mas, porque é rico em misericórdia, Deus os amou com grande amor.\" - Efésios 2:4 (NVI)"
+    },
+    {
+        "guestFirstName": "Pastor Ezequiel",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T2",
+        "Description_english": "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions—it is by grace you have been saved.",
+        "Description_portugues": "\"Mas, porque é rico em misericórdia, Deus os amou com grande amor.\" - Efésios 2:4 (NVI)"
+    },
+    {
+        "guestFirstName": "Martin Tumayine",
+        "guestLastName": null,
+        "tableName": "Ephesians 2:4-5 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T2",
+        "Description_english": "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions—it is by grace you have been saved.",
+        "Description_portugues": "\"Mas, porque é rico em misericórdia, Deus os amou com grande amor.\" - Efésios 2:4 (NVI)"
+    },
+    {
+        "guestFirstName": "Julius Caje Brother",
+        "guestLastName": null,
+        "tableName": "1 Peter 4:8 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T10",
+        "Description_english": "And above all things have fervent love for one another, for “love will cover a multitude of sins.”",
+        "Description_portugues": "\"Sobretudo, amai fervorosamente uns aos outros, porque o amor cobre multidão de pecados.\" - 1 Pedro 4:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Rosine Julius Caje",
+        "guestLastName": null,
+        "tableName": "1 Peter 4:8 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T10",
+        "Description_english": "And above all things have fervent love for one another, for “love will cover a multitude of sins.”",
+        "Description_portugues": "\"Sobretudo, amai fervorosamente uns aos outros, porque o amor cobre multidão de pecados.\" - 1 Pedro 4:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Augustin Primo",
+        "guestLastName": null,
+        "tableName": "1 Peter 4:8 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T10",
+        "Description_english": "And above all things have fervent love for one another, for “love will cover a multitude of sins.”",
+        "Description_portugues": "\"Sobretudo, amai fervorosamente uns aos outros, porque o amor cobre multidão de pecados.\" - 1 Pedro 4:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Augistin Primo",
+        "guestLastName": null,
+        "tableName": "1 Peter 4:8 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T10",
+        "Description_english": "And above all things have fervent love for one another, for “love will cover a multitude of sins.”",
+        "Description_portugues": "\"Sobretudo, amai fervorosamente uns aos outros, porque o amor cobre multidão de pecados.\" - 1 Pedro 4:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Bruno Mozal",
+        "guestLastName": null,
+        "tableName": "1 Peter 4:8 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T10",
+        "Description_english": "And above all things have fervent love for one another, for “love will cover a multitude of sins.”",
+        "Description_portugues": "\"Sobretudo, amai fervorosamente uns aos outros, porque o amor cobre multidão de pecados.\" - 1 Pedro 4:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Jules Brother",
+        "guestLastName": null,
+        "tableName": "1 Peter 4:8 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T10",
+        "Description_english": "And above all things have fervent love for one another, for “love will cover a multitude of sins.”",
+        "Description_portugues": "\"Sobretudo, amai fervorosamente uns aos outros, porque o amor cobre multidão de pecados.\" - 1 Pedro 4:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Dillo Manyase",
+        "guestLastName": null,
+        "tableName": "1 Peter 4:8 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T10",
+        "Description_english": "And above all things have fervent love for one another, for “love will cover a multitude of sins.”",
+        "Description_portugues": "\"Sobretudo, amai fervorosamente uns aos outros, porque o amor cobre multidão de pecados.\" - 1 Pedro 4:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Eric Manyase",
+        "guestLastName": null,
+        "tableName": "1 Peter 4:8 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T10",
+        "Description_english": "And above all things have fervent love for one another, for “love will cover a multitude of sins.”",
+        "Description_portugues": "\"Sobretudo, amai fervorosamente uns aos outros, porque o amor cobre multidão de pecados.\" - 1 Pedro 4:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Denise",
+        "guestLastName": null,
+        "tableName": "Psalm 103:8 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T1",
+        "Description_english": "The Lord is compassionate and gracious, slow to anger, abounding in love.",
+        "Description_portugues": "\"O Senhor é misericordioso e compassivo, paciente e transbordante de amor.\" - Salmos 103:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Paul Nshima",
+        "guestLastName": null,
+        "tableName": "Psalm 103:8 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T1",
+        "Description_english": "The Lord is compassionate and gracious, slow to anger, abounding in love.",
+        "Description_portugues": "\"O Senhor é misericordioso e compassivo, paciente e transbordante de amor.\" - Salmos 103:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Paul Nshima",
+        "guestLastName": null,
+        "tableName": "Psalm 103:8 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T1",
+        "Description_english": "The Lord is compassionate and gracious, slow to anger, abounding in love.",
+        "Description_portugues": "\"O Senhor é misericordioso e compassivo, paciente e transbordante de amor.\" - Salmos 103:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Filho Paul Nshima",
+        "guestLastName": null,
+        "tableName": "Psalm 103:8 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T1",
+        "Description_english": "The Lord is compassionate and gracious, slow to anger, abounding in love.",
+        "Description_portugues": "\"O Senhor é misericordioso e compassivo, paciente e transbordante de amor.\" - Salmos 103:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Iradukunda Emmanuel",
+        "guestLastName": null,
+        "tableName": "Psalm 103:8 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T1",
+        "Description_english": "The Lord is compassionate and gracious, slow to anger, abounding in love.",
+        "Description_portugues": "\"O Senhor é misericordioso e compassivo, paciente e transbordante de amor.\" - Salmos 103:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Iradukunda Emmanuel",
+        "guestLastName": null,
+        "tableName": "Psalm 103:8 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T1",
+        "Description_english": "The Lord is compassionate and gracious, slow to anger, abounding in love.",
+        "Description_portugues": "\"O Senhor é misericordioso e compassivo, paciente e transbordante de amor.\" - Salmos 103:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Lambert Kabanda",
+        "guestLastName": "Airport",
+        "tableName": "Psalm 103:8 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T1",
+        "Description_english": "The Lord is compassionate and gracious, slow to anger, abounding in love.",
+        "Description_portugues": "\"O Senhor é misericordioso e compassivo, paciente e transbordante de amor.\" - Salmos 103:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Lambert Kabanda",
+        "guestLastName": null,
+        "tableName": "Psalm 103:8 (NIV)",
+        "tableZone": null,
+        "tableId": "Zone 4 - T1",
+        "Description_english": "The Lord is compassionate and gracious, slow to anger, abounding in love.",
+        "Description_portugues": "\"O Senhor é misericordioso e compassivo, paciente e transbordante de amor.\" - Salmos 103:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Batista",
+        "guestLastName": "Uncle Musoni Visitor 1",
+        "tableName": "Jeremiah 31:3 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T8",
+        "Description_english": "The Lord has appeared of old to me, saying: “Yes, I have loved you with an everlasting love; Therefore with lovingkindness I have drawn you.",
+        "Description_portugues": "\"O Senhor manifestou-se a nós no passado, dizendo: “Eu a amo com amor eterno; com amor leal a atrai.\" - Jeremias 31:3 (NVI)"
+    },
+    {
+        "guestFirstName": "Hakizimana Vincent",
+        "guestLastName": "Uncle Musoni Visitor 2",
+        "tableName": "Jeremiah 31:3 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T8",
+        "Description_english": "The Lord has appeared of old to me, saying: “Yes, I have loved you with an everlasting love; Therefore with lovingkindness I have drawn you.",
+        "Description_portugues": "\"O Senhor manifestou-se a nós no passado, dizendo: “Eu a amo com amor eterno; com amor leal a atrai.\" - Jeremias 31:3 (NVI)"
+    },
+    {
+        "guestFirstName": "Muryanashyaka Donat",
+        "guestLastName": "Uncle Musoni Visitor 3",
+        "tableName": "Jeremiah 31:3 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T8",
+        "Description_english": "The Lord has appeared of old to me, saying: “Yes, I have loved you with an everlasting love; Therefore with lovingkindness I have drawn you.",
+        "Description_portugues": "\"O Senhor manifestou-se a nós no passado, dizendo: “Eu a amo com amor eterno; com amor leal a atrai.\" - Jeremias 31:3 (NVI)"
+    },
+    {
+        "guestFirstName": "Aimable",
+        "guestLastName": "Uncle Musoni Visitor 4",
+        "tableName": "Jeremiah 31:3 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T8",
+        "Description_english": "The Lord has appeared of old to me, saying: “Yes, I have loved you with an everlasting love; Therefore with lovingkindness I have drawn you.",
+        "Description_portugues": "\"O Senhor manifestou-se a nós no passado, dizendo: “Eu a amo com amor eterno; com amor leal a atrai.\" - Jeremias 31:3 (NVI)"
+    },
+    {
+        "guestFirstName": "Habyarimana Flatere",
+        "guestLastName": "Uncle Musoni Visitor 5",
+        "tableName": "Jeremiah 31:3 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T8",
+        "Description_english": "The Lord has appeared of old to me, saying: “Yes, I have loved you with an everlasting love; Therefore with lovingkindness I have drawn you.",
+        "Description_portugues": "\"O Senhor manifestou-se a nós no passado, dizendo: “Eu a amo com amor eterno; com amor leal a atrai.\" - Jeremias 31:3 (NVI)"
+    },
+    {
+        "guestFirstName": "Fosten Habarurema",
+        "guestLastName": "Uncle Musoni Visitor 6",
+        "tableName": "Jeremiah 31:3 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T8",
+        "Description_english": "The Lord has appeared of old to me, saying: “Yes, I have loved you with an everlasting love; Therefore with lovingkindness I have drawn you.",
+        "Description_portugues": "\"O Senhor manifestou-se a nós no passado, dizendo: “Eu a amo com amor eterno; com amor leal a atrai.\" - Jeremias 31:3 (NVI)"
+    },
+    {
+        "guestFirstName": "Jean paul Muhigirza",
+        "guestLastName": "Uncle Musoni Visitor 7",
+        "tableName": "Jeremiah 31:3 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T8",
+        "Description_english": "The Lord has appeared of old to me, saying: “Yes, I have loved you with an everlasting love; Therefore with lovingkindness I have drawn you.",
+        "Description_portugues": "\"O Senhor manifestou-se a nós no passado, dizendo: “Eu a amo com amor eterno; com amor leal a atrai.\" - Jeremias 31:3 (NVI)"
+    },
+    {
+        "guestFirstName": "Mugisha Vequere",
+        "guestLastName": null,
+        "tableName": "Jeremiah 31:3 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T8",
+        "Description_english": "The Lord has appeared of old to me, saying: “Yes, I have loved you with an everlasting love; Therefore with lovingkindness I have drawn you.",
+        "Description_portugues": "\"O Senhor manifestou-se a nós no passado, dizendo: “Eu a amo com amor eterno; com amor leal a atrai.\" - Jeremias 31:3 (NVI)"
+    },
+    {
+        "guestFirstName": "Bryan Musoni",
+        "guestLastName": null,
+        "tableName": "1 John 4:16 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T7",
+        "Description_english": "And we have known and believed the love that God has for us. God is love, and he who abides in love abides in God, and God in him.",
+        "Description_portugues": "\"E nós conhecemos e cremos no amor que Deus tem por nós. Deus é amor; quem permanece no amor permanece em Deus, e Deus, nele.\" - 1 João 4:16 (NVI)"
+    },
+    {
+        "guestFirstName": "Bruno Musoni",
+        "guestLastName": null,
+        "tableName": "1 John 4:16 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T7",
+        "Description_english": "And we have known and believed the love that God has for us. God is love, and he who abides in love abides in God, and God in him.",
+        "Description_portugues": "\"E nós conhecemos e cremos no amor que Deus tem por nós. Deus é amor; quem permanece no amor permanece em Deus, e Deus, nele.\" - 1 João 4:16 (NVI)"
+    },
+    {
+        "guestFirstName": "B Musoni",
+        "guestLastName": "Child Musoni",
+        "tableName": "1 John 4:16 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T7",
+        "Description_english": "And we have known and believed the love that God has for us. God is love, and he who abides in love abides in God, and God in him.",
+        "Description_portugues": "\"E nós conhecemos e cremos no amor que Deus tem por nós. Deus é amor; quem permanece no amor permanece em Deus, e Deus, nele.\" - 1 João 4:16 (NVI)"
+    },
+    {
+        "guestFirstName": "Cathia ketia Ndahimana",
+        "guestLastName": null,
+        "tableName": "1 John 4:16 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T7",
+        "Description_english": "And we have known and believed the love that God has for us. God is love, and he who abides in love abides in God, and God in him.",
+        "Description_portugues": "\"E nós conhecemos e cremos no amor que Deus tem por nós. Deus é amor; quem permanece no amor permanece em Deus, e Deus, nele.\" - 1 João 4:16 (NVI)"
+    },
+    {
+        "guestFirstName": "Kyla Ndahimana",
+        "guestLastName": null,
+        "tableName": "1 John 4:16 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T7",
+        "Description_english": "And we have known and believed the love that God has for us. God is love, and he who abides in love abides in God, and God in him.",
+        "Description_portugues": "\"E nós conhecemos e cremos no amor que Deus tem por nós. Deus é amor; quem permanece no amor permanece em Deus, e Deus, nele.\" - 1 João 4:16 (NVI)"
+    },
+    {
+        "guestFirstName": "Dylan Ndahimana",
+        "guestLastName": null,
+        "tableName": "1 John 4:16 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T7",
+        "Description_english": "And we have known and believed the love that God has for us. God is love, and he who abides in love abides in God, and God in him.",
+        "Description_portugues": "\"E nós conhecemos e cremos no amor que Deus tem por nós. Deus é amor; quem permanece no amor permanece em Deus, e Deus, nele.\" - 1 João 4:16 (NVI)"
+    },
+    {
+        "guestFirstName": "Emmanuel Gasamagera",
+        "guestLastName": null,
+        "tableName": "1 John 4:16 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T7",
+        "Description_english": "And we have known and believed the love that God has for us. God is love, and he who abides in love abides in God, and God in him.",
+        "Description_portugues": "\"E nós conhecemos e cremos no amor que Deus tem por nós. Deus é amor; quem permanece no amor permanece em Deus, e Deus, nele.\" - 1 João 4:16 (NVI)"
+    },
+    {
+        "guestFirstName": "Tommy",
+        "guestLastName": null,
+        "tableName": "1 John 4:16 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T7",
+        "Description_english": "And we have known and believed the love that God has for us. God is love, and he who abides in love abides in God, and God in him.",
+        "Description_portugues": "\"E nós conhecemos e cremos no amor que Deus tem por nós. Deus é amor; quem permanece no amor permanece em Deus, e Deus, nele.\" - 1 João 4:16 (NVI)"
+    },
+    {
+        "guestFirstName": "Andre",
+        "guestLastName": null,
+        "tableName": "Hosea 2:19 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T6",
+        "Description_english": "I will betroth you to Me forever; Yes, I will betroth you to Me In righteousness and justice, In lovingkindness and mercy;",
+        "Description_portugues": "\"Desposar-te-ei comigo para sempre; desposar-te-ei comigo em justiça, justiça, amor e compaixão;\" - Oséias 2:19 (NVI)"
+    },
+    {
+        "guestFirstName": "Chavito",
+        "guestLastName": null,
+        "tableName": "Hosea 2:19 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T6",
+        "Description_english": "I will betroth you to Me forever; Yes, I will betroth you to Me In righteousness and justice, In lovingkindness and mercy;",
+        "Description_portugues": "\"Desposar-te-ei comigo para sempre; desposar-te-ei comigo em justiça, justiça, amor e compaixão;\" - Oséias 2:19 (NVI)"
+    },
+    {
+        "guestFirstName": "bernardo",
+        "guestLastName": null,
+        "tableName": "Hosea 2:19 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T6",
+        "Description_english": "I will betroth you to Me forever; Yes, I will betroth you to Me In righteousness and justice, In lovingkindness and mercy;",
+        "Description_portugues": "\"Desposar-te-ei comigo para sempre; desposar-te-ei comigo em justiça, justiça, amor e compaixão;\" - Oséias 2:19 (NVI)"
+    },
+    {
+        "guestFirstName": "Victory",
+        "guestLastName": null,
+        "tableName": "Hosea 2:19 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T6",
+        "Description_english": "I will betroth you to Me forever; Yes, I will betroth you to Me In righteousness and justice, In lovingkindness and mercy;",
+        "Description_portugues": "\"Desposar-te-ei comigo para sempre; desposar-te-ei comigo em justiça, justiça, amor e compaixão;\" - Oséias 2:19 (NVI)"
+    },
+    {
+        "guestFirstName": "Bim Chimayo Shimayo",
+        "guestLastName": null,
+        "tableName": "Hosea 2:19 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T6",
+        "Description_english": "I will betroth you to Me forever; Yes, I will betroth you to Me In righteousness and justice, In lovingkindness and mercy;",
+        "Description_portugues": "\"Desposar-te-ei comigo para sempre; desposar-te-ei comigo em justiça, justiça, amor e compaixão;\" - Oséias 2:19 (NVI)"
+    },
+    {
+        "guestFirstName": "Matias Dario",
+        "guestLastName": null,
+        "tableName": "Hosea 2:19 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T6",
+        "Description_english": "I will betroth you to Me forever; Yes, I will betroth you to Me In righteousness and justice, In lovingkindness and mercy;",
+        "Description_portugues": "\"Desposar-te-ei comigo para sempre; desposar-te-ei comigo em justiça, justiça, amor e compaixão;\" - Oséias 2:19 (NVI)"
+    },
+    {
+        "guestFirstName": "Nene",
+        "guestLastName": null,
+        "tableName": "Hosea 2:19 (NKJV)",
+        "tableZone": null,
+        "tableId": "Zone 3 - T6",
+        "Description_english": "I will betroth you to Me forever; Yes, I will betroth you to Me In righteousness and justice, In lovingkindness and mercy;",
+        "Description_portugues": "\"Desposar-te-ei comigo para sempre; desposar-te-ei comigo em justiça, justiça, amor e compaixão;\" - Oséias 2:19 (NVI)"
     }
 ]
