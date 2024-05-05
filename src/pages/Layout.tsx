@@ -128,7 +128,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
         
         if (isCorrectFormat) {
           setClickedTableId(clickedTabeId as string);
-          const clickedTabelName = uploadedData?.find((table: { tableId: string; }) => table.tableId.toLowerCase().includes(clickedTabeId?.toLowerCase() as string));
+          const clickedTabelName = uploadedData?.find((table: { tableId: string; }) => table.tableId.toLowerCase() === (clickedTabeId?.toLowerCase() as string));
           const table = uploadedData?.find((table: { tableName: string; }) => table.tableName.toLowerCase() === clickedTabelName?.tableName?.toLowerCase());
           setOpenTable(table);
           if (tableElement.getAttribute('id')?.toLowerCase() === clickedTabelName?.tableId?.toLowerCase()) {
