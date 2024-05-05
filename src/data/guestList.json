@@ -4957,5 +4957,41 @@
         "tableId": "Zone 1 - T1",
         "Description_english": "Whoever does not love does not know God, because God is love.",
         "Description_portugues": "\"Aquele que não ama não conhece a Deus, pois Deus é amor.\" - 1 João 4:8 (NVI)"
+    },
+    {
+        "guestFirstName": "Pierre Minani",
+        "guestLastName": null,
+        "tableName": "Matthew 25:40 (N.IV)",
+        "tableZone": null,
+        "tableId": "Zone 2 - T9",
+        "Description_english": "The King will reply, 'Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me.",
+        "Description_portugues": "\"O Rei responderá: ‘Digo a verdade: o que vocês fizeram a algum dos meus menores irmãos, a mim o fizeram’.\" - Mateus 25:40 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Pierre Minani",
+        "guestLastName": null,
+        "tableName": "Matthew 25:40 (N.IV)",
+        "tableZone": null,
+        "tableId": "Zone 2 - T9",
+        "Description_english": "The King will reply, 'Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me.",
+        "Description_portugues": "\"O Rei responderá: ‘Digo a verdade: o que vocês fizeram a algum dos meus menores irmãos, a mim o fizeram’.\" - Mateus 25:40 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Diogene Dum",
+        "guestLastName": null,
+        "tableName": "Matthew 25:40 (N.IV)",
+        "tableZone": null,
+        "tableId": "Zone 2 - T9",
+        "Description_english": "The King will reply, 'Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me.",
+        "Description_portugues": "\"O Rei responderá: ‘Digo a verdade: o que vocês fizeram a algum dos meus menores irmãos, a mim o fizeram’.\" - Mateus 25:40 (NVI)"
+    },
+    {
+        "guestFirstName": "Madame Diogene Dum +1",
+        "guestLastName": null,
+        "tableName": "Matthew 25:40 (N.IV)",
+        "tableZone": null,
+        "tableId": "Zone 2 - T9",
+        "Description_english": "The King will reply, 'Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me.",
+        "Description_portugues": "\"O Rei responderá: ‘Digo a verdade: o que vocês fizeram a algum dos meus menores irmãos, a mim o fizeram’.\" - Mateus 25:40 (NVI)"
     }
 ]
