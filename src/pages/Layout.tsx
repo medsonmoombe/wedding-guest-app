@@ -179,22 +179,23 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
   }, [clickedTabel]);
 
 
+
   return (
     <Box height={'auto'} bg={'gray.100'}>
       { (selectedUser && openTable) &&  <Box width={'full'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} mb={2}>
         <Text fontSize="xl" textAlign="center" fontWeight="bold" color={'black'} >
           {`${selectedUser?.guestFirstName} ${ selectedUser?.guestLastName ? selectedUser?.guestLastName : ''}`}
         </Text>
-        <Text fontSize="lg" textAlign="center" color={'black'} >
+        {/* <Text fontSize="lg" textAlign="center" color={'black'} >
           {clickedTableId && clickedTableId}
-        </Text>
+        </Text> */}
       </Box>}
       <Center width={'full'} flexDirection={'column'}>
         <SVGComponent />
         <Center mb={8} mt={-20}>
-        <Text fontSize="20px" textAlign="center" color={'gray.700'} >
+        {/* <Text fontSize="20px" textAlign="center" color={'gray.700'} >
             { clickedTableId&&clickedTableId}
-          </Text>
+          </Text> */}
         </Center>
       </Center>
       <Box px={4} mb={8} bg={'gray.100'} pb={4}>
