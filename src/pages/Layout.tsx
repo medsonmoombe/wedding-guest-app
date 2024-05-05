@@ -178,6 +178,7 @@ const Layout = ({ uploadedData, clickedTabel, setClickedTable, setSearchQuery, s
     }
   }, [clickedTabel]);
 
+console.log(clickedTableId);
 
 
   return (
